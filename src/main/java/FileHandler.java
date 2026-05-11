@@ -290,7 +290,7 @@ FileHandler {
     public void saveProList(LinkedList<Proiezioni> proList){
         this.proList = proList; // aggiorna lista salvata in cache
         try {
-            this.writeToProCsv("proiezioni.csv"); // riscrive file proiezioni csv
+            this.writeToProCsv(); // riscrive file proiezioni csv
         }catch(IOException e){
             throw new RuntimeException(e);
         }
