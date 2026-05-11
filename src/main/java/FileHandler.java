@@ -37,7 +37,7 @@ FileHandler {
     private LinkedList<User> userList;
     /**
      * Percorso del file CSV*/
-    private String path;// percorso file csv proiezioni
+    private Path path;// percorso file csv proiezioni
 
     /**Costruttore della classe FileHandler
      *
@@ -47,18 +47,18 @@ FileHandler {
         this.userList = new LinkedList<>(); // inizializza linkedlist user
         this.formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         this.localDateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        this.path = path;
+        this.path = Paths.get("data",path); // imposta percorso file corretto
     }
 
     // metodo per caricare i dati delle proiezioni da csv
     /**
      * Carica i dati delle proiezioni da un file CSV
      *
-     * @param filePath nome del file CSV
+     *
+     *
      * @throws IOException errore durante la lettura del file*/
-    private void loadProData(String filePath) throws IOException {
-        Path path = Paths.get("data",filePath);
-        BufferedReader br = Files.newBufferedReader(path); // crea un reader per il file csv che usa inputstream per processare il testo
+    private void loadProData() throws IOException {
+        BufferedReader br = Files.newBufferedReader(this.path); // crea un reader per il file csv che usa inputstream per processare il testo
         CSVParser parser = CSVFormat.DEFAULT.withFirstRecordAsHeader().withTrim().parse(br); // crea un parser dedicato per il csv che usa gli header come nomi delle colonne
         for (CSVRecord record : parser) // itera ogni elemento letto dal csvparser per estrarne i dati
             this.createProObj(record); //crea oggetto proiezione e lo aggiunge alla linkedlist dedicata
@@ -186,11 +186,10 @@ FileHandler {
     /**
      * Metodo che carica i dati degli utenti dal CSV e inserisce nella linkedlist
      *
-     * @param filePath percorso del file
+     * percorso del file
      * @throws IOException errore durante la lettura*/
-    public void loadUserData(String filePath) throws IOException {
-        Path path = Paths.get("data",filePath);
-        BufferedReader br = Files.newBufferedReader(path); // crea un reader per il file csv che usa inputstream per processare il testo
+    public void loadUserData() throws IOException {
+        BufferedReader br = Files.newBufferedReader(this.path); // crea un reader per il file csv che usa inputstream per processare il testo
         CSVParser parser = CSVFormat.DEFAULT.withFirstRecordAsHeader().withTrim().parse(br); // crea un parser dedicato per il csv che usa gli header come nomi delle colonne
         for (CSVRecord record : parser) // itera ogni elemento letto dal csvparser per estrarne i dati
             this.createUserObj(record); //crea oggetto proiezione e lo aggiunge alla linkedlist dedicata
@@ -217,10 +216,10 @@ FileHandler {
     /**
      * Meotodo che scrive gli utenti sul file CSV
      *
-     * @param path percorso del file
+     *
      * @throws IOException errore in scrittura*/
-    public void writeToUserCsv(String path)throws IOException {
-        Writer writer = new FileWriter(path); // crea writer per scrivere su file
+    public void writeToUserCsv()throws IOException {
+        Writer writer = new FileWriter(this.path.toFile()); // crea writer per scrivere su file
         CSVPrinter printer = new CSVPrinter(writer, CSVFormat.DEFAULT); // crea csv printer per creare record da scrivere su file
         this.createUserHeader(printer);
         for (User u : this.userList)
@@ -259,9 +258,10 @@ FileHandler {
                 u.getNome(),
                 u.getCognome(),
                 u.getPassword(),
-                u.getPassword(),
+                u.getUsername(),
                 u.getDataDiNascita().format(this.localDateFormatter),
-                u.getIndirizzo()
+                u.getIndirizzo(),
+                u.getRole()
         );
     }
 
@@ -275,7 +275,7 @@ FileHandler {
             return this.proList;
         else
             try {
-                this.loadProData(this.path); // se linkedlist è vuota la carica da csv
+                this.loadProData(); // se linkedlist è vuota la carica da csv
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -290,7 +290,7 @@ FileHandler {
     public void saveProList(LinkedList<Proiezioni> proList){
         this.proList = proList; // aggiorna lista salvata in cache
         try {
-            this.writeToProCsv(this.path); // riscrive file proiezioni csv
+            this.writeToProCsv("proiezioni.csv"); // riscrive file proiezioni csv
         }catch(IOException e){
             throw new RuntimeException(e);
         }
@@ -301,16 +301,17 @@ FileHandler {
      * Metodo che restituisce la lista degli utenti, se vuota carica direttamente dal CSV
      *
      * @return lista utenti*/
-    public LinkedList getUserList(){
+    public LinkedList<User> getUserList(){
         if(!this.userList.isEmpty()) // se la linkedlist è già caricata la restituisce
             return this.userList;
-        else
-            try {
-                this.loadUserData(this.path); // se linkedlist è vuota la carica da csv
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        return getUserList(); // richiama la funzione per verificare e restituire i dati
+        try {
+            this.loadUserData();
+            return this.userList;// se linkedlist è vuota la carica da csv
+        }
+        catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+         // richiama la funzione per verificare e restituire i dati
     }
 
     // metod oper salvare la linkedlist degli user
@@ -321,7 +322,7 @@ FileHandler {
     public void saveUserList(LinkedList<User> userList){
         this.userList = userList; // aggiorna lista salvata in cache
         try {
-            this.writeToUserCsv(this.path); // riscrive file proiezioni csv
+            this.writeToUserCsv(); // riscrive file proiezioni csv
         }catch(IOException e){
             throw new RuntimeException(e);
         }

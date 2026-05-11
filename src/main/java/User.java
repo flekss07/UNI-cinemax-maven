@@ -26,6 +26,7 @@ public class User {
     public String getUsername(){ return this.username; }
     public LocalDate getDataDiNascita() { return this.dataDiNascita; }
     public String getIndirizzo() { return this.indirizzo; }
+    public Roles getRole(){ return this.ruolo; }
 
     //setter
 

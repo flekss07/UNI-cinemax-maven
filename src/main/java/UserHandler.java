@@ -12,35 +12,16 @@ public class UserHandler {
     public UserHandler() {
         this.localDateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         this.fh = new FileHandler("users.csv");
-        this.userList = new LinkedList<>();  //= this.fh.getUserList();
+        this.userList = this.fh.getUserList();
     }
 
     /*Funzione x registrare l'utente*/
-    public void addUser() throws Exception {
-        Scanner s = new Scanner(System.in);
-        //ruolo
-        System.out.println("scegliere il ruolo");
-        //Inserimento nome
-        System.out.println("Inserire Nome");
-        String nome = this.stringCheck();
-        //inserimento cognome
-        System.out.println("Inserire Cognome");
-        String cognome = this.stringCheck();
-        //inserimento username
-        System.out.println("Inserire Username");
-        String username = this.stringCheck();
-        System.out.println("Inserire indirizzo di residenza");
-        String residenza = this.stringCheck();
-        //da inserire gestione della data
-        System.out.println("inserire la data di nascita con formato gioni/mesi/anni");
-        LocalDate bDate = this.convertBdate(this.stringCheck());
-        System.out.println("inserire ruolo: ");
-        Roles ruolo = this.chooseRole();
-        //inserimento della password
-        String password = this.passencryption();
+    public void addUser(String nome, String cognome,  String password, String  username, String  data, String residenza, Roles ruolo) throws Exception {
+        LocalDate bDate = this.convertBdate(data);
         User newUser = new User(nome, cognome, password, username, bDate, residenza, ruolo);
         this.userList.add(newUser);
-        fh.saveUserList(this.userList);
+        fh.saveUserList(this.userList); // salva modifiche
+        this.userList = this.fh.getUserList(); // aggiorna lista corrente di user
     }
 
 
@@ -50,36 +31,7 @@ public class UserHandler {
         return bDate;
     }
 
-    //sotto metodo che chiede di seleizonare il ruolo
-    private Roles chooseRole(){
-        System.out.println("selezionare ruolo:\n1)cliente\n2)proiezionista\n3)bibliettaio ");
-        int choice = Integer.parseInt(this.stringCheck());
-        switch (choice) {
-            case 1:
-                return Roles.CLIENTE;
-            case 2:
-                return Roles.PROIEZIONISTA;
-            case 3:
-                return Roles.BIGLIETTAIO;
-            default:
-                System.out.println("input non valido, riprovare");
-                return null;
-        }
-    }
-//funzione di encryption x la password, più check
-    private String passencryption() throws Exception {
-        System.out.println("inserire una password");
-        String password = this.stringCheck();
-        System.out.println("inserire nuovamente la password");
-        String passcmp = this.stringCheck();
-        if (!password.equals(passcmp)) {
-            System.out.println("Le password non corrispondono, riprova.");
-            return passencryption();
-        }
-        //encrypting della password
-        AESencrypt crypted = new AESencrypt();
-        return AESencrypt.encrypt(password);
-    }
+
 
     //sotto metodo che fa il check della stringa
     private String stringCheck() {

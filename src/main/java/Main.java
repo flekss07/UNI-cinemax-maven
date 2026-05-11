@@ -3,8 +3,9 @@ public class Main {
     public static void main(String[] args){
         FileHandler fh = new FileHandler("users.csv");
         UserHandler uh = new UserHandler();
+        Menu menu = new Menu();
         try {
-            uh.addUser();
+            menu.userRegister();
         }catch(Exception e){
             System.out.println("errore in main adduser");
             throw new RuntimeException(e);
