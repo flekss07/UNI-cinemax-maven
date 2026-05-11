@@ -131,10 +131,10 @@ FileHandler {
     //metodo che salva i dati delle proiezioni su file
     /**Metodo per salvare i dati delle proiezioni su file CSV
      *
-     * @param path percorso del file
+     *
      * @throws IOException errore durante la scrittura su file CSV*/
-    public void writeToProCsv(String path) throws IOException {
-        Writer writer = new FileWriter(path); // crea writer per scrivere su file
+    public void writeToProCsv() throws IOException {
+        Writer writer = new FileWriter(this.path.toFile()); // crea writer per scrivere su file
         CSVPrinter printer = new CSVPrinter(writer, CSVFormat.DEFAULT); // crea csv printer per creare record da scrivere su file
         this.createHeader(printer);
         for (Proiezioni pro : this.proList)
