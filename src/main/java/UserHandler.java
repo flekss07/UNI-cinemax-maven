@@ -69,14 +69,27 @@ public class UserHandler {
     }
     //Controlla la password in maniera ricorsiva
     private void  passcheck(User u)throws Exception{
-     System.out.println("Inserire la password");
-    String passcmp = this.stringCheck();
-            if (passcmp.equals(u.getPassword())) {
-        System.out.println("Login effettuato con successo");
-    } else {
-        System.out.println("Password errata, riprova");
-        passcheck(u);
+        System.out.println("Inserire la password");
+        String passcmp = this.stringCheck();
+        String tmp = this.passencryption(passcmp);
+        if (tmp.equals(u.getPassword())) {
+            System.out.println("Login effettuato con successo");
+        } else {
+            System.out.println("Password errata, riprova");
+            passcheck(u);
 
-            }
-}
+        }
+
+    }
+    private String passencryption(String password) throws Exception {
+        System.out.println("inserire nuovamente la password");
+        String passcmp = this.stringCheck();
+        if (!password.equals(passcmp)) {
+            System.out.println("Le password non corrispondono, riprova.");
+            return passencryption(password);
+        }
+        //encrypting della password
+
+        return AESencrypt.encrypt(password);
+    }
 }
