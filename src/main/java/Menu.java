@@ -10,7 +10,7 @@ public class Menu {
     public void MenuSelect() { // costruttore menu
 
         while (true) {
-            System.out.println("Inserire il numero corrispondente alla funzione x attivarla\n1)registrarsi\neffettuare il login\n3)Continuare come quest ");
+            System.out.println("Inserire il numero corrispondente alla funzione per attivarla\n1)registrarsi\n2)effettuare il login\n3)Continuare come quest ");
             int selector = this.numbCheck();
             switch (selector) {
                 case 1://registrarsi
