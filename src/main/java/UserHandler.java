@@ -60,7 +60,7 @@ public class UserHandler {
         Scanner sc = new Scanner(System.in);
         String str = sc.next();
         if (!str.trim().isEmpty()) {
-            System.out.println("Si prega di inserire un nome valido \ninput: ");
+            System.out.println("Si prega di inserire un input valido \ninput: ");
             return stringCheck();
         }
         return str;
@@ -78,7 +78,7 @@ public class UserHandler {
         return null;
     }
 //Esiste username e passa al controllo password
-    public void loginUser() throws Exception {
+    public void usernameChecker() throws Exception {
         System.out.println("Insere l'username:");
         String username = this.stringCheck();
         User u = this.checkUser(username);
@@ -86,7 +86,7 @@ public class UserHandler {
             passcheck(u);
         } else {
             System.out.println("Username non trovato, riprova");
-            loginUser();
+            usernameChecker();
         }
     }
     //Controlla la password in maniera ricorsiva
@@ -101,4 +101,38 @@ public class UserHandler {
 
             }
 }
+public void logUser() throws Exception {
+        System.out.println("Inserire 1 per continuare col login, Inserire 2 per tornare all'inizio");
+        int value = numbChecker();
+        switch(value){
+            case 1:
+                this.usernameChecker();
+                break ;
+            case 2:
+                //this.menu();
+                //break;
+
+            default:
+                System.out.println("Il  numero inserito non è in range, inserire 1 o 2 grazie");
+                this.logUser();
+        }
+
+    }
+private int numbChecker(){
+        String s = this.stringCheck(); //controllo stringa
+        try {
+        int n = Integer.parseInt(s);
+        if (n <= 0) {
+            System.out.println("Il numero inserito non può essere negativo");
+            return this.numbChecker();
+        } else {
+            return n;
+        }
+    } catch (NumberFormatException e) {
+        System.out.println("Quello che hai inserito non è un numero. Riprova");
+        return numbChecker();
+    }
+}
+
+
 }
