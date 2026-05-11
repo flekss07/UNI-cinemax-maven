@@ -15,6 +15,16 @@ public class PrenotazioniHandler {
     //metodo di aggiunta prenotazione
     public void addPrenotazione(){
         Scanner sc = new Scanner(System.in);
+
+        //placeholder
+
+        
+        System.out.println("digitare il titolo della proiezione che si vuole prenotare");
+        String titoloP=sc.nextLine();
+
+
+        //Prenotazioni nuovaPrenotazioni = new Prenotazioni();
+
     }
 
 
