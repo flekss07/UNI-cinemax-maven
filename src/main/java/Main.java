@@ -5,7 +5,7 @@ public class Main {
         UserHandler uh = new UserHandler();
         Menu menu = new Menu();
         try {
-            menu.userRegister();
+            menu.menuSelect();
         }catch(Exception e){
             System.out.println("errore in main adduser");
             throw new RuntimeException(e);

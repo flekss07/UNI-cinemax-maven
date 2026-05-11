@@ -7,7 +7,7 @@ public class Menu {
         this.uh = new UserHandler();
     }
 
-    public void MenuSelect() { // costruttore menu
+    public void menuSelect() { // costruttore menu
 
         while (true) {
             System.out.println("Inserire il numero corrispondente alla funzione per attivarla\n1)registrarsi\n2)effettuare il login\n3)Continuare come quest ");
@@ -185,7 +185,7 @@ public class Menu {
     }
     public void userLogin() throws RuntimeException {
         try {
-            this.uh.loginUser();
+           this.uh.loginUser();
         } catch (Exception e) {
             System.out.println("Login non riuscito...");
             throw new RuntimeException(e){
