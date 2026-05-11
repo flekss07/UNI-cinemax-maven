@@ -15,7 +15,7 @@ public class AESencrypt {
      * Chiave di cifratura utilizzata dall'algoritmo AES
      * Lunghezza 128 bit (16 caratteri)
      * */
-    private static final String FIXED_KEY = "cinemax2026key!"; // 16 caratteri per AES-128
+    private static final String FIXED_KEY = "cinemax2026key!!"; // 16 caratteri per AES-128
     /**
      * Cifra una password in input usando AES
      *
