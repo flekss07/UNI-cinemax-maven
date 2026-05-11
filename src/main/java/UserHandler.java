@@ -1,14 +1,17 @@
-import java.io.File;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
 import java.util.Scanner;
 
 public class UserHandler {
     private LinkedList<User> userList;
     private FileHandler fh;
+    private DateTimeFormatter localDateFormatter;
 
     //this.userList  = this.fh.getUserList();
     public UserHandler() {
-        this.fh = new FileHandler();
+        this.localDateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        this.fh = new FileHandler("users.csv");
         this.userList = new LinkedList<>();  //= this.fh.getUserList();
     }
 
@@ -30,17 +33,39 @@ public class UserHandler {
         String residenza = this.stringCheck();
         //da inserire gestione della data
         System.out.println("inserire la data di nascita con formato gioni/mesi/anni");
-        String bDate = this.stringCheck();
+        LocalDate bDate = this.convertBdate(this.stringCheck());
         System.out.println("inserire ruolo: ");
-        String ruolo = this.stringCheck();
+        Roles ruolo = this.chooseRole();
         //inserimento della password
         String password = this.passencryption();
         User newUser = new User(nome, cognome, password, username, bDate, residenza, ruolo);
         this.userList.add(newUser);
-
     }
-    
-//funzione di encryption x la password, più check
+
+    // sotto metodo per convertire la data da stringa a formato LocalDate
+    private LocalDate convertBdate(String bdate){
+        LocalDate bDate = LocalDate.parse(bdate,localDateFormatter);
+        return bDate;
+    }
+
+    //sotto metodo che chiede di seleizonare il ruolo
+    private Roles chooseRole(){
+        System.out.println("selezionare ruolo:\n1)cliente\n2)proiezionista\n3)bibliettaio ");
+        int choice = Integer.parseInt(this.stringCheck());
+        switch (choice) {
+            case 1:
+                return Roles.CLIENTE;
+            case 2:
+                return Roles.PROIEZIONISTA;
+            case 3:
+                return Roles.BIGLIETTAIO;
+            default:
+                System.out.println("input non valido, riprovare");
+                return null;
+        }
+    }
+
+    //funzione di encryption x la password, più check
     private String passencryption() throws Exception {
         System.out.println("inserire una password");
         String password = this.stringCheck();
@@ -60,7 +85,7 @@ public class UserHandler {
         Scanner sc = new Scanner(System.in);
         String str = sc.next();
         if (!str.trim().isEmpty()) {
-            System.out.println("Si prega di inserire un input valido \ninput: ");
+            System.out.println("Si prega di inserire un nome valido \ninput: ");
             return stringCheck();
         }
         return str;
@@ -78,7 +103,7 @@ public class UserHandler {
         return null;
     }
 //Esiste username e passa al controllo password
-    public void usernameChecker() throws Exception {
+    public void loginUser() throws Exception {
         System.out.println("Insere l'username:");
         String username = this.stringCheck();
         User u = this.checkUser(username);
@@ -86,7 +111,7 @@ public class UserHandler {
             passcheck(u);
         } else {
             System.out.println("Username non trovato, riprova");
-            usernameChecker();
+            loginUser();
         }
     }
     //Controlla la password in maniera ricorsiva
@@ -101,38 +126,4 @@ public class UserHandler {
 
             }
 }
-public void logUser() throws Exception {
-        System.out.println("Inserire 1 per continuare col login, Inserire 2 per tornare all'inizio");
-        int value = numbChecker();
-        switch(value){
-            case 1:
-                this.usernameChecker();
-                break ;
-            case 2:
-                //this.menu();
-                //break;
-
-            default:
-                System.out.println("Il  numero inserito non è in range, inserire 1 o 2 grazie");
-                this.logUser();
-        }
-
-    }
-private int numbChecker(){
-        String s = this.stringCheck(); //controllo stringa
-        try {
-        int n = Integer.parseInt(s);
-        if (n <= 0) {
-            System.out.println("Il numero inserito non può essere negativo");
-            return this.numbChecker();
-        } else {
-            return n;
-        }
-    } catch (NumberFormatException e) {
-        System.out.println("Quello che hai inserito non è un numero. Riprova");
-        return numbChecker();
-    }
-}
-
-
 }
