@@ -1,7 +1,7 @@
 import java.time.LocalDateTime;
 
 public class Proiezioni {
-    private String genere;
+    private String genere; // da modifica in enum
     private String titolo;
     private String regista;
     private LocalDateTime data;
@@ -21,6 +21,9 @@ public class Proiezioni {
         this.prezzo = prezzo;
     }
 
+    public Proiezioni(){
+
+    }
     // getter
 
     public String getGeneri() { return this.genere; }

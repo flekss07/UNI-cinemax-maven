@@ -85,7 +85,7 @@ public class UserHandler {
         Scanner sc = new Scanner(System.in);
         String str = sc.next();
         if (!str.trim().isEmpty()) {
-            System.out.println("Si prega di inserire un nome valido \ninput: ");
+            System.out.println("Si prega di inserire un input valido \ninput: ");
             return stringCheck();
         }
         return str;
