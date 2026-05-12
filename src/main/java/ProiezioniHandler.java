@@ -1,13 +1,31 @@
 import java.util.LinkedList;
 import java.util.Scanner;
 
+/**
+ * <h1>Classe che gestisce le operazioni relative alle proiezioni</h1>
+ *
+ * <p>Permette di aggiungere nuove proiezioni</p>
+ *
+ */
 public class ProiezioniHandler {
+
+    /**
+     * Lista contenente tutte le proiezioni registrate
+     */
     private LinkedList<User> proiezioniList;
 
+    /**
+     *Costruttore della classe ProiezioniHandler
+     *
+     * @param proiezioniList lista contenente le proiezioni
+     */
     public ProiezioniHandler(LinkedList proiezioniList) {
         this.proiezioniList = proiezioniList;
     }
 
+    /**
+     * Metodo che permette l'inserimento di una nuova proiezione
+     */
     public void addProiezione() {
         Proiezioni NuovaProiezione = new Proiezioni();
         Scanner sc = new Scanner(System.in);
@@ -38,6 +56,12 @@ public class ProiezioniHandler {
         System.out.println("Inserire il prezzo del film");
         float prezzo = this.priceCheck();
     }
+
+    /**
+     * Metodo che controlla se la stringa inserita non sia vuota
+     *
+     * @return stringa valida inserita dell'utente
+     */
     private String stringCheck() {
         Scanner sc = new Scanner(System.in);
         String str = sc.next();
@@ -47,6 +71,12 @@ public class ProiezioniHandler {
         }
         return str;
     }
+
+    /**
+     * Metodo che controlla se la durata inserita è valida (numero intero positivo)
+     *
+     * @return durata valida della proiezione
+     */
     private int dataCheck(){{
         String str = this.stringCheck();
         try {
@@ -63,6 +93,11 @@ public class ProiezioniHandler {
     }
     }
 
+    /**
+     * Metodo che controlla l'età minima inserita sia valida
+     *
+     * @return età minima valida
+     */
     private int etaCheck(){
         String str = this.stringCheck();
         try{
@@ -83,6 +118,12 @@ public class ProiezioniHandler {
             return etaCheck();
         }
     }
+
+    /**
+     * Metodo che controlla l'anno di uscita del film sia valido
+     *
+     * @return anno di uscita valido
+     */
     private int releaseCheck(){
         String str = this.stringCheck();
         try {
@@ -96,6 +137,12 @@ public class ProiezioniHandler {
             return releaseCheck();
         }
     }
+
+    /**
+     * Metodo che controlla che il prezzo inserito sia valido
+     *
+     * @return prezzo valido della proiezione
+     */
     private float  priceCheck(){
         String str = this.stringCheck();
         try {
