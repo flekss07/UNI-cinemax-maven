@@ -274,20 +274,6 @@ public class Menu {
         }
     }
 
-    public User userLogin() throws RuntimeException {
-        try {
-            User u =this.uh.loginUser();
-            System.out.println("Login eseguito con successo!");
-            return u;
-        } catch (Exception e) {
-            System.out.println("Login non riuscito...");
-            throw new RuntimeException(e) {
-            };
-        }
-
-
-    }
-
     //metodo guest
     public void Guest() {
 
@@ -425,7 +411,18 @@ public class Menu {
         }
     }
     public void menuCliente(User user){
-        
+        int scelta = 7;
+        switch(scelta){
+            case 1 -> this.ph.cercaProiezione();
+            case 2 -> this.ph.visualizzaProiezione();
+            case 3 -> this.creaPrenotazione();
+            case 4 -> this.visualizzaPrenotazione();
+            case 5 -> this.modificaPrenotazione();
+            case 6 -> this.eliminaPrenotazione();
+            case 7 ->
+            default ->
+        }
+
     }
 
     public void menuBigliettaio(User user){
@@ -434,7 +431,10 @@ public class Menu {
     public void menuProiezionisti(User user){
 
     }
-
+    public String creaPrenotazione(){}
+    public void visualizzaPrenotazione(){}
+    public Proiezioni modificaPrenotazione(){}
+    public String eliminaPrenotazione(){}
 }
 
 

@@ -93,4 +93,6 @@ public class UserHandler {
 
         return AESencrypt.encrypt(password);
     }
+    //metodo logout uguale tutti gli utenti
+    public void logoutAll(){}
 }

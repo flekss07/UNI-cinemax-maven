@@ -116,6 +116,8 @@ public class ProiezioniHandler {
         LocalDateTime projectionDate = LocalDateTime.parse(strDate, this.formatter); // fa il parse della data nel formato preimpostato
         return projectionDate;
     }
+    public void cercaProiezione(){}
+    public Proiezioni visualizzaProiezione(){}
 }
 
 
