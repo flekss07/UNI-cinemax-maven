@@ -4,7 +4,7 @@ public class Menu {
     private final UserHandler uh;
     private final ProiezioniHandler ph ;
 
-    public Menu() { //costruzione oggetto classe userhandler
+    public Menu() { //costruzione oggetto classe userhandler e proiezionehandler
         this.uh = new UserHandler();
         this.ph= new ProiezioniHandler();
     }
@@ -26,8 +26,13 @@ public class Menu {
                 // login
                  case 2-> {
                     System.out.println("Inizio procedura di login");
-                    User user = this.userLogin();
-                    this.menuRuoli(user);
+                     User user = null;
+                     try {
+                         user = this.uh.loginUser();
+                     } catch (Exception e) {
+                         throw new RuntimeException(e);
+                     }
+                     this.menuRuoli(user);
                 }
                 //guest
                 case 3-> {
@@ -410,11 +415,26 @@ public class Menu {
     }
     public void menuRuoli(User user){
         switch(user.getRole()){
-            //case CLIENTE ->break;
-            //case BIGLIETTAIO -> break;
-            //case PROIEZIONISTA -> break;
+            case CLIENTE ->  this.menuCliente(user);
+            case BIGLIETTAIO ->  this.menuBigliettaio(user);
+            case PROIEZIONISTA -> this.menuProiezionisti(user);
+            default -> {
+                System.out.println("Ruolo inesistente...");
+                this.menuRuoli(user);
+            }
         }
     }
+    public void menuCliente(User user){
+        
+    }
+
+    public void menuBigliettaio(User user){
+
+    }
+    public void menuProiezionisti(User user){
+
+    }
+
 }
 
 
