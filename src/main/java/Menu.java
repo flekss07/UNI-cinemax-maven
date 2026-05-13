@@ -15,21 +15,25 @@ public class Menu {
             System.out.println("Inserire il numero corrispondente alla funzione x attivarla\n1)registrarsi\neffettuare il login\n3)Continuare come quest ");
             int selector = this.numbCheck();
             switch (selector) {
-                case 1://registrarsi
+                //registrarsi
+                case 1 -> {//registrarsi
                     try {
                         this.userRegister();
                     } catch (Exception e) {
                         throw new RuntimeException(e);
                     }
-                case 2://login
+                }
+                // login
+                 case 2-> {
                     System.out.println("Inizio procedura di login");
-                    this.userLogin();
-                    break;
-                case 3://guest
+                    User user = this.userLogin();
+                    this.menuRuoli(user);
+                }
+                //guest
+                case 3-> {
                     this.Guest();
-                    break;
-                default:
-                    System.out.println("Qualcosa è andato storto...");
+                }
+                default-> System.out.println("Qualcosa è andato storto...");
             }
         }
 
@@ -73,6 +77,7 @@ public class Menu {
         String values = this.stringCheck();
         int caso = this.numbchecker(values);
         Genres genere;
+        // SI USA LE ARROW PERCHE DA JAVA 14 E' AGGIORNATO COSI RENDENDOLE PIU EZ DA USARE
         return switch (caso) {
             case 1 -> genere = Genres.Animazione;
             case 2 -> genere = Genres.Avventura;
@@ -86,7 +91,7 @@ public class Menu {
             case 10 -> genere = Genres.Thriller;
             default -> {
                 System.out.println("Qualcosa è andato storto, riprova");
-                yield this.SelezioneGenere();
+                yield genere= this.SelezioneGenere();
             }
         };
     }
@@ -264,15 +269,18 @@ public class Menu {
         }
     }
 
-    public void userLogin() throws RuntimeException {
+    public User userLogin() throws RuntimeException {
         try {
-            this.uh.loginUser();
+            User u =this.uh.loginUser();
+            System.out.println("Login eseguito con successo!");
+            return u;
         } catch (Exception e) {
             System.out.println("Login non riuscito...");
             throw new RuntimeException(e) {
             };
         }
-        System.out.println("Login eseguito con successo!");
+
+
     }
 
     //metodo guest
@@ -400,7 +408,13 @@ public class Menu {
             return releaseCheck();
         }
     }
-
+    public void menuRuoli(User user){
+        switch(user.getRole()){
+            //case CLIENTE ->break;
+            //case BIGLIETTAIO -> break;
+            //case PROIEZIONISTA -> break;
+        }
+    }
 }
 
 

@@ -56,15 +56,16 @@ public class UserHandler {
         return null;
     }
 //Esiste username e passa al controllo password
-    public void loginUser() throws Exception {
+    public User loginUser() throws Exception {
         System.out.println("Insere l'username:");
         String username = this.stringCheck();
         User u = this.checkUser(username);
         if (u!=null) {
             passcheck(u);
+            return u;
         } else {
             System.out.println("Username non trovato, riprova");
-            loginUser();
+            return null;
         }
     }
     //Controlla la password in maniera ricorsiva
