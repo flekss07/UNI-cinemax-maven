@@ -100,7 +100,7 @@ public class Menu {
         }
     }
     private int numbcheckergiorni(){
-        String str = this.stringCheck();
+        String str = this.stringCheck().trim();
         try {
             int numInt = Integer.parseInt(str);
             if (numInt <= 0) {
@@ -118,7 +118,7 @@ public class Menu {
         }
     }
     private int  numbcheckermesi(){
-        String str = this.stringCheck();
+        String str = this.stringCheck().trim();
         try {
             int numInt = Integer.parseInt(str);
             if (numInt <= 0) {
@@ -136,7 +136,7 @@ public class Menu {
         }
     }
     private int numbcheckeranno(){
-        String str = this.stringCheck();
+        String str = this.stringCheck().trim();
         try {
             int numInt = Integer.parseInt(str);
             if (numInt <=0) {
@@ -175,7 +175,7 @@ public class Menu {
         return anno+"-"+valMesi+"-"+valGiorni;
     }
     private int numbCheck() {
-        String str = this.stringCheck();
+        String str = this.stringCheck().trim();
         try {
             int numInt = Integer.parseInt(str);
             if (numInt <= 0) {
