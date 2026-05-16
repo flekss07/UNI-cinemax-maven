@@ -66,7 +66,7 @@ public class Menu {
         return str;
     }
 
-    private String passencryption() throws Exception {
+    private String passencryption(){
         System.out.println("inserire una password");
         String password = this.stringCheck();
         System.out.println("inserire nuovamente la password");
@@ -77,7 +77,12 @@ public class Menu {
         }
         //encrypting della password
 
-        return AESencrypt.encrypt(password);
+        try {
+            return AESencrypt.encrypt(password);
+        } catch (Exception e) {
+            System.out.println("Errore nella password encrytption");
+            throw new RuntimeException(e);
+        }
     }
     private Roles chooseRole(){
         System.out.println("selezionare ruolo:\n1)cliente\n2)proiezionista\n3)bibliettaio ");
