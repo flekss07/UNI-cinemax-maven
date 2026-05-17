@@ -12,7 +12,7 @@ public class Menu {
     public void menuSelect() { // costruttore menu
 
         while (true) {
-            System.out.println("Inserire il numero corrispondente alla funzione x attivarla\n1)registrarsi\neffettuare il login\n3)Continuare come quest ");
+            System.out.println("Inserire il numero corrispondente alla funzione x attivarla\n1)registrarsi\n2)effettuare il login\n3)Continuare come quest ");
             int selector = this.numbCheck();
             switch (selector) {
                 //registrarsi
@@ -76,13 +76,14 @@ public class Menu {
         System.out.println("ID\tGENERE");
         System.out.println("─────────────────");
         Genres[] genres = Genres.values();
+        //Soltanto per interfaccia grafica
         for (int i = 0; i < genres.length; i++) {
             System.out.println((i + 1) + "\t" + genres[i].toString());
         }
-        String values = this.stringCheck();
-        int caso = this.numbchecker(values);
+        
+        int caso = this.numbchecker();
         Genres genere;
-        // SI USA LE ARROW PERCHE DA JAVA 14 E' AGGIORNATO COSI RENDENDOLE PIU EZ DA USARE
+        // SI USA LE ARROW PERCHE DA JAVA 14 E' AGGIORNATO COSI RENDENDOLE PIU FACILE DA USARE
         return switch (caso) {
             case 1 -> genere = Genres.Animazione;
             case 2 -> genere = Genres.Avventura;
@@ -101,21 +102,22 @@ public class Menu {
         };
     }
 
-    private int numbchecker(String s) {
+    //controllo validità input (al momento solo in classe genere)
+    private int numbchecker() {
+        String s = this.stringCheck();
         try {
             int value = Integer.parseInt(s);
             if (value <= 0) {
                 System.out.println("Il numero inserito non può essere negativo, rinserire il numero");
-                return numbchecker(this.stringCheck());
+                return numbchecker();
             } else if (value > 10) {
                 System.out.print("Il numero non è nel range, inserirne un'altro");
-                return numbchecker(this.stringCheck());
+                return numbchecker();
             }
             return value;
         } catch (RuntimeException e) {
             System.out.println("Qualcosa è andato storto riprova");
-
-            throw new RuntimeException(e);
+            return numbchecker();
         }
     }
 
@@ -130,16 +132,17 @@ public class Menu {
         System.out.println("Inserire Username");
         String username = this.stringCheck();
         System.out.println("Inserire indirizzo di residenza");
-        String residenza = this.stringCheck();
+        String indirizzo = this.stringCheck();
         String annoDiNascita = this.inseriredata();
         //inserimento ruolo
         Roles ruolo = this.chooseRole();
         //inserimento della password
         String password = this.passencryption();
-        this.uh.addUser(nome, cognome, password, username, annoDiNascita, residenza, ruolo);
+        this.uh.addUser(nome, cognome, password, username, annoDiNascita, indirizzo, ruolo);
 
     }
 
+    //controlla che la stringa non sia vuota o non sia null
     private String stringCheck() {
         Scanner sc = new Scanner(System.in);
         String str = sc.nextLine();
@@ -155,15 +158,16 @@ public class Menu {
         String password = this.stringCheck();
         System.out.println("inserire nuovamente la password");
         String passcmp = this.stringCheck();
+        //controlla che entrambe le password inserite siano uguali
         if (!password.equals(passcmp)) {
             System.out.println("Le password non corrispondono, riprova.");
             return passencryption();
         }
         //encrypting della password
-
         return AESencrypt.encrypt(password);
     }
 
+    //scelta dei ruoli
     private Roles chooseRole() {
         System.out.println("selezionare ruolo:\n1)cliente\n2)proiezionista\n3)bibliettaio ");
         int choice = Integer.parseInt(this.stringCheck());
@@ -180,6 +184,7 @@ public class Menu {
         }
     }
 
+    //controlla che i giorni della data inserita abbia valori accettabili
     private int numbcheckergiorni() {
         String str = this.stringCheck();
         try {
@@ -199,6 +204,7 @@ public class Menu {
         }
     }
 
+    //controlla che i mesi della data inserita abbiano valori accettabili
     private int numbcheckermesi() {
         String str = this.stringCheck();
         try {
@@ -218,6 +224,7 @@ public class Menu {
         }
     }
 
+    //controlla che gli anni della data inseita abbiano valori accettabili
     private int numbcheckeranno() {
         String str = this.stringCheck();
         try {
