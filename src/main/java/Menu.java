@@ -233,8 +233,8 @@ public class Menu {
                 System.out.println("Il numero inserito non può essere negativo, rinserire il numero");
                 return numbcheckeranno();
             }
-            if (numInt > 2026) {
-                System.out.println("Il numeroinserito non può essere maggiore di 2026, rinserire il numero");
+            if (numInt >= 2018) {
+                System.out.println("Il numeroinserito non può essere maggiore di 2018, rinserire il numero");
                 return numbcheckeranno();
             }
             return numInt;
@@ -244,9 +244,11 @@ public class Menu {
         }
     }
 
+    //metodo di inserimento della data (chiama i metodi di check dei giorni, mesi e anni)
     private String inseriredata() {
         System.out.println("Inserire il giorno di nascita");
         int giorni = this.numbcheckergiorni();
+        //formatazione dei giorni (es. 2 ---> 02)
         String valGiorni;
         if (giorni < 10) {
             valGiorni = "0" + giorni;
@@ -255,6 +257,7 @@ public class Menu {
         }
         System.out.println("Inserire il mese di nascita(in  numeri):");
         int mesi = this.numbcheckermesi();
+        //formattazione dei mesi (es. febbraio = 2 ---> 02)
         String valMesi;
         if (mesi < 10) {
             valMesi = "0" + mesi;
@@ -265,7 +268,8 @@ public class Menu {
         String anno = String.valueOf(this.numbcheckeranno());
         return anno + "-" + valMesi + "-" + valGiorni;
     }
-
+/*
+    NUMB CHECK NON CHIAMATO
     private int numbCheck() {
         String str = this.stringCheck();
         try {
@@ -280,7 +284,7 @@ public class Menu {
             return numbCheck();
         }
     }
-
+*/
     //metodo guest
     public void Guest() {
 
@@ -289,6 +293,7 @@ public class Menu {
     private String dataproiezioni() {
         System.out.println("Inserire il giorno della proiezione");
         int giorni = this.numbcheckergiorni();
+        //formattazione dei giorni
         String valGiorni;
         if (giorni < 10) {
             valGiorni = "0" + giorni;
@@ -297,6 +302,7 @@ public class Menu {
         }
         System.out.println("Inserire il mese della proiezione(in  numeri):");
         int mesi = this.numbcheckermesi();
+        //formattazione dei mesi
         String valMesi;
         if (mesi < 10) {
             valMesi = "0" + mesi;
@@ -311,6 +317,8 @@ public class Menu {
         return anno + "-" + valMesi + "-" + valGiorni+" "+ore+":"+minuti;
 
     }
+
+    //controllo della validità dei minuti inseriti
     private int numbcheckmin(){
         String str = this.stringCheck();
         try{
@@ -319,7 +327,7 @@ public class Menu {
                 System.out.println("Il numero inserito non può essere minore di 0");
                 return numbcheckmin();
             }else if(value>60){
-                System.out.println("Ci sono 60 minuti in un ora");
+                System.out.println("Ci sono 60 minuti in un ora, inserire un numero compreso tra 0 e 59");
                 return numbcheckmin();
             } return value;
         } catch (NumberFormatException e) {
@@ -327,6 +335,7 @@ public class Menu {
         }
     }
 
+    //controllo della validità delle ore inserite
     private int numbcheckore(){
         String str = this.stringCheck();
         try{
@@ -335,18 +344,20 @@ public class Menu {
                 System.out.println("Il numero inserito non può essere minore di 0");
                 return numbcheckore();
             }else if(value>24){
-                System.out.println("Il giorno è composto da 24 ore, reinserire");
+                System.out.println("Il giorno è composto da 24 ore, inserire un numero compreso tra 0 e 23");
                 return numbcheckore();
             } return value;
         } catch (NumberFormatException e) {
             throw new RuntimeException(e);
         }
     }
+
+    //controllo della validità del prezzo inserito
     private float priceCheck() {
         String str = this.stringCheck();
         try {
             float prezzoFloat = Float.parseFloat(str);
-            if (prezzoFloat < 0) {
+            if (prezzoFloat <= 0) {
                 System.out.println("Il prezzo inserito non può essere negativo");
                 return priceCheck();
             }
@@ -358,6 +369,8 @@ public class Menu {
 
 
     }
+
+    //controllo della validità della durata della proiezione inserita
     private int duratacheck(){{
         String str = this.stringCheck();
         try {
@@ -373,10 +386,14 @@ public class Menu {
         }
        }
     }
+
+    //controllo dell'età minima per la visione della proiezione
+    
     private int etaCheck(){
         String str = this.stringCheck();
         try{
             int etaMinInt = Integer.parseInt(str);
+            //da ricontrollare
             if (etaMinInt >= 0) {
                 if (etaMinInt >= 18) {
                     System.out.println("L'eta inserita supera la maggiore eta, il limite sarà impostato a 18");
@@ -393,6 +410,8 @@ public class Menu {
             return etaCheck();
         }
     }
+
+    //controllo della data di uscita del film
     private int releaseCheck(){
         String str = this.stringCheck();
         try {
@@ -406,6 +425,8 @@ public class Menu {
             return releaseCheck();
         }
     }
+
+    //impostazione dei ruoli nel menu
     public void menuRuoli(User user){
         switch(user.getRole()){
             case CLIENTE ->  this.menuCliente(user);
@@ -417,6 +438,7 @@ public class Menu {
             }
         }
     }
+    //menu del cliente
     public void menuCliente(User user){
         int scelta = 7;
         switch(scelta){
@@ -431,10 +453,11 @@ public class Menu {
         }
 
     }
-
+    //menu del bigliettaio
     public void menuBigliettaio(User user){
 
     }
+    //menu del proiezionista
     public void menuProiezionisti(User user){
 
     }
