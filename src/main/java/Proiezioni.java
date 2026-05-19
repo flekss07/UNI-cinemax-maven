@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 /**
@@ -8,7 +9,7 @@ public class Proiezioni {
     /**
      * variabile enum per indicare i generi
      */
-    private String genere;// da modifica in enum
+    private Genres genere;// da modifica in enum
     /**
      * variabile che indica i titoli dei film
      */
@@ -50,7 +51,7 @@ public class Proiezioni {
      * @param anno anno di uscita del film
      * @param prezzo prezzo del niglietto
      */
-    public Proiezioni(String genere, String titolo, String regista, LocalDateTime data, int durata, int etaMin,int anno,float prezzo){
+    public Proiezioni(Genres genere, String titolo, String regista, LocalDateTime data, int durata, int etaMin,int anno,float prezzo){
         this.genere = genere;
         this.titolo = titolo;
         this.regista = regista;
@@ -74,7 +75,7 @@ public class Proiezioni {
      *
      * @return genere del film
      */
-    public String getGeneri() { return this.genere; }
+    public Genres getGeneri() { return this.genere; }
 
     /**
      * Restituisce il titolo del film
@@ -132,7 +133,7 @@ public class Proiezioni {
      *
      * @param genere nuovo genere del film
      */
-    public void setGeneri(String genere){ this.genere = genere; }
+    public void setGeneri(Genres genere){ this.genere = genere;  }
 
     /**
      * Imposta il titolo del film

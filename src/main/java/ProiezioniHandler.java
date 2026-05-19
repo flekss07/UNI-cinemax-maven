@@ -1,3 +1,6 @@
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
 import java.util.Scanner;
 
@@ -8,24 +11,23 @@ import java.util.Scanner;
  *
  */
 public class ProiezioniHandler {
-
     /**
      * Lista contenente tutte le proiezioni registrate
      */
-    private LinkedList<User> proiezioniList;
+    private LinkedList<Proiezioni> proiezioniList;
 
-    /**
-     *Costruttore della classe ProiezioniHandler
-     *
-     * @param proiezioniList lista contenente le proiezioni
-     */
-    public ProiezioniHandler(LinkedList proiezioniList) {
-        this.proiezioniList = proiezioniList;
+    private FileHandler fh;
+
+    private DateTimeFormatter formatter;
+
+    private DateTimeFormatter localDateFormatter;
+
+    public ProiezioniHandler() {
+        this.localDateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        this.fh = new FileHandler("proiezioni.csv");
+        this.proiezioniList = this.fh.getProList();
     }
-
-    /**
-     * Metodo che permette l'inserimento di una nuova proiezione
-     */
+/*
     public void addProiezione() {
         Proiezioni NuovaProiezione = new Proiezioni();
         Scanner sc = new Scanner(System.in);
@@ -36,7 +38,7 @@ public class ProiezioniHandler {
         System.out.println("Inserire il genere inserendo il numerino assegnato");
         String genere = sc.nextLine();
             /*if(!genere.trim().isEmpty()){
-            }*/
+            }
         // da aggiungere dopo aver fatto l'enum
         //Inserimento regista
         System.out.println("Inserire il regista");
@@ -54,14 +56,8 @@ public class ProiezioniHandler {
         int anno = this.releaseCheck();
         //inserimento del prezzo
         System.out.println("Inserire il prezzo del film");
-        float prezzo = this.priceCheck();
+        //float prezzo = this.priceCheck();
     }
-
-    /**
-     * Metodo che controlla se la stringa inserita non sia vuota
-     *
-     * @return stringa valida inserita dell'utente
-     */
     private String stringCheck() {
         Scanner sc = new Scanner(System.in);
         String str = sc.next();
@@ -71,12 +67,6 @@ public class ProiezioniHandler {
         }
         return str;
     }
-
-    /**
-     * Metodo che controlla se la durata inserita è valida (numero intero positivo)
-     *
-     * @return durata valida della proiezione
-     */
     private int dataCheck(){{
         String str = this.stringCheck();
         try {
@@ -93,11 +83,6 @@ public class ProiezioniHandler {
     }
     }
 
-    /**
-     * Metodo che controlla l'età minima inserita sia valida
-     *
-     * @return età minima valida
-     */
     private int etaCheck(){
         String str = this.stringCheck();
         try{
@@ -118,12 +103,6 @@ public class ProiezioniHandler {
             return etaCheck();
         }
     }
-
-    /**
-     * Metodo che controlla l'anno di uscita del film sia valido
-     *
-     * @return anno di uscita valido
-     */
     private int releaseCheck(){
         String str = this.stringCheck();
         try {
@@ -137,30 +116,23 @@ public class ProiezioniHandler {
             return releaseCheck();
         }
     }
-
-    /**
-     * Metodo che controlla che il prezzo inserito sia valido
-     *
-     * @return prezzo valido della proiezione
-     */
-    private float  priceCheck(){
-        String str = this.stringCheck();
-        try {
-            float prezzoFloat = Float.parseFloat(str);
-            if (prezzoFloat < 0) {
-                System.out.println("Il prezzo inserito non può essere negativo");
-                return priceCheck();
-            }
-            return prezzoFloat;
-        } catch (NumberFormatException e) {
-            System.out.println("Quello che hai inserito non è un numero. Riprova");
-            return priceCheck();
-        }
+    */
+    //funzione che carica in lista le proiezioni
+    public void proiezionicreator(Genres genere, String titolo, String regista, String data, int durata, int etaMIn, int  anno, float prezzo){
+    LocalDateTime dataProiezione = this.convertDate(data);
+    Proiezioni nuovaProiezione = new Proiezioni(genere, titolo, regista, dataProiezione, durata, etaMIn, anno, prezzo);
+    this.proiezioniList.add(nuovaProiezione);
+    this.fh.saveProList(this.proiezioniList);
+    this.proiezioniList= this.fh.getProList();
     }
-
-
-
-
-
-
+    private LocalDateTime convertDate(String strDate) {
+        LocalDateTime projectionDate = LocalDateTime.parse(strDate, this.formatter); // fa il parse della data nel formato preimpostato
+        return projectionDate;
+    }
 }
+
+
+
+
+
+

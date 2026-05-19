@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 /**
  * <h1>Classe che gestisce i dati degli user</h1>
- * 
+ *
  */
 public class UserHandler {
     /**
@@ -17,7 +17,7 @@ public class UserHandler {
      */
     private FileHandler fh;
     /**
-     * 
+     *
      */
     private DateTimeFormatter localDateFormatter;
 
@@ -34,12 +34,12 @@ public class UserHandler {
     /*Funzione x registrare l'utente*/
     /**
      * Costruttore per la registrazione di nuovi utenti
-     * 
+     *
      * @param nome nome dell'utente
      * @param cognome cognome dell'utente
      * @param password password non ancora cifrata
      * @param username username inserito dall'utente
-     * @param data data di nascita 
+     * @param data data di nascita
      * @param residenza residenza dell'utente
      * @param ruolo ruolo dell'utente
      * @throws Exception possibile errore nella creazione dell'utente
@@ -125,24 +125,32 @@ public class UserHandler {
      * @throws Exception errore durante il controllo della password
      */
     private void  passcheck(User u)throws Exception{
-        System.out.println("Inserire la password");
-        String passcmp = this.passencryption();
-        if (passcmp.equals(u.getPassword())) {
+     System.out.println("Inserire la password");
+    String passcmp = this.stringCheck();
+    String tmp = this.passencryption(passcmp);
+            if (tmp.equals(u.getPassword())) {
+        System.out.println("Login effettuato con successo");
+    } else {
+        System.out.println("Password errata, riprova");
+        passcheck(u);
 
-        } else {
-            System.out.println("Password errata, riprova");
-            passcheck(u);
-
-        }
-
+            }
     }
     /**
      * Metodo che si occupa della criptazione della password inserite dagli utenti
      *
+     * @param password password inserita dall'utente (password in chiaro)
      * @return password criptata
      * @throws Exception errore durante la criptazione della password inserita
      */
-    private String passencryption() throws Exception {
+    private String passencryption(String password) throws Exception {
+        System.out.println("inserire nuovamente la password");
         String passcmp = this.stringCheck();
-        return AESencrypt.encrypt(passcmp); }
+        if (!password.equals(passcmp)) {
+            System.out.println("Le password non corrispondono, riprova.");
+            return passencryption(password);
+        }
+        //encrypting della password
+        return AESencrypt.encrypt(password);
+    }
 }
