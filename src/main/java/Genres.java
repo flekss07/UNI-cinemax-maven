@@ -1,3 +1,6 @@
+/**
+ * Classe enumerativa contenente i generi dei film
+ */
 public enum Genres {
     Animazione,
     Avventura,
