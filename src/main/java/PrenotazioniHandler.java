@@ -87,7 +87,7 @@ public class PrenotazioniHandler {
      * @return conferma la riuscita della modifica o meno della prenotazione
      */
     public boolean modificaPrenotazione(String id, LocalDateTime date){
-        if(!date.isAfter(LocalDateTime.now)) return false; // guard colse che fa uscire dal metodo se la data inserita è precedente a quella attuale
+        if(!date.isAfter(LocalDateTime.now())) return false; // guard colse che fa uscire dal metodo se la data inserita è precedente a quella attuale
         Iterator<Prenotazione> prenIt = this.prenList.iterator();// crea un iteratore della lista per poterla modificare mentre viene iterata (non si puo fare con foreach)
         while (prenIt.hasNext()){// continua a iterare la lista fino a che non arriva alla fine o non viene trovato un oggetto prenotazione
             Prenotazione p = prenIt.next(); // prende oggetto successivo per check
