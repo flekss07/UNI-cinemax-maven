@@ -151,7 +151,12 @@ public class Menu {
         }
         //encrypting della password
 
-        return AESencrypt.encrypt(password);
+        try {
+            return AESencrypt.encrypt(password);
+        } catch (Exception e) {
+            System.out.println("Errore nella password encrytption");
+            throw new RuntimeException(e);
+        }
     }
 
     private Roles chooseRole() {
@@ -250,7 +255,7 @@ public class Menu {
     }
 
     private int numbCheck() {
-        String str = this.stringCheck();
+        String str = this.stringCheck().trim();
         try {
             int numInt = Integer.parseInt(str);
             if (numInt <= 0) {
