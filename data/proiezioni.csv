@@ -607,7 +607,7 @@ data_ora_proiezione,titolo_film,genere,regista,anno,durata_minuti,eta_minima,pre
 "2027-04-18 18:00:00","October Sky",Documentario,"Joe Johnston",1999,108,6,10.00
 "2027-04-18 15:30:00","In a Lonely Place",Drammatico,"Nicholas Ray",1950,94,12,8.00
 "2027-04-18 13:00:00","Fa yeung nin wah",Drammatico,"Kar-Wai Wong",2000,98,0,8.50
-"2027-04-18 10:30:00","Willy Wonka & the Chocolate Factory",Family,"Mel Stuart",1971,100,0,8.50
+"2027-04-18 10:30:00","Willy Wonka & the Chocolate Factory",Commedia,"Mel Stuart",1971,100,0,8.50
 "2027-04-17 19:00:00","The Night of the Hunter",Thriller,"Charles Laughton",1955,92,12,10.00
 "2027-04-17 16:30:00","La haine",Thriller,"Mathieu Kassovitz",1995,98,12,8.00
 "2027-04-17 13:30:00","The Man Who Shot Liberty Valance",Drammatico,"John Ford",1962,123,12,7.50
@@ -622,7 +622,7 @@ data_ora_proiezione,titolo_film,genere,regista,anno,durata_minuti,eta_minima,pre
 "2027-04-14 10:00:00",Cabaret,Drammatico,"Bob Fosse",1972,124,12,7.50
 "2027-04-13 13:00:00","Lagaan: Once Upon a Time in India",Avventura,"Ashutosh Gowariker",2001,224,0,8.50
 "2027-04-13 10:30:00","The Night of the Hunter",Thriller,"Charles Laughton",1955,92,12,7.50
-"2027-04-12 14:00:00","Willy Wonka & the Chocolate Factory",Family,"Mel Stuart",1971,100,0,8.50
+"2027-04-12 14:00:00","Willy Wonka & the Chocolate Factory",Commedia,"Mel Stuart",1971,100,0,8.50
 "2027-04-12 10:30:00","The Last Samurai",Azione,"Edward Zwick",2003,154,12,6.50
 "2027-04-11 19:30:00","The Night of the Hunter",Thriller,"Charles Laughton",1955,92,12,8.50
 "2027-04-11 16:00:00","Kill Bill: Vol. 2",Azione,"Quentin Tarantino",2004,137,12,6.50
@@ -652,7 +652,7 @@ data_ora_proiezione,titolo_film,genere,regista,anno,durata_minuti,eta_minima,pre
 "2027-04-01 10:30:00","Star Wars",Azione,"George Lucas",1977,121,12,8.00
 "2027-03-31 13:00:00","Kaze no tani no Naushika",Animazione,"Hayao Miyazaki",1984,117,0,7.00
 "2027-03-31 10:00:00","Close Encounters of the Third Kind",Drammatico,"Steven Spielberg",1977,138,0,6.50
-"2027-03-30 10:30:00","Willy Wonka & the Chocolate Factory",Family,"Mel Stuart",1971,100,0,6.50
+"2027-03-30 10:30:00","Willy Wonka & the Chocolate Factory",Commedia,"Mel Stuart",1971,100,0,6.50
 "2027-03-29 16:30:00","Million Dollar Baby",Drammatico,"Clint Eastwood",2004,132,12,6.50
 "2027-03-29 13:30:00","October Sky",Documentario,"Joe Johnston",1999,108,6,8.00
 "2027-03-29 10:30:00","The Goonies",Avventura,"Richard Donner",1985,114,0,7.00
@@ -704,11 +704,11 @@ data_ora_proiezione,titolo_film,genere,regista,anno,durata_minuti,eta_minima,pre
 "2027-03-11 10:00:00","Taegukgi hwinalrimyeo",Azione,"Je-kyu Kang",2004,140,16,6.50
 "2027-03-10 15:30:00","The Muppet Christmas Carol",Commedia,"Brian Henson",1992,85,0,8.50
 "2027-03-10 13:00:00","Dial M for Murder",Thriller,"Alfred Hitchcock",1954,105,12,6.50
-"2027-03-10 10:30:00","Willy Wonka & the Chocolate Factory",Family,"Mel Stuart",1971,100,0,7.00
+"2027-03-10 10:30:00","Willy Wonka & the Chocolate Factory",Commedia,"Mel Stuart",1971,100,0,7.00
 "2027-03-09 10:30:00","Escape from Alcatraz",Azione,"Don Siegel",1979,112,12,7.00
 "2027-03-08 15:00:00","Kaze no tani no Naushika",Animazione,"Hayao Miyazaki",1984,117,0,7.00
 "2027-03-08 13:00:00","La planète sauvage",Animazione,"René Laloux",1973,72,0,7.00
-"2027-03-08 10:30:00","Willy Wonka & the Chocolate Factory",Family,"Mel Stuart",1971,100,0,8.50
+"2027-03-08 10:30:00","Willy Wonka & the Chocolate Factory",Commedia,"Mel Stuart",1971,100,0,8.50
 "2027-03-07 19:00:00","Dial M for Murder",Thriller,"Alfred Hitchcock",1954,105,12,8.50
 "2027-03-07 16:30:00","Life of Brian",Commedia,"Terry Jones",1979,94,16,7.00
 "2027-03-07 13:30:00","The Goonies",Avventura,"Richard Donner",1985,114,0,6.50
@@ -724,7 +724,7 @@ data_ora_proiezione,titolo_film,genere,regista,anno,durata_minuti,eta_minima,pre
 "2027-03-02 15:00:00",Glory,Documentario,"Edward Zwick",1989,122,16,7.50
 "2027-03-02 12:30:00","The Goonies",Avventura,"Richard Donner",1985,114,0,7.00
 "2027-03-02 10:00:00","Hedwig and the Angry Inch",Commedia,"John Cameron Mitchell",2001,95,16,6.50
-"2027-03-01 10:00:00","Willy Wonka & the Chocolate Factory",Family,"Mel Stuart",1971,100,0,6.50
+"2027-03-01 10:00:00","Willy Wonka & the Chocolate Factory",Commedia,"Mel Stuart",1971,100,0,6.50
 "2027-02-28 19:00:00","The Lion King",Animazione,"Roger Allers",1994,88,0,10.00
 "2027-02-28 16:00:00","Inside Man",Thriller,"Spike Lee",2006,129,16,6.50
 "2027-02-28 13:00:00","Gegen die Wand",Drammatico,"Fatih Akin",2004,121,16,7.50
@@ -2707,7 +2707,7 @@ data_ora_proiezione,titolo_film,genere,regista,anno,durata_minuti,eta_minima,pre
 "2024-11-24 18:00:00","Fight Club",Drammatico,"David Fincher",1999,139,12,10.00
 "2024-11-24 15:30:00","Aguirre, der Zorn Gottes",Azione,"Werner Herzog",1972,95,12,7.50
 "2024-11-24 13:00:00","Il postino",Documentario,"Michael Radford",1994,108,0,8.50
-"2024-11-24 10:00:00","E.T. the Extra-Terrestrial",Family,"Steven Spielberg",1982,115,0,8.00
+"2024-11-24 10:00:00","E.T. the Extra-Terrestrial",Commedia,"Steven Spielberg",1982,115,0,8.00
 "2024-11-23 16:00:00","The Others",Horror,"Alejandro Amenábar",2001,101,12,8.50
 "2024-11-23 13:30:00",Mulan,Animazione,"Tony Bancroft",1998,88,0,8.00
 "2024-11-23 10:30:00","Fight Club",Drammatico,"David Fincher",1999,139,12,8.50
@@ -2731,7 +2731,7 @@ data_ora_proiezione,titolo_film,genere,regista,anno,durata_minuti,eta_minima,pre
 "2024-11-13 16:00:00","Jeux d'enfants",Commedia,"Yann Samuell",2003,93,16,7.50
 "2024-11-13 12:30:00","The Last Samurai",Azione,"Edward Zwick",2003,154,12,7.50
 "2024-11-13 10:00:00","Aguirre, der Zorn Gottes",Azione,"Werner Herzog",1972,95,12,6.50
-"2024-11-12 13:00:00","E.T. the Extra-Terrestrial",Family,"Steven Spielberg",1982,115,0,7.50
+"2024-11-12 13:00:00","E.T. the Extra-Terrestrial",Commedia,"Steven Spielberg",1982,115,0,7.50
 "2024-11-12 10:00:00","Sen to Chihiro no kamikakushi",Animazione,"Hayao Miyazaki",2001,125,0,7.00
 "2024-11-11 10:30:00","The Thin Man",Commedia,"W.S. Van Dyke",1934,91,12,7.00
 "2024-11-10 17:30:00","Hable con ella",Drammatico,"Pedro Almodóvar",2002,112,16,8.50
@@ -2754,22 +2754,22 @@ data_ora_proiezione,titolo_film,genere,regista,anno,durata_minuti,eta_minima,pre
 "2024-11-03 18:00:00","Diarios de motocicleta",Avventura,"Walter Salles",2004,126,0,9.50
 "2024-11-03 16:00:00","Stand by Me",Avventura,"Rob Reiner",1986,89,0,8.50
 "2024-11-03 13:30:00","Il conformista",Drammatico,"Bernardo Bertolucci",1970,113,12,6.50
-"2024-11-03 10:30:00","E.T. the Extra-Terrestrial",Family,"Steven Spielberg",1982,115,0,7.50
+"2024-11-03 10:30:00","E.T. the Extra-Terrestrial",Commedia,"Steven Spielberg",1982,115,0,7.50
 "2024-11-02 15:30:00","The Sound of Music",Documentario,"Robert Wise",1965,172,0,6.50
 "2024-11-02 13:00:00","Majo no takkyûbin",Animazione,"Hayao Miyazaki",1989,103,0,8.00
 "2024-11-02 10:30:00","Dip huet seung hung",Azione,"John Woo",1989,111,16,7.50
 "2024-11-01 10:00:00","Dip huet seung hung",Azione,"John Woo",1989,111,16,7.50
 "2024-10-31 16:00:00","Il conformista",Drammatico,"Bernardo Bertolucci",1970,113,12,7.00
-"2024-10-31 13:00:00","E.T. the Extra-Terrestrial",Family,"Steven Spielberg",1982,115,0,7.00
+"2024-10-31 13:00:00","E.T. the Extra-Terrestrial",Commedia,"Steven Spielberg",1982,115,0,7.00
 "2024-10-31 10:30:00","Star Trek II: The Wrath of Khan",Azione,"Nicholas Meyer",1982,113,0,7.50
 "2024-10-30 10:00:00","Almost Famous",Avventura,"Cameron Crowe",2000,122,12,8.50
-"2024-10-29 15:00:00","E.T. the Extra-Terrestrial",Family,"Steven Spielberg",1982,115,0,6.50
+"2024-10-29 15:00:00","E.T. the Extra-Terrestrial",Commedia,"Steven Spielberg",1982,115,0,6.50
 "2024-10-29 12:00:00",Seppuku,Azione,"Masaki Kobayashi",1962,133,12,7.50
 "2024-10-29 10:00:00","Les triplettes de Belleville",Animazione,"Sylvain Chomet",2003,80,12,6.50
 "2024-10-28 15:30:00","Fight Club",Drammatico,"David Fincher",1999,139,12,7.50
 "2024-10-28 13:00:00","Stand by Me",Avventura,"Rob Reiner",1986,89,0,7.00
 "2024-10-28 10:30:00","Stand by Me",Avventura,"Rob Reiner",1986,89,0,7.00
-"2024-10-27 17:00:00","E.T. the Extra-Terrestrial",Family,"Steven Spielberg",1982,115,0,7.00
+"2024-10-27 17:00:00","E.T. the Extra-Terrestrial",Commedia,"Steven Spielberg",1982,115,0,7.00
 "2024-10-27 13:30:00","All Quiet on the Western Front",Drammatico,"Lewis Milestone",1930,152,0,8.00
 "2024-10-27 10:30:00","Almost Famous",Avventura,"Cameron Crowe",2000,122,12,7.00
 "2024-10-26 15:30:00","La vita è bella",Commedia,"Roberto Benigni",1997,116,0,8.00
@@ -2783,7 +2783,7 @@ data_ora_proiezione,titolo_film,genere,regista,anno,durata_minuti,eta_minima,pre
 "2024-10-23 13:00:00","Kaze no tani no Naushika",Animazione,"Hayao Miyazaki",1984,117,0,8.00
 "2024-10-23 10:00:00","Sen to Chihiro no kamikakushi",Animazione,"Hayao Miyazaki",2001,125,0,8.50
 "2024-10-22 13:00:00",Akira,Animazione,"Katsuhiro Ôtomo",1988,124,12,7.50
-"2024-10-22 10:30:00","E.T. the Extra-Terrestrial",Family,"Steven Spielberg",1982,115,0,7.50
+"2024-10-22 10:30:00","E.T. the Extra-Terrestrial",Commedia,"Steven Spielberg",1982,115,0,7.50
 "2024-10-21 12:30:00","Le samouraï",Thriller,"Jean-Pierre Melville",1967,105,12,7.50
 "2024-10-21 10:00:00","Out of the Past",Thriller,"Jacques Tourneur",1947,97,12,8.00
 "2024-10-20 16:30:00","The Butterfly Effect",Drammatico,"Eric Bress",2004,113,0,6.50
@@ -2793,10 +2793,10 @@ data_ora_proiezione,titolo_film,genere,regista,anno,durata_minuti,eta_minima,pre
 "2024-10-19 14:00:00","Pulp Fiction",Thriller,"Quentin Tarantino",1994,154,12,8.00
 "2024-10-19 10:30:00","Scent of a Woman",Drammatico,"Martin Brest",1992,156,12,7.50
 "2024-10-18 16:00:00","Fight Club",Drammatico,"David Fincher",1999,139,12,7.50
-"2024-10-18 13:00:00","E.T. the Extra-Terrestrial",Family,"Steven Spielberg",1982,115,0,7.50
+"2024-10-18 13:00:00","E.T. the Extra-Terrestrial",Commedia,"Steven Spielberg",1982,115,0,7.50
 "2024-10-18 10:00:00","Dog Day Afternoon",Documentario,"Sidney Lumet",1975,125,0,6.50
-"2024-10-17 16:30:00","E.T. the Extra-Terrestrial",Family,"Steven Spielberg",1982,115,0,7.50
-"2024-10-17 13:30:00","E.T. the Extra-Terrestrial",Family,"Steven Spielberg",1982,115,0,6.50
+"2024-10-17 16:30:00","E.T. the Extra-Terrestrial",Commedia,"Steven Spielberg",1982,115,0,7.50
+"2024-10-17 13:30:00","E.T. the Extra-Terrestrial",Commedia,"Steven Spielberg",1982,115,0,6.50
 "2024-10-17 10:30:00","It's a Wonderful Life",Drammatico,"Frank Capra",1946,130,6,7.50
 "2024-10-16 10:30:00",Seppuku,Azione,"Masaki Kobayashi",1962,133,12,6.50
 "2024-10-15 13:30:00","Raging Bull",Documentario,"Martin Scorsese",1980,129,12,8.00
@@ -2807,7 +2807,7 @@ data_ora_proiezione,titolo_film,genere,regista,anno,durata_minuti,eta_minima,pre
 "2024-10-13 16:00:00",Gilda,Drammatico,"Charles Vidor",1946,110,12,7.50
 "2024-10-13 13:30:00","Lethal Weapon",Azione,"Richard Donner",1987,109,12,8.00
 "2024-10-13 10:30:00","The Butterfly Effect",Drammatico,"Eric Bress",2004,113,0,6.50
-"2024-10-12 17:30:00","E.T. the Extra-Terrestrial",Family,"Steven Spielberg",1982,115,0,7.00
+"2024-10-12 17:30:00","E.T. the Extra-Terrestrial",Commedia,"Steven Spielberg",1982,115,0,7.00
 "2024-10-12 15:30:00","City Lights",Commedia,"Charles Chaplin",1931,87,0,8.00
 "2024-10-12 13:00:00","Before Sunset",Drammatico,"Richard Linklater",2004,80,16,6.50
 "2024-10-12 10:30:00","The Thin Man",Commedia,"W.S. Van Dyke",1934,91,12,7.50
@@ -2985,7 +2985,7 @@ data_ora_proiezione,titolo_film,genere,regista,anno,durata_minuti,eta_minima,pre
 "2024-08-03 14:30:00",Festen,Drammatico,"Thomas Vinterberg",1998,105,16,6.50
 "2024-08-03 10:30:00","Dilwale Dulhania Le Jayenge",Drammatico,"Aditya Chopra",1995,189,0,8.00
 "2024-08-02 13:00:00","Il buono, il brutto, il cattivo",Western,"Sergio Leone",1966,161,12,8.00
-"2024-08-02 10:30:00","Willy Wonka & the Chocolate Factory",Family,"Mel Stuart",1971,100,0,6.50
+"2024-08-02 10:30:00","Willy Wonka & the Chocolate Factory",Commedia,"Mel Stuart",1971,100,0,6.50
 "2024-08-01 10:30:00","Monty Python and the Holy Grail",Avventura,"Terry Gilliam",1975,91,6,7.00
 "2024-07-31 13:00:00","Before Sunrise",Drammatico,"Richard Linklater",1995,101,16,7.50
 "2024-07-31 10:30:00","The Odd Couple",Commedia,"Gene Saks",1968,105,0,8.00
@@ -2999,9 +2999,9 @@ data_ora_proiezione,titolo_film,genere,regista,anno,durata_minuti,eta_minima,pre
 "2024-07-28 10:00:00",Léon,Azione,"Luc Besson",1994,110,12,8.50
 "2024-07-27 17:00:00","Raiders of the Lost Ark",Azione,"Steven Spielberg",1981,115,12,7.50
 "2024-07-27 13:00:00","Dilwale Dulhania Le Jayenge",Drammatico,"Aditya Chopra",1995,189,0,7.50
-"2024-07-27 10:30:00","Willy Wonka & the Chocolate Factory",Family,"Mel Stuart",1971,100,0,7.50
+"2024-07-27 10:30:00","Willy Wonka & the Chocolate Factory",Commedia,"Mel Stuart",1971,100,0,7.50
 "2024-07-26 12:30:00","Invasion of the Body Snatchers",Drammatico,"Don Siegel",1956,80,12,7.50
-"2024-07-26 10:00:00","Willy Wonka & the Chocolate Factory",Family,"Mel Stuart",1971,100,0,7.00
+"2024-07-26 10:00:00","Willy Wonka & the Chocolate Factory",Commedia,"Mel Stuart",1971,100,0,7.00
 "2024-07-25 12:30:00","Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb",Commedia,"Stanley Kubrick",1964,95,12,8.00
 "2024-07-25 10:00:00",Nosferatu,Fantascienza,"F.W. Murnau",1922,94,12,8.00
 "2024-07-24 17:00:00",Badlands,Azione,"Terrence Malick",1973,94,6,6.50
@@ -3028,7 +3028,7 @@ data_ora_proiezione,titolo_film,genere,regista,anno,durata_minuti,eta_minima,pre
 "2024-07-16 14:30:00","The Shining",Drammatico,"Stanley Kubrick",1980,146,12,8.00
 "2024-07-16 10:30:00",Magnolia,Drammatico,"Paul Thomas Anderson",1999,188,16,6.50
 "2024-07-15 10:30:00",Eskiya,Thriller,"Yavuz Turgul",1996,128,12,7.50
-"2024-07-14 17:30:00","Willy Wonka & the Chocolate Factory",Family,"Mel Stuart",1971,100,0,8.00
+"2024-07-14 17:30:00","Willy Wonka & the Chocolate Factory",Commedia,"Mel Stuart",1971,100,0,8.00
 "2024-07-14 15:00:00","Key Largo",Azione,"John Huston",1948,100,12,8.50
 "2024-07-14 12:30:00",Festen,Drammatico,"Thomas Vinterberg",1998,105,16,8.00
 "2024-07-14 10:00:00","Annie Hall",Commedia,"Woody Allen",1977,93,12,8.50
@@ -3667,7 +3667,7 @@ data_ora_proiezione,titolo_film,genere,regista,anno,durata_minuti,eta_minima,pre
 "2023-11-06 15:00:00","Good Bye Lenin!",Commedia,"Wolfgang Becker",2003,121,16,7.00
 "2023-11-06 10:30:00","Shichinin no samurai",Azione,"Akira Kurosawa",1954,207,0,8.50
 "2023-11-05 19:00:00","Dead Man",Avventura,"Jim Jarmusch",1995,121,16,9.50
-"2023-11-05 16:00:00","E.T. the Extra-Terrestrial",Family,"Steven Spielberg",1982,115,0,7.00
+"2023-11-05 16:00:00","E.T. the Extra-Terrestrial",Commedia,"Steven Spielberg",1982,115,0,7.00
 "2023-11-05 13:30:00","Modern Times",Commedia,"Charles Chaplin",1936,87,0,7.00
 "2023-11-05 10:30:00",Naked,Commedia,"Mike Leigh",1993,132,12,8.50
 "2023-11-04 17:00:00",Kumonosu-jô,Drammatico,"Akira Kurosawa",1957,110,12,6.50
@@ -3717,7 +3717,7 @@ data_ora_proiezione,titolo_film,genere,regista,anno,durata_minuti,eta_minima,pre
 "2023-10-17 10:00:00","Le samouraï",Thriller,"Jean-Pierre Melville",1967,105,12,8.50
 "2023-10-16 12:30:00","Hable con ella",Drammatico,"Pedro Almodóvar",2002,112,16,6.50
 "2023-10-16 10:00:00","The Sandlot",Commedia,"David Mickey Evans",1993,101,0,7.50
-"2023-10-15 15:30:00","Willy Wonka & the Chocolate Factory",Family,"Mel Stuart",1971,100,0,7.00
+"2023-10-15 15:30:00","Willy Wonka & the Chocolate Factory",Commedia,"Mel Stuart",1971,100,0,7.00
 "2023-10-15 12:30:00","Das Boot",Avventura,"Wolfgang Petersen",1981,149,16,8.50
 "2023-10-15 10:00:00","Enter the Dragon",Azione,"Robert Clouse",1973,102,12,8.00
 "2023-10-14 15:00:00","Duck Soup",Commedia,"Leo McCarey",1933,69,12,7.00
@@ -3733,7 +3733,7 @@ data_ora_proiezione,titolo_film,genere,regista,anno,durata_minuti,eta_minima,pre
 "2023-10-11 10:00:00",Eskiya,Thriller,"Yavuz Turgul",1996,128,12,8.00
 "2023-10-10 16:00:00","Todo sobre mi madre",Drammatico,"Pedro Almodóvar",1999,101,16,6.50
 "2023-10-10 13:30:00","Requiem for a Dream",Drammatico,"Darren Aronofsky",2000,102,12,6.50
-"2023-10-10 10:30:00","E.T. the Extra-Terrestrial",Family,"Steven Spielberg",1982,115,0,6.50
+"2023-10-10 10:30:00","E.T. the Extra-Terrestrial",Commedia,"Steven Spielberg",1982,115,0,6.50
 "2023-10-09 13:00:00","Monty Python and the Holy Grail",Avventura,"Terry Gilliam",1975,91,6,7.00
 "2023-10-09 10:00:00","Dead Man",Avventura,"Jim Jarmusch",1995,121,16,7.50
 "2023-10-08 16:00:00","Monty Python and the Holy Grail",Avventura,"Terry Gilliam",1975,91,6,6.50
@@ -3829,7 +3829,7 @@ data_ora_proiezione,titolo_film,genere,regista,anno,durata_minuti,eta_minima,pre
 "2023-09-02 10:00:00","Miracle on 34th Street",Commedia,"George Seaton",1947,96,12,8.00
 "2023-09-01 10:30:00","Donnie Darko",Drammatico,"Richard Kelly",2001,113,16,8.00
 "2023-08-31 15:00:00",Solaris,Drammatico,"Andrei Tarkovsky",1972,167,6,7.00
-"2023-08-31 12:30:00","Willy Wonka & the Chocolate Factory",Family,"Mel Stuart",1971,100,0,6.50
+"2023-08-31 12:30:00","Willy Wonka & the Chocolate Factory",Commedia,"Mel Stuart",1971,100,0,6.50
 "2023-08-31 10:00:00","Dial M for Murder",Thriller,"Alfred Hitchcock",1954,105,12,6.50
 "2023-08-30 10:30:00","Dial M for Murder",Thriller,"Alfred Hitchcock",1954,105,12,8.00
 "2023-08-29 10:30:00","Dial M for Murder",Thriller,"Alfred Hitchcock",1954,105,12,6.50
@@ -4323,10 +4323,10 @@ data_ora_proiezione,titolo_film,genere,regista,anno,durata_minuti,eta_minima,pre
 "2023-02-09 10:00:00",Airplane!,Commedia,"Jim Abrahams",1980,88,0,6.50
 "2023-02-08 15:30:00",Airplane!,Commedia,"Jim Abrahams",1980,88,0,6.50
 "2023-02-08 13:00:00","Dirty Harry",Azione,"Don Siegel",1971,102,12,7.00
-"2023-02-08 10:30:00","Willy Wonka & the Chocolate Factory",Family,"Mel Stuart",1971,100,0,8.00
+"2023-02-08 10:30:00","Willy Wonka & the Chocolate Factory",Commedia,"Mel Stuart",1971,100,0,8.00
 "2023-02-07 16:00:00",Happiness,Commedia,"Todd Solondz",1998,134,12,7.00
 "2023-02-07 13:00:00","Blue Velvet",Drammatico,"David Lynch",1986,120,12,7.50
-"2023-02-07 10:30:00","Willy Wonka & the Chocolate Factory",Family,"Mel Stuart",1971,100,0,7.00
+"2023-02-07 10:30:00","Willy Wonka & the Chocolate Factory",Commedia,"Mel Stuart",1971,100,0,7.00
 "2023-02-06 10:00:00","Twelve Monkeys",Thriller,"Terry Gilliam",1995,129,12,7.00
 "2023-02-05 20:00:00","Cowboy Bebop: Tengoku no tobira",Animazione,"Shin'ichirô Watanabe",2001,115,0,9.50
 "2023-02-05 17:30:00","Dirty Harry",Azione,"Don Siegel",1971,102,12,8.50
@@ -4346,14 +4346,14 @@ data_ora_proiezione,titolo_film,genere,regista,anno,durata_minuti,eta_minima,pre
 "2023-01-30 10:30:00","His Girl Friday",Commedia,"Howard Hawks",1940,92,12,6.50
 "2023-01-29 17:30:00","Mimi wo sumaseba",Animazione,"Yoshifumi Kondô",1995,111,0,6.50
 "2023-01-29 15:00:00","On Golden Pond",Drammatico,"Mark Rydell",1981,109,12,7.00
-"2023-01-29 12:30:00","Willy Wonka & the Chocolate Factory",Family,"Mel Stuart",1971,100,0,8.00
+"2023-01-29 12:30:00","Willy Wonka & the Chocolate Factory",Commedia,"Mel Stuart",1971,100,0,8.00
 "2023-01-29 10:00:00","Mimi wo sumaseba",Animazione,"Yoshifumi Kondô",1995,111,0,8.00
 "2023-01-28 15:00:00","Catch Me If You Can",Documentario,"Steven Spielberg",2002,141,12,7.50
 "2023-01-28 12:30:00",Misery,Drammatico,"Rob Reiner",1990,107,16,6.50
 "2023-01-28 10:00:00","On Golden Pond",Drammatico,"Mark Rydell",1981,109,12,8.50
 "2023-01-27 15:30:00","Twelve Monkeys",Thriller,"Terry Gilliam",1995,129,12,7.50
 "2023-01-27 12:30:00","What's Eating Gilbert Grape",Drammatico,"Lasse Hallström",1993,118,0,8.00
-"2023-01-27 10:00:00","Willy Wonka & the Chocolate Factory",Family,"Mel Stuart",1971,100,0,7.50
+"2023-01-27 10:00:00","Willy Wonka & the Chocolate Factory",Commedia,"Mel Stuart",1971,100,0,7.50
 "2023-01-26 15:00:00","Cowboy Bebop: Tengoku no tobira",Animazione,"Shin'ichirô Watanabe",2001,115,0,7.50
 "2023-01-26 13:00:00",Airplane!,Commedia,"Jim Abrahams",1980,88,0,7.00
 "2023-01-26 10:30:00","Paper Moon",Commedia,"Peter Bogdanovich",1973,102,0,8.50
@@ -5266,7 +5266,7 @@ data_ora_proiezione,titolo_film,genere,regista,anno,durata_minuti,eta_minima,pre
 "2022-01-19 10:30:00",Druk,Commedia,"Thomas Vinterberg",2020,117,12,7.50
 "2022-01-18 15:30:00","The Kid",Commedia,"Charles Chaplin",1921,68,12,7.00
 "2022-01-18 13:00:00",Mulan,Animazione,"Tony Bancroft",1998,88,0,7.50
-"2022-01-18 10:00:00","E.T. the Extra-Terrestrial",Family,"Steven Spielberg",1982,115,0,7.50
+"2022-01-18 10:00:00","E.T. the Extra-Terrestrial",Commedia,"Steven Spielberg",1982,115,0,7.50
 "2022-01-17 14:30:00","The Great Dictator",Commedia,"Charles Chaplin",1940,125,12,8.00
 "2022-01-17 12:30:00","The Nightmare Before Christmas",Animazione,"Henry Selick",1993,76,0,8.00
 "2022-01-17 10:00:00","Aguirre, der Zorn Gottes",Azione,"Werner Herzog",1972,95,12,8.00
@@ -5297,7 +5297,7 @@ data_ora_proiezione,titolo_film,genere,regista,anno,durata_minuti,eta_minima,pre
 "2022-01-09 10:00:00","Crna macka, beli macor",Commedia,"Emir Kusturica",1998,127,16,7.50
 "2022-01-08 17:30:00",Hamlet,Drammatico,"Kenneth Branagh",1996,242,12,7.00
 "2022-01-08 15:30:00",Freaks,Drammatico,"Tod Browning",1932,64,12,8.50
-"2022-01-08 13:00:00","E.T. the Extra-Terrestrial",Family,"Steven Spielberg",1982,115,0,7.00
+"2022-01-08 13:00:00","E.T. the Extra-Terrestrial",Commedia,"Steven Spielberg",1982,115,0,7.00
 "2022-01-08 10:00:00","The Great Dictator",Commedia,"Charles Chaplin",1940,125,12,8.50
 "2022-01-07 15:30:00","The Straight Story",Documentario,"David Lynch",1999,112,0,7.50
 "2022-01-07 13:30:00","The Muppet Christmas Carol",Commedia,"Brian Henson",1992,85,0,7.50
@@ -5319,7 +5319,7 @@ data_ora_proiezione,titolo_film,genere,regista,anno,durata_minuti,eta_minima,pre
 "2022-01-01 12:30:00",Aladdin,Animazione,"Ron Clements",1992,90,0,7.50
 "2022-01-01 10:30:00","The Nightmare Before Christmas",Animazione,"Henry Selick",1993,76,0,8.00
 "2021-12-31 16:00:00","True Romance",Thriller,"Tony Scott",1993,119,16,7.50
-"2021-12-31 13:00:00","E.T. the Extra-Terrestrial",Family,"Steven Spielberg",1982,115,0,8.00
+"2021-12-31 13:00:00","E.T. the Extra-Terrestrial",Commedia,"Steven Spielberg",1982,115,0,8.00
 "2021-12-31 10:00:00","The Royal Tenenbaums",Commedia,"Wes Anderson",2001,110,12,6.50
 "2021-12-30 16:00:00",Aladdin,Animazione,"Ron Clements",1992,90,0,6.50
 "2021-12-30 13:00:00","The Royal Tenenbaums",Commedia,"Wes Anderson",2001,110,12,8.50
@@ -5332,7 +5332,7 @@ data_ora_proiezione,titolo_film,genere,regista,anno,durata_minuti,eta_minima,pre
 "2021-12-27 12:30:00","Mississippi Burning",Thriller,"Alan Parker",1988,128,12,7.50
 "2021-12-27 10:00:00",Snatch,Commedia,"Guy Ritchie",2000,104,12,7.00
 "2021-12-26 19:30:00","Lagaan: Once Upon a Time in India",Avventura,"Ashutosh Gowariker",2001,224,0,9.50
-"2021-12-26 16:30:00","E.T. the Extra-Terrestrial",Family,"Steven Spielberg",1982,115,0,8.00
+"2021-12-26 16:30:00","E.T. the Extra-Terrestrial",Commedia,"Steven Spielberg",1982,115,0,8.00
 "2021-12-26 13:00:00","Das Boot",Avventura,"Wolfgang Petersen",1981,149,16,8.50
 "2021-12-26 10:00:00","Star Trek II: The Wrath of Khan",Azione,"Nicholas Meyer",1982,113,0,7.50
 "2021-12-25 18:00:00","Star Trek II: The Wrath of Khan",Azione,"Nicholas Meyer",1982,113,0,8.50
@@ -5955,10 +5955,10 @@ data_ora_proiezione,titolo_film,genere,regista,anno,durata_minuti,eta_minima,pre
 "2021-04-17 19:00:00","Trois couleurs: Blanc",Commedia,"Krzysztof Kieslowski",1994,92,0,9.00
 "2021-04-17 16:30:00","Dip huet seung hung",Azione,"John Woo",1989,111,16,7.50
 "2021-04-17 13:30:00",Alien,Horror,"Ridley Scott",1979,117,16,6.50
-"2021-04-17 10:30:00","E.T. the Extra-Terrestrial",Family,"Steven Spielberg",1982,115,0,6.50
-"2021-04-16 12:30:00","E.T. the Extra-Terrestrial",Family,"Steven Spielberg",1982,115,0,6.50
+"2021-04-17 10:30:00","E.T. the Extra-Terrestrial",Commedia,"Steven Spielberg",1982,115,0,6.50
+"2021-04-16 12:30:00","E.T. the Extra-Terrestrial",Commedia,"Steven Spielberg",1982,115,0,6.50
 "2021-04-16 10:00:00","Il conformista",Drammatico,"Bernardo Bertolucci",1970,113,12,6.50
-"2021-04-15 16:00:00","E.T. the Extra-Terrestrial",Family,"Steven Spielberg",1982,115,0,7.50
+"2021-04-15 16:00:00","E.T. the Extra-Terrestrial",Commedia,"Steven Spielberg",1982,115,0,7.50
 "2021-04-15 13:30:00","Office Space",Commedia,"Mike Judge",1999,89,16,7.50
 "2021-04-15 10:30:00","Being There",Commedia,"Hal Ashby",1979,130,6,7.00
 "2021-04-14 16:30:00","Chung Hing sam lam",Commedia,"Kar-Wai Wong",1994,102,0,8.00
@@ -5975,7 +5975,7 @@ data_ora_proiezione,titolo_film,genere,regista,anno,durata_minuti,eta_minima,pre
 "2021-04-11 13:00:00","Dead Poets Society",Commedia,"Peter Weir",1989,128,0,7.00
 "2021-04-11 10:30:00","Chung Hing sam lam",Commedia,"Kar-Wai Wong",1994,102,0,7.00
 "2021-04-10 16:00:00","The Trial of the Chicago 7",Drammatico,"Aaron Sorkin",2020,129,16,6.50
-"2021-04-10 13:00:00","E.T. the Extra-Terrestrial",Family,"Steven Spielberg",1982,115,0,8.50
+"2021-04-10 13:00:00","E.T. the Extra-Terrestrial",Commedia,"Steven Spielberg",1982,115,0,8.50
 "2021-04-10 10:30:00","Jûbê ninpûchô",Animazione,"Yoshiaki Kawajiri",1993,94,12,7.50
 "2021-04-09 10:30:00","La vita è bella",Commedia,"Roberto Benigni",1997,116,0,7.00
 "2021-04-08 13:30:00",Harvey,Commedia,"Henry Koster",1950,104,12,7.50
@@ -5983,7 +5983,7 @@ data_ora_proiezione,titolo_film,genere,regista,anno,durata_minuti,eta_minima,pre
 "2021-04-07 15:30:00","Toy Story 4",Animazione,"Josh Cooley",2019,100,0,7.50
 "2021-04-07 13:00:00",Lifeboat,Drammatico,"Alfred Hitchcock",1944,97,12,8.50
 "2021-04-07 10:30:00","La vita è bella",Commedia,"Roberto Benigni",1997,116,0,8.50
-"2021-04-06 10:00:00","E.T. the Extra-Terrestrial",Family,"Steven Spielberg",1982,115,0,7.00
+"2021-04-06 10:00:00","E.T. the Extra-Terrestrial",Commedia,"Steven Spielberg",1982,115,0,7.00
 "2021-04-05 13:30:00","Toy Story 4",Animazione,"Josh Cooley",2019,100,0,8.50
 "2021-04-05 10:00:00","The Shawshank Redemption",Drammatico,"Frank Darabont",1994,142,12,6.50
 "2021-04-04 18:30:00","The Peanut Butter Falcon",Avventura,"Tyler Nilson",2019,97,12,8.50
@@ -6033,7 +6033,7 @@ data_ora_proiezione,titolo_film,genere,regista,anno,durata_minuti,eta_minima,pre
 "2021-03-19 10:00:00","The French Connection",Azione,"William Friedkin",1971,104,12,7.50
 "2021-03-18 10:00:00","Dirty Harry",Azione,"Don Siegel",1971,102,12,8.50
 "2021-03-17 13:00:00",Braveheart,Documentario,"Mel Gibson",1995,178,12,7.50
-"2021-03-17 10:00:00","E.T. the Extra-Terrestrial",Family,"Steven Spielberg",1982,115,0,7.00
+"2021-03-17 10:00:00","E.T. the Extra-Terrestrial",Commedia,"Steven Spielberg",1982,115,0,7.00
 "2021-03-16 10:30:00","Remember the Titans",Documentario,"Boaz Yakin",2000,113,0,6.50
 "2021-03-15 13:00:00","The Ten Commandments",Avventura,"Cecil B. DeMille",1956,220,0,7.00
 "2021-03-15 10:30:00","The Last of the Mohicans",Azione,"Michael Mann",1992,112,12,7.00
@@ -6050,7 +6050,7 @@ data_ora_proiezione,titolo_film,genere,regista,anno,durata_minuti,eta_minima,pre
 "2021-03-10 10:00:00","La passion de Jeanne d'Arc",Documentario,"Carl Theodor Dreyer",1928,110,12,8.50
 "2021-03-09 15:30:00","The Jungle Book",Animazione,"Wolfgang Reitherman",1967,78,0,7.00
 "2021-03-09 13:00:00","Cape Fear",Drammatico,"J. Lee Thompson",1962,106,12,7.50
-"2021-03-09 10:00:00","E.T. the Extra-Terrestrial",Family,"Steven Spielberg",1982,115,0,7.50
+"2021-03-09 10:00:00","E.T. the Extra-Terrestrial",Commedia,"Steven Spielberg",1982,115,0,7.50
 "2021-03-08 13:00:00","Lat sau san taam",Azione,"John Woo",1992,128,16,8.50
 "2021-03-08 10:00:00",Network,Drammatico,"Sidney Lumet",1976,121,12,6.50
 "2021-03-07 16:00:00","Harry Potter and the Sorcerer's Stone",Avventura,"Chris Columbus",2001,152,0,7.50
@@ -8413,7 +8413,7 @@ data_ora_proiezione,titolo_film,genere,regista,anno,durata_minuti,eta_minima,pre
 "2018-07-12 13:00:00","Hell or High Water",Azione,"David Mackenzie",2016,102,16,7.00
 "2018-07-12 10:00:00","Star Wars",Azione,"George Lucas",1977,121,12,6.50
 "2018-07-11 15:00:00","Abre los ojos",Drammatico,"Alejandro Amenábar",1997,119,0,8.50
-"2018-07-11 12:30:00","Willy Wonka & the Chocolate Factory",Family,"Mel Stuart",1971,100,0,7.50
+"2018-07-11 12:30:00","Willy Wonka & the Chocolate Factory",Commedia,"Mel Stuart",1971,100,0,7.50
 "2018-07-11 10:00:00","The Night of the Hunter",Thriller,"Charles Laughton",1955,92,12,7.00
 "2018-07-10 14:30:00","Star Wars",Azione,"George Lucas",1977,121,12,8.00
 "2018-07-10 10:30:00","Malcolm X",Documentario,"Spike Lee",1992,202,0,8.00
@@ -8446,11 +8446,11 @@ data_ora_proiezione,titolo_film,genere,regista,anno,durata_minuti,eta_minima,pre
 "2018-06-28 10:30:00","The Bridges of Madison County",Drammatico,"Clint Eastwood",1995,135,12,8.00
 "2018-06-27 10:00:00",Happiness,Commedia,"Todd Solondz",1998,134,12,7.00
 "2018-06-26 13:00:00","Indiana Jones and the Last Crusade",Azione,"Steven Spielberg",1989,127,0,7.50
-"2018-06-26 10:30:00","Willy Wonka & the Chocolate Factory",Family,"Mel Stuart",1971,100,0,8.00
+"2018-06-26 10:30:00","Willy Wonka & the Chocolate Factory",Commedia,"Mel Stuart",1971,100,0,8.00
 "2018-06-25 13:30:00",Trainspotting,Drammatico,"Danny Boyle",1996,93,12,8.00
 "2018-06-25 10:30:00",Ikiru,Drammatico,"Akira Kurosawa",1952,143,12,7.50
 "2018-06-24 18:00:00","Malcolm X",Documentario,"Spike Lee",1992,202,0,8.50
-"2018-06-24 15:30:00","Willy Wonka & the Chocolate Factory",Family,"Mel Stuart",1971,100,0,7.00
+"2018-06-24 15:30:00","Willy Wonka & the Chocolate Factory",Commedia,"Mel Stuart",1971,100,0,7.00
 "2018-06-24 13:00:00","Rebel Without a Cause",Drammatico,"Nicholas Ray",1955,111,12,7.50
 "2018-06-24 10:30:00","Rebel Without a Cause",Drammatico,"Nicholas Ray",1955,111,12,7.50
 "2018-06-23 19:00:00","Lola rennt",Thriller,"Tom Tykwer",1998,81,12,9.00
@@ -8460,7 +8460,7 @@ data_ora_proiezione,titolo_film,genere,regista,anno,durata_minuti,eta_minima,pre
 "2018-06-22 10:30:00","Nuovo Cinema Paradiso",Drammatico,"Giuseppe Tornatore",1988,155,0,7.00
 "2018-06-21 13:30:00","Thrillers and Misdemeanors",Commedia,"Woody Allen",1989,104,12,7.50
 "2018-06-21 10:30:00","The Bridges of Madison County",Drammatico,"Clint Eastwood",1995,135,12,6.50
-"2018-06-20 13:30:00","Willy Wonka & the Chocolate Factory",Family,"Mel Stuart",1971,100,0,7.50
+"2018-06-20 13:30:00","Willy Wonka & the Chocolate Factory",Commedia,"Mel Stuart",1971,100,0,7.50
 "2018-06-20 10:00:00","Nuovo Cinema Paradiso",Drammatico,"Giuseppe Tornatore",1988,155,0,7.00
 "2018-06-19 15:30:00","Thrillers and Misdemeanors",Commedia,"Woody Allen",1989,104,12,8.50
 "2018-06-19 13:00:00","Lethal Weapon",Azione,"Richard Donner",1987,109,12,7.50
@@ -8468,7 +8468,7 @@ data_ora_proiezione,titolo_film,genere,regista,anno,durata_minuti,eta_minima,pre
 "2018-06-18 10:30:00","Hiroshima mon amour",Drammatico,"Alain Resnais",1959,90,12,8.50
 "2018-06-17 19:00:00",Airlift,Drammatico,"Raja Menon",2016,130,12,9.50
 "2018-06-17 16:00:00","The Untouchables",Thriller,"Brian De Palma",1987,119,12,6.50
-"2018-06-17 13:30:00","Willy Wonka & the Chocolate Factory",Family,"Mel Stuart",1971,100,0,6.50
+"2018-06-17 13:30:00","Willy Wonka & the Chocolate Factory",Commedia,"Mel Stuart",1971,100,0,6.50
 "2018-06-17 10:00:00",Ikiru,Drammatico,"Akira Kurosawa",1952,143,12,7.50
 "2018-06-16 17:00:00","Jules et Jim",Drammatico,"François Truffaut",1962,105,12,8.50
 "2018-06-16 14:30:00","Hiroshima mon amour",Drammatico,"Alain Resnais",1959,90,12,8.00
@@ -8477,7 +8477,7 @@ data_ora_proiezione,titolo_film,genere,regista,anno,durata_minuti,eta_minima,pre
 "2018-06-15 13:30:00","Hiroshima mon amour",Drammatico,"Alain Resnais",1959,90,12,8.50
 "2018-06-15 10:30:00","Blue Velvet",Drammatico,"David Lynch",1986,120,12,6.50
 "2018-06-14 16:00:00","Thrillers and Misdemeanors",Commedia,"Woody Allen",1989,104,12,7.00
-"2018-06-14 13:30:00","Willy Wonka & the Chocolate Factory",Family,"Mel Stuart",1971,100,0,6.50
+"2018-06-14 13:30:00","Willy Wonka & the Chocolate Factory",Commedia,"Mel Stuart",1971,100,0,6.50
 "2018-06-14 10:30:00",Ikiru,Drammatico,"Akira Kurosawa",1952,143,12,8.50
 "2018-06-13 10:30:00","When Harry Met Sally...",Commedia,"Rob Reiner",1989,95,12,6.50
 "2018-06-12 17:00:00","The Grapes of Wrath",Drammatico,"John Ford",1940,129,12,6.50
