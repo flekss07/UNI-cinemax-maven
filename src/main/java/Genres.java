@@ -9,7 +9,7 @@ public enum Genres {
     Documentario,
     Drammatico,
     Fantascienza,
-    Fiabesco,
+    Western,
     Horror,
     Thriller,
 

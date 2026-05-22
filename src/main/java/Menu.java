@@ -81,7 +81,7 @@ public class Menu {
             case 5 -> genere = Genres.Documentario;
             case 6 -> genere = Genres.Drammatico;
             case 7 -> genere = Genres.Fantascienza;
-            case 8 -> genere = Genres.Fiabesco;
+            case 8 -> genere = Genres.Western;
             case 9 -> genere = Genres.Horror;
             case 10 -> genere = Genres.Thriller;
             default -> {
