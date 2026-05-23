@@ -184,7 +184,7 @@ public class Menu {
                 return numbcheckergiorni();
             }
             if (numInt > 31) {
-                System.out.println("Il numeroinserito non può essere maggiore di 31, rinserire il numero");
+                System.out.println("Il numero inserito non può essere maggiore di 31, rinserire il numero");
                 return numbcheckergiorni();
             }
             return numInt;
