@@ -303,6 +303,12 @@ FileHandler {
     }
 
     //metodo che carica i dati delle prenotazioni
+
+    /**
+     * Metodo che carica i dati delle prenotazioni
+     *
+     * @throws IOException eccezione lanciata quando qualcosa è andato storto
+     */
     private void loadPrenData() throws IOException {
         BufferedReader br = Files.newBufferedReader(this.path); // crea un reader per il file csv che usa inputstream per processare il testo
         CSVParser parser = CSVFormat.DEFAULT.withFirstRecordAsHeader().withTrim().parse(br); // crea un parser dedicato per il csv che usa gli header come nomi delle colonne
@@ -310,6 +316,11 @@ FileHandler {
             this.createPrenObj(record); //crea oggetto proiezione e lo aggiunge alla linkedlist dedicata
     }
 
+    /**
+     * Costruttore per gli oggetti di tipo prenotazione
+     *
+     * @param record oggetto della libreria CSVParser che stampa su file i dati del record
+     */
     private void createPrenObj(CSVRecord record){
         String username = record.get("username");
         String titolo = record.get("titolo");
@@ -320,6 +331,12 @@ FileHandler {
     }
 
     //metodo che salva le prenotazioni su file
+
+    /**
+     * Metodo che salva le prenotazioni su file
+     *
+     * @throws IOException eccezione lanciata se qualcosa andasse storto
+     */
     private void writeToPrenCsv() throws IOException {
         Writer writer = new FileWriter(this.path.toFile()); // crea writer per scrivere su file
         CSVPrinter printer = new CSVPrinter(writer, CSVFormat.DEFAULT); // crea csv printer per creare record da scrivere su file
@@ -332,6 +349,13 @@ FileHandler {
     }
 
     //sotto metodo che crea gli header per il csv delle prenotazioni
+
+    /**
+     * Metodo che crea gli header per il csv delle prenotazioni
+     *
+     * @param printer oggetto della libreria CSVParser che stampa su file i dati del record
+     * @throws IOException eccezione lanciata nel caso qualcosa fosse andato storto
+     */
     private void newPrenHeader(CSVPrinter printer) throws IOException {
         printer.printRecord(
                 "id",
@@ -342,6 +366,14 @@ FileHandler {
     }
 
     //sotto metodo che crea un record per le prenotazioni
+
+    /**
+     * Metodo che crea un record per le prenotazioni
+     *
+     * @param pre oggetto di tipo prenotazione
+     * @param printer oggetto della libreria CSVParser che stampa su file i dati del record
+     * @throws IOException eccezione lanciata nel caso qualcosa andasse storto
+     */
     private void newPrenRecord(Prenotazione pre, CSVPrinter printer) throws IOException {
         printer.printRecord(
                 pre.getId(),
@@ -419,6 +451,12 @@ FileHandler {
     }
 
     // metodo che restituisce la lista delle prenotazioni caricate da file
+
+    /**
+     * Metodo che restituisce la lista delle prenotazioni caricate da file
+     *
+     * @return restituisce la lista delle prenotazioni
+     */
     public LinkedList<Prenotazione>getPrenList(){
         if(!this.userList.isEmpty()) // se la linkedlist è già caricata la restituisce
             return this.prenList;
@@ -432,6 +470,12 @@ FileHandler {
     }
 
     //metodo che salva la lista di prenotazioni
+
+    /**
+     * Metodo che salva la lista di prenotazioni
+     *
+     * @param prenList lista delle prenotazioni
+     */
     public void savePrenList(LinkedList<Prenotazione> prenList){
         this.prenList = prenList; // aggiorna lista salvata in cache
         try {
