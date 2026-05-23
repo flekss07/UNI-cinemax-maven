@@ -17,6 +17,7 @@ public class Prenotazione {
     public String getTitolo(){ return this.titolo; }
     public LocalDateTime getDate(){ return this.date; }
     public String getId(){ return this.id; }
+
     //setter
     public void setTitolo(String titolo){this.titolo = titolo;}
     public void setDate(LocalDateTime date){this.date = date;}

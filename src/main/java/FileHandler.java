@@ -56,7 +56,7 @@ FileHandler {
         this.proList = new LinkedList<>(); // inizializza linkedlist proiezioni
         this.userList = new LinkedList<>(); // inizializza linkedlist user
         this.prenList = new LinkedList<>(); // inizializza linkedlist prenotazioni
-        this.formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        this.formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         this.localDateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         this.path = Paths.get("data",path); // imposta percorso file corretto
     }

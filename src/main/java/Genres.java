@@ -12,5 +12,5 @@ public enum Genres {
     Western,
     Horror,
     Thriller,
-
+    Azione
 }
