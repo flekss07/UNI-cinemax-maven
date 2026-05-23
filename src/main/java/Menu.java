@@ -284,7 +284,7 @@ public class Menu {
             throw new RuntimeException(e) {
             };
         }
-        System.out.println("Login effettuato come "+ loggedUser);
+        System.out.println("Login effettuato come "+ loggedUser.getUsername());
     }
 
     //metodo guest
