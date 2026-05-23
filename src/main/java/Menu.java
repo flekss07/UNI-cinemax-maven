@@ -1,3 +1,4 @@
+import java.time.Year;
 import java.util.Scanner;
 
 public class Menu {
@@ -9,7 +10,7 @@ public class Menu {
         this.ph= new ProiezioniHandler();
     }
 
-    public void menuSelect() { // costruttore menu
+    public void menuSelect() { //metodo che crea il menu
 
         while (true) {
             System.out.println("Inserire il numero corrispondente alla funzione per attivarla\n1)registrarsi\n2)effettuare il login\n3)Continuare come quest ");
@@ -217,12 +218,12 @@ public class Menu {
         String str = this.stringCheck();
         try {
             int numInt = Integer.parseInt(str);
-            if (numInt <= 0) {
-                System.out.println("Il numero inserito non può essere negativo, rinserire il numero");
+            if (numInt <= Year.now().getValue()-200) {
+                System.out.println("Anno di nascita non valido");
                 return numbcheckeranno();
             }
-            if (numInt > 2026) {
-                System.out.println("Il numeroinserito non può essere maggiore di 2026, rinserire il numero");
+            if (numInt > Year.now().getValue()) {
+                System.out.println("Il numero inserito non può essere maggiore di "+ Year.now().getValue()+ ", rinserire il numero");
                 return numbcheckeranno();
             }
             return numInt;
