@@ -106,16 +106,15 @@ public class UserHandler {
      *
      * @throws Exception errore durante il login
      */
-    public void loginUser() throws Exception {
+    public User loginUser() throws Exception {
         System.out.println("Insere l'username:");
         String username = this.stringCheck();
         User u = this.checkUser(username);
-        if (u!=null) {
-            passcheck(u);
-        } else {
+        if (u!=null)
+            if (passcheck(u)) return u;
+         else
             System.out.println("Username non trovato, riprova");
-            loginUser();
-        }
+        return null;
     }
     //Controlla la password in maniera ricorsiva
     /**
@@ -124,16 +123,15 @@ public class UserHandler {
      * @param u nome utente collegato alla password
      * @throws Exception errore durante il controllo della password
      */
-    private void  passcheck(User u)throws Exception{
-     System.out.println("Inserire la password");
-    String passcmp = this.stringCheck();
-    String tmp = this.passencryption(passcmp);
+    private Boolean  passcheck(User u)throws Exception{
+        System.out.println("Inserire la password");
+        String tmp = AESencrypt.encrypt(this.stringCheck());
             if (tmp.equals(u.getPassword())) {
-        System.out.println("Login effettuato con successo");
-    } else {
-        System.out.println("Password errata, riprova");
-        passcheck(u);
-
+                System.out.println("Login effettuato con successo"); // da rimuovere
+                return true;
+            } else {
+                System.out.println("Password errata, riprova");
+                return false;
             }
     }
     /**
@@ -144,12 +142,7 @@ public class UserHandler {
      * @throws Exception errore durante la criptazione della password inserita
      */
     private String passencryption(String password) throws Exception {
-        System.out.println("inserire nuovamente la password");
-        String passcmp = this.stringCheck();
-        if (!password.equals(passcmp)) {
-            System.out.println("Le password non corrispondono, riprova.");
-            return passencryption(password);
-        }
+
         //encrypting della password
         return AESencrypt.encrypt(password);
     }

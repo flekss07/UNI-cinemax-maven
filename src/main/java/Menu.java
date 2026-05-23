@@ -4,6 +4,7 @@ import java.util.Scanner;
 public class Menu {
     private final UserHandler uh;
     private final ProiezioniHandler ph ;
+    private User loggedUser;
 
     public Menu() { //costruzione oggetto classe userhandler
         this.uh = new UserHandler();
@@ -16,12 +17,13 @@ public class Menu {
             System.out.println("Inserire il numero corrispondente alla funzione per attivarla\n1)registrarsi\n2)effettuare il login\n3)Continuare come quest ");
             int selector = this.numbCheck();
             switch (selector) {
-                case 1://registrarsi
+                case 1: //registrarsi
                     try {
                         this.userRegister();
                     } catch (Exception e) {
                         throw new RuntimeException(e);
                     }
+
                 case 2://login
                     System.out.println("Inizio procedura di login");
                     this.userLogin();
@@ -272,13 +274,17 @@ public class Menu {
 
     public void userLogin() throws RuntimeException {
         try {
-           this.uh.loginUser();
+           User user=this.uh.loginUser(); //chiedo all'utente di loggare e salva l'utente se lo trova
+           if(user!=null)
+               loggedUser=user;
+           else
+               System.out.println("Utente non trovato");
         } catch (Exception e) {
             System.out.println("Login non riuscito...");
             throw new RuntimeException(e) {
             };
         }
-        System.out.println("Login eseguito con successo!");
+        System.out.println("Login effettuato come "+ loggedUser);
     }
 
     //metodo guest
