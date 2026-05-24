@@ -120,8 +120,7 @@ public class Menu {
         System.out.println("Inserire Cognome");
         String cognome = this.stringCheck();
         //inserimento username
-        System.out.println("Inserire Username");
-        String username = this.stringCheck();
+        this.checkUsernameDupe();
         System.out.println("Inserire indirizzo di residenza");
         String residenza = this.stringCheck();
         String annoDiNascita = this.inseriredata();
@@ -131,6 +130,16 @@ public class Menu {
         String password = this.passencryption();
         this.uh.addUser(nome, cognome, password, username, annoDiNascita, residenza, ruolo);
 
+    }
+
+    //metodo che fa un check anti duplicati sullo username
+    private String checkUsernameDupe(){
+        System.out.println("Inserire Username");
+        String username = this.stringCheck();
+        if(this.uh.checkUser(this.stringCheck()) == null)
+            return username;
+        System.out.println("username gia esistente, cambiarlo: ");
+        return this.checkUsernameDupe();
     }
 
     private String stringCheck() {

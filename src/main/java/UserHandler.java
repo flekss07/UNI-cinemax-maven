@@ -91,7 +91,7 @@ public class UserHandler {
      * @return u se il nome utente è valido
      * @return null se il nome utente non è valido
      */
-    private User checkUser(String username) {
+    public User checkUser(String username) {
         //this.userList  = this.fh.getUserList();
         for (User u : this.userList) {
             if (u.getUsername().equals(username.trim())) {
