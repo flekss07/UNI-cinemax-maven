@@ -124,17 +124,6 @@ FileHandler {
 
 
 
-
-    //metodo di testing per stampare i dati delle proiezioni
-
-    /**
-     * Stampa tutte le proiezioni presenti nella lista
-     */
-    public void printProiezioni() {
-        for (Proiezioni p : proList)
-            System.out.println(this.printProj(p));
-    }
-
     //metodo che salva i dati delle proiezioni su file
 
     /**
@@ -327,8 +316,8 @@ FileHandler {
     private void newPrenRecord(Prenotazione pre, CSVPrinter printer) throws IOException {
         printer.printRecord(
                 pre.getId(),
-                pre.getTitolo(),
                 pre.getUsername(),
+                pre.getTitolo(),
                 pre.getDate().format(this.formatter)
         );
     }
@@ -402,7 +391,7 @@ FileHandler {
 
     // metodo che restituisce la lista delle prenotazioni caricate da file
     public LinkedList<Prenotazione>getPrenList(){
-        if(!this.userList.isEmpty()) // se la linkedlist è già caricata la restituisce
+        if(!this.prenList.isEmpty()) // se la linkedlist è già caricata la restituisce
             return this.prenList;
         try {
             this.loadPrenData();
