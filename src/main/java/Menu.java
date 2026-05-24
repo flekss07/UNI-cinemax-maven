@@ -5,11 +5,13 @@ import java.util.Scanner;
 public class Menu {
     private final UserHandler uh;
     private final ProiezioniHandler ph ;
+    private final PrenotazioniHandler prenh;
     private User loggedUser;
 
     public Menu() { //costruzione oggetto classe userhandler
         this.uh = new UserHandler();
         this.ph= new ProiezioniHandler();
+        this.prenh= new PrenotazioniHandler();
     }
 
     public void menuSelect() { //metodo che crea il menu
@@ -29,7 +31,7 @@ public class Menu {
                     System.out.println("Inizio procedura di login");
                     this.userLogin();
                 }
-                case 3->  this.guest();
+                case 3-> this.guest();
                 case 4-> repeat=false; //close menu
                 default-> System.out.println("Qualcosa è andato storto...");
             }
@@ -38,7 +40,7 @@ public class Menu {
 
     }
 
-    public void Addproiezioni() {
+    public void addProiezioni() {
         //inserire il genere del film
         Genres genere = this.SelezioneGenere();
         //inserire il titolo
@@ -283,8 +285,11 @@ public class Menu {
     public void userLogin() throws RuntimeException {
         try {
            User user=this.uh.loginUser(); //chiedo all'utente di loggare e salva l'utente se lo trova
-           if(user!=null)
-               loggedUser=user;
+           if(user!=null) {
+               loggedUser = user;
+               System.out.println("Login effettuato come "+ loggedUser.getUsername());
+               this.userMenu();
+           }
            else
                System.out.println("Utente non trovato");
         } catch (Exception e) {
@@ -292,7 +297,6 @@ public class Menu {
             throw new RuntimeException(e) {
             };
         }
-        System.out.println("Login effettuato come "+ loggedUser.getUsername());
     }
 
 
@@ -417,33 +421,82 @@ public class Menu {
         }
     }
 
-    //metodo guest
-    public void guest() {
-        System.out.println("1)Cercare una proiezione \n2)Eseguire il LOGIN");
-        int num=numbCheck();
-        switch (num){
-            case 1 -> {} //aggiungere metodo di ricerca prenotazioni
-            case 2 -> {
-                System.out.println("Inizio procedura di login");
-                this.userLogin();
-            }
+    //metodo userMenu
+    public void userMenu(){
+        switch (this.loggedUser.getRole()){
+            case CLIENTE -> this.client();
+            case BIGLIETTAIO -> this.bigliettaio();
+            case PROIEZIONISTA -> this.proiezionista();
             default -> System.out.println("Qualcosa è andato storto...");
         }
     }
 
-    private void client(){
-        System.out.println("1) Eseguire una prenotazione \n2)");
+    //metodo guest
+    public void guest() {
+        boolean repeat = true;
+        while (repeat) {
+            System.out.println("1)Cercare una proiezione \n2)Eseguire il LOGIN\n3)Eseguire una registrazione\n4)Torna a menu precedente");
+            int num = numbCheck();
+            switch (num) {
+                case 1 -> {//aggiungere metodo di ricerca proiezione
+                }
+                case 2 -> {
+                    System.out.println("Inizio procedura di login");
+                    this.userLogin();
+                }
+                case 3 -> {
+                    try {
+                        this.userRegister();
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+                case 4 -> repeat=false;
+                default -> System.out.println("Qualcosa è andato storto...");
+            }
+        }
     }
 
+    //metodo clienti
+    private void client(){
+        boolean repeat = true;
+        while(repeat){
+            System.out.println("1)Cercare una proiezione \n2)Visualizza le mie prenotazioni \n3)Eseguire una prenotazione \n4)Modificare una prenotazione esistente \n5)Cancellazione di una prenotazione\n6)Torna a menu precedente");
+            int num = numbCheck();
+            switch (num){
+                case 1 -> {//aggiungere metodo di ricerca proiezioni
+                }
+                case 2 -> this.prenh.visualizzaPrenotazioni(this.loggedUser.getUsername());
+                case 3 -> this.effettoPrenotazione();
+                case 4 -> this.modificaPrenotazione();
+                case 5 -> this.cancellaPrenotazione();
+                case 6 -> repeat=false;
+                default -> System.out.println("Qualcosa è andato storto...");
+            }
+        }
+    }
+
+    //metodo proiezionisti
     private void proiezionista(){
         System.out.println("");
     }
 
+    //metodo bigliettai
     private void bigliettaio(){
         System.out.println("");
     }
 
+    private void effettoPrenotazione(){
 
+    }
+
+    private void modificaPrenotazione(){
+
+    }
+
+    private void cancellaPrenotazione(){
+
+    }
 
 }
 
