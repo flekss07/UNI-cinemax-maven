@@ -1,3 +1,4 @@
+import java.awt.desktop.AboutEvent;
 import java.time.Year;
 import java.util.Scanner;
 
@@ -12,27 +13,25 @@ public class Menu {
     }
 
     public void menuSelect() { //metodo che crea il menu
-
-        while (true) {
-            System.out.println("Inserire il numero corrispondente alla funzione per attivarla\n1)registrarsi\n2)effettuare il login\n3)Continuare come quest ");
+        boolean repeat=true;
+        while (repeat) {
+            System.out.println("Inserire il numero corrispondente alla funzione per attivarla\n1)registrarsi\n2)effettuare il login\n3)Continuare come quest \n4)Uscire dal programma");
             int selector = this.numbCheck();
             switch (selector) {
-                case 1: //registrarsi
+                case 1-> { //registrarsi
                     try {
                         this.userRegister();
                     } catch (Exception e) {
                         throw new RuntimeException(e);
                     }
-
-                case 2://login
+                }
+                case 2 -> { //login
                     System.out.println("Inizio procedura di login");
                     this.userLogin();
-                    break;
-                case 3://guest
-                    this.Guest();
-                    break;
-                default:
-                    System.out.println("Qualcosa è andato storto...");
+                }
+                case 3->  this.Guest();
+                case 4-> repeat=false; //close menu
+                default-> System.out.println("Qualcosa è andato storto...");
             }
         }
 
