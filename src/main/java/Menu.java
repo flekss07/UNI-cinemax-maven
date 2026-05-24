@@ -120,7 +120,7 @@ public class Menu {
         System.out.println("Inserire Cognome");
         String cognome = this.stringCheck();
         //inserimento username
-        this.checkUsernameDupe();
+        String username = this.checkUsernameDupe();
         System.out.println("Inserire indirizzo di residenza");
         String residenza = this.stringCheck();
         String annoDiNascita = this.inseriredata();
