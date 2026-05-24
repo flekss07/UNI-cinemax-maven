@@ -467,7 +467,7 @@ public class Menu {
                 case 1 -> {//aggiungere metodo di ricerca proiezioni
                 }
                 case 2 -> this.prenh.visualizzaPrenotazioni(this.loggedUser.getUsername());
-                case 3 -> this.effettoPrenotazione();
+                case 3 -> this.stampaPrenotazione();
                 case 4 -> this.modificaPrenotazione();
                 case 5 -> this.cancellaPrenotazione();
                 case 6 -> repeat=false;
@@ -486,7 +486,7 @@ public class Menu {
         System.out.println("");
     }
 
-    private void effettoPrenotazione(){
+    private void stampaPrenotazione(){
 
     }
 
