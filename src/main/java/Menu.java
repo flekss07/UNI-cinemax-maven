@@ -1,5 +1,6 @@
 import java.awt.desktop.AboutEvent;
 import java.time.Year;
+import java.util.LinkedList;
 import java.util.Scanner;
 
 public class Menu {
@@ -467,7 +468,7 @@ public class Menu {
                 case 1 -> {//aggiungere metodo di ricerca proiezioni
                 }
                 case 2 -> this.prenh.visualizzaPrenotazioni(this.loggedUser.getUsername());
-                case 3 -> this.stampaPrenotazione();
+                case 3 -> this.effettuaPrenotazione();
                 case 4 -> this.modificaPrenotazione();
                 case 5 -> this.cancellaPrenotazione();
                 case 6 -> repeat=false;
@@ -486,8 +487,37 @@ public class Menu {
         System.out.println("");
     }
 
-    private void stampaPrenotazione(){
+    private void cercaProiezioni(){
 
+    }
+
+    //metodo di testing per convertire i dati di un oggetto proiezione in una stringa
+
+    /**
+     * Metodo che restituisce una rappresentazione testuale dell'oggetto Proiezioni
+     *
+     * @param p oggetto Proiezione
+     * @return oggetto Proiezione convertito a stringa
+     */
+    private String printProj(Proiezioni p) {
+        return "Proiezioni{" +
+                "titolo='" + p.getTitolo() + '\'' +
+                ", genere='" + p.getGeneri() + '\'' +
+                ", regista='" + p.getRegista() + '\'' +
+                ", data=" + p.getData() +
+                ", anno=" + p.getAnno() +
+                ", durata=" + p.getDurata() +
+                ", etaMin=" + p.getEtaMin() +
+                ", prezzo=" + p.getPrezzo() +
+                '}';
+    }
+
+    private void effettuaPrenotazione(){
+        LinkedList<Proiezioni> proiezioniList = this.ph.getProiezioniList();
+        int index=1;
+        for(Proiezioni p : proiezioniList){
+            System.out.println(""+index+")"+this.printProj(p));
+        }
     }
 
     private void modificaPrenotazione(){

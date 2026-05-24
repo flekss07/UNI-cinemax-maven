@@ -122,26 +122,8 @@ FileHandler {
         return bDate;
     }*/
 
-    //metodo di testing per convertire i dati di un oggetto proiezione in una stringa
 
-    /**
-     * Metodo che restituisce una rappresentazione testuale dell'oggetto Proiezioni
-     *
-     * @param p oggetto Proiezione
-     * @return oggetto Proiezione convertito a stringa
-     */
-    private String printProj(Proiezioni p) {
-        return "Proiezioni{" +
-                "titolo='" + p.getTitolo() + '\'' +
-                ", genere='" + p.getGeneri() + '\'' +
-                ", regista='" + p.getRegista() + '\'' +
-                ", data=" + p.getData() +
-                ", anno=" + p.getAnno() +
-                ", durata=" + p.getDurata() +
-                ", etaMin=" + p.getEtaMin() +
-                ", prezzo=" + p.getPrezzo() +
-                '}';
-    }
+
 
     //metodo di testing per stampare i dati delle proiezioni
 
