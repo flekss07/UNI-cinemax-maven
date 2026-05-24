@@ -29,7 +29,7 @@ public class Menu {
                     System.out.println("Inizio procedura di login");
                     this.userLogin();
                 }
-                case 3->  this.Guest();
+                case 3->  this.guest();
                 case 4-> repeat=false; //close menu
                 default-> System.out.println("Qualcosa è andato storto...");
             }
@@ -295,10 +295,6 @@ public class Menu {
         System.out.println("Login effettuato come "+ loggedUser.getUsername());
     }
 
-    //metodo guest
-    public void Guest() {
-
-    }
 
     private String dataproiezioni() {
         System.out.println("Inserire il giorno della proiezione");
@@ -420,6 +416,34 @@ public class Menu {
             return releaseCheck();
         }
     }
+
+    //metodo guest
+    public void guest() {
+        System.out.println("1)Cercare una proiezione \n2)Eseguire il LOGIN");
+        int num=numbCheck();
+        switch (num){
+            case 1 -> {} //aggiungere metodo di ricerca prenotazioni
+            case 2 -> {
+                System.out.println("Inizio procedura di login");
+                this.userLogin();
+            }
+            default -> System.out.println("Qualcosa è andato storto...");
+        }
+    }
+
+    private void client(){
+        System.out.println("1) Eseguire una prenotazione \n2)");
+    }
+
+    private void proiezionista(){
+        System.out.println("");
+    }
+
+    private void bigliettaio(){
+        System.out.println("");
+    }
+
+
 
 }
 
