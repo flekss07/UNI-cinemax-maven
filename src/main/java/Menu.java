@@ -2,6 +2,7 @@ import java.awt.desktop.AboutEvent;
 import java.time.Year;
 import java.util.LinkedList;
 import java.util.Scanner;
+import java.util.UUID;
 
 public class Menu {
     private final UserHandler uh;
@@ -462,16 +463,16 @@ public class Menu {
     private void client(){
         boolean repeat = true;
         while(repeat){
-            System.out.println("1)Cercare una proiezione \n2)Visualizza le mie prenotazioni \n3)Eseguire una prenotazione \n4)Modificare una prenotazione esistente \n5)Cancellazione di una prenotazione\n6)Torna a menu precedente");
+            System.out.println("1)Cercare una proiezione \n2)Visualizza le mie prenotazioni \n3)Modificare una prenotazione esistente \n4)Cancellazione di una prenotazione\n5)Torna a menu precedente");
             int num = numbCheck();
             switch (num){
-                case 1 -> {//aggiungere metodo di ricerca proiezioni
+                case 1 -> {
+                    this.cercaProiezioni();
                 }
                 case 2 -> this.prenh.visualizzaPrenotazioni(this.loggedUser.getUsername());
-                case 3 -> this.effettuaPrenotazione();
-                case 4 -> this.modificaPrenotazione();
-                case 5 -> this.cancellaPrenotazione();
-                case 6 -> repeat=false;
+                case 3 -> this.modificaPrenotazione();
+                case 4 -> this.cancellaPrenotazione();
+                case 5 -> repeat=false;
                 default -> System.out.println("Qualcosa è andato storto...");
             }
         }
@@ -488,7 +489,26 @@ public class Menu {
     }
 
     private void cercaProiezioni(){
+        boolean repeat= true;
+        while(repeat) {
+            System.out.println("inserire il titolo della proiezione da cercare");
+            String titolo = this.stringCheck();
+            LinkedList<Proiezioni> proiezioniList = this.ph.searchProiezione(titolo);
+            int index = 1;
+            for (Proiezioni p : proiezioniList) {
+                System.out.println("" + index + ")" + this.printProj(p));
+                index++;
+            }
+            System.out.println("0)Esci \n1)Effettua una prenotazione \n2)Continua a cercare");
+            int num = numbCheck();
+            if(num==1) {
+                System.out.println("inserire l'indice della proiezioni da prenotare");
+                effettuaPrenotazione(proiezioniList.get(this.numbCheck()-1));
+            }
+            if(num==0) repeat = false;
 
+
+        }
     }
 
     //metodo di testing per convertire i dati di un oggetto proiezione in una stringa
@@ -500,24 +520,21 @@ public class Menu {
      * @return oggetto Proiezione convertito a stringa
      */
     private String printProj(Proiezioni p) {
-        return "Proiezioni{" +
-                "titolo='" + p.getTitolo() + '\'' +
-                ", genere='" + p.getGeneri() + '\'' +
-                ", regista='" + p.getRegista() + '\'' +
-                ", data=" + p.getData() +
-                ", anno=" + p.getAnno() +
-                ", durata=" + p.getDurata() +
-                ", etaMin=" + p.getEtaMin() +
-                ", prezzo=" + p.getPrezzo() +
-                '}';
+        return " " +
+                " " + p.getTitolo() +
+                ", " + p.getGeneri() +
+                ", " + p.getRegista() +
+                ", " + p.getData() +
+                ", " + p.getAnno() +
+                ", " + p.getDurata() +
+                ", " + p.getEtaMin() +
+                ", " + p.getPrezzo();
     }
 
-    private void effettuaPrenotazione(){
-        LinkedList<Proiezioni> proiezioniList = this.ph.getProiezioniList();
-        int index=1;
-        for(Proiezioni p : proiezioniList){
-            System.out.println(""+index+")"+this.printProj(p));
-        }
+    private void effettuaPrenotazione(Proiezioni p){
+        //UUID genera un ID univoco
+        this.prenh.createBooking(this.loggedUser.getUsername(), p.getTitolo(), p.getData(), UUID.randomUUID().toString());
+        System.out.println("prenotazione effettuata");
     }
 
     private void modificaPrenotazione(){
