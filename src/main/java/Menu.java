@@ -136,7 +136,7 @@ public class Menu {
     private String checkUsernameDupe(){
         System.out.println("Inserire Username");
         String username = this.stringCheck();
-        if(this.uh.checkUser(this.stringCheck()) == null)
+        if(this.uh.checkUser(username) == null)
             return username;
         System.out.println("username gia esistente, cambiarlo: ");
         return this.checkUsernameDupe();
