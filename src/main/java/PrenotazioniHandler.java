@@ -91,7 +91,7 @@ public class PrenotazioniHandler {
         Iterator<Prenotazione> prenIt = this.prenList.iterator();// crea un iteratore della lista per poterla modificare mentre viene iterata (non si puo fare con foreach)
         while (prenIt.hasNext()){// continua a iterare la lista fino a che non arriva alla fine o non viene trovato un oggetto prenotazione
             Prenotazione p = prenIt.next(); // prende oggetto successivo per check
-            if(p.getId().equals(id) && p.getDate().isAfter(LocalDateTime.now())) {
+            if(p.getId().equals(id) && p.getDate().isAfter(LocalDateTime.now())) { // solo se la data di PROIEZIONE è gia passata
                 p.setDate(date); // modifica la data della prenotazione
                 this.fh.savePrenList(this.prenList); // salva cambiamento
                 return true; // conferma modifica

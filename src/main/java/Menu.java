@@ -463,16 +463,14 @@ public class Menu {
     private void client(){
         boolean repeat = true;
         while(repeat){
-            System.out.println("1)Cercare una proiezione \n2)Visualizza le mie prenotazioni \n3)Modificare una prenotazione esistente \n4)Cancellazione di una prenotazione\n5)Torna a menu precedente");
+            System.out.println("1)Cercare una proiezione \n2)Visualizza le mie prenotazioni \n3)Torna a menu precedente");
             int num = numbCheck();
             switch (num){
                 case 1 -> {
                     this.cercaProiezioni();
                 }
                 case 2 -> this.visualizzaPrenotazioni();
-                case 3 -> this.modificaPrenotazione();
-                case 4 -> this.cancellaPrenotazione();
-                case 5 -> repeat=false;
+                case 3 -> repeat=false;
                 default -> System.out.println("Qualcosa è andato storto...");
             }
         }
@@ -542,19 +540,53 @@ public class Menu {
     }
 
     private void visualizzaPrenotazioni(){
-        LinkedList<Prenotazione> foundList = this.prenh.visualizzaPrenotazioni(this.loggedUser.getUsername());
-        for(Prenotazione tmp : foundList)
-            System.out.println("" + tmp.getUsername() + ", " + tmp.getTitolo() + ", " + tmp.getDate());
+        Boolean repeat = true;
+        while(repeat) {
+            LinkedList<Prenotazione> foundList = this.prenh.visualizzaPrenotazioni(this.loggedUser.getUsername());
+            if(foundList.isEmpty()) {
+                System.out.println("non ci sono prenotazioni registrate a questo utente");
+                repeat = false;
+                continue;
+            }
+            int count = 1;
+            for (Prenotazione tmp : foundList)
+                System.out.println(count++ + ") " + tmp.getUsername() + ", " + tmp.getTitolo() + ", " + tmp.getDate());
+            System.out.println("scegliere cosa fare:\n1)modificare una prenotazione\n2)cancellare una prenotazione\n0)uscire");
+            switch (this.checkNumIn()) {
+                case 1 -> this.modificaPrenotazione(foundList);
+                case 2 -> this.cancellaPrenotazione(foundList);
+                case 0 -> repeat = false;
+                default -> System.out.println("Qualcosa è andato storto...");
+            }
+        }
     }
 
-    private void modificaPrenotazione(){
+    private void modificaPrenotazione(LinkedList<Prenotazione> foundList){
 
     }
 
-    private void cancellaPrenotazione(){
-
+    //metodo che cancella le prenotazioni
+    private void cancellaPrenotazione(LinkedList<Prenotazione> foundList){
+        System.out.println("inserisci indice prenotazione da cancellare");
+        int index = this.checkNumIn();
+        Prenotazione pToDelete = foundList.get(index-1);
+        Boolean result = this.prenh.eliminaPrenotazione(pToDelete.getId()); // elimina prenotazione da file csv e lista globale
+        if(result)
+            System.out.println("prenotazione rimossa con successo");
+        else
+            System.out.println("errore nel cancellamento della prenotazione: \nnon trovata o data della proiezione inferiore a quella odierna,\nriprovare");
     }
 
+
+    //sotto metodo che prende in input un intero e lo controla
+    private int checkNumIn(){
+        int num = Integer.parseInt(this.stringCheck());
+        if(num < 0){
+            System.out.println("numeri < 0 non validi");
+            return this.checkNumIn();
+        }
+        return num;
+    }
 }
 
 
