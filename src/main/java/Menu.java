@@ -1,4 +1,5 @@
 import java.awt.desktop.AboutEvent;
+import java.time.LocalDateTime;
 import java.time.Year;
 import java.util.LinkedList;
 import java.util.Scanner;
@@ -562,8 +563,35 @@ public class Menu {
     }
 
     private void modificaPrenotazione(LinkedList<Prenotazione> foundList){
-
+        System.out.println("inserisci indice della prenotazione da modificare");
+        int index = this.checkNumIn();
+        Prenotazione pToModify = foundList.get(index-1);
+        if (pToModify.getDate().isAfter(LocalDateTime.now())){
+            LinkedList<Proiezioni> foundProj = this.ph.afterData(this.ph.searchProiezione(pToModify.getTitolo()),LocalDateTime.now());
+            stampaProjDate(foundProj);
+            pToModify.setDate(this.cambioData(foundProj));
+            System.out.println("Data modificata con successo");
+        }
+        else{
+            System.out.println("la data inserita precede quella odierna, non risulta possibile modificarla");
+        }
     }
+
+    //chiede all'utente la data con cui cambiare la prenotazione
+    private LocalDateTime cambioData(LinkedList<Proiezioni> foundProj){
+        System.out.println("inserire l'indice della data con cui si vuole sostituire la prenotazione");
+        int index = this.checkNumIn();
+        return foundProj.get(index-1).getData();
+    }
+
+    //stampa la lista di tutte le date possibili
+    private void stampaProjDate(LinkedList<Proiezioni> foundProj){
+        int index=1;
+        for (Proiezioni tmp:foundProj){
+            System.out.println(""+index++ +") "+ tmp.getData());
+        }
+    }
+
 
     //metodo che cancella le prenotazioni
     private void cancellaPrenotazione(LinkedList<Prenotazione> foundList){

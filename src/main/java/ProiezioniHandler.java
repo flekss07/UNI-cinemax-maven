@@ -85,10 +85,20 @@ public class ProiezioniHandler {
     }
 
     // metodo di filtro per intervallo di date del film
-    public LinkedList<Proiezioni> filtroGenere(LinkedList<Proiezioni> pList, LocalDateTime start, LocalDateTime end){
+    public LinkedList<Proiezioni> filtroData(LinkedList<Proiezioni> pList, LocalDateTime start, LocalDateTime end){
         LinkedList<Proiezioni> filteredList = new LinkedList<>();
-        for (Proiezioni p:filteredList){
+        for (Proiezioni p:pList){
             if(p.getData().isBefore(end) && p.getData().isAfter(start) || p.getData().isEqual(start) || p.getData().isEqual(end))  // se interv date trovato
+                filteredList.add(p); // lo aggiunge alla linkedlist di oggetti trovati
+        }
+        return filteredList; // ritorna la lista o vuota se non trova nulla o con i valori filtrati
+    }
+
+    // metodo di filtro per modifica prenotazioni
+    public LinkedList<Proiezioni> afterData(LinkedList<Proiezioni> pList, LocalDateTime start){
+        LinkedList<Proiezioni> filteredList = new LinkedList<>();
+        for (Proiezioni p:pList){
+            if(p.getData().isAfter(start))  // se interv date trovato
                 filteredList.add(p); // lo aggiunge alla linkedlist di oggetti trovati
         }
         return filteredList; // ritorna la lista o vuota se non trova nulla o con i valori filtrati
