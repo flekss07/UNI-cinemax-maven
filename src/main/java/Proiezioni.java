@@ -39,6 +39,8 @@ public class Proiezioni {
      */
     private float prezzo;
 
+    private int posti;
+
     /**
      * Costruttore completo della classe Proiezioni
      *
@@ -51,7 +53,7 @@ public class Proiezioni {
      * @param anno anno di uscita del film
      * @param prezzo prezzo del niglietto
      */
-    public Proiezioni(Genres genere, String titolo, String regista, LocalDateTime data, int durata, int etaMin,int anno,float prezzo){
+    public Proiezioni(Genres genere, String titolo, String regista, LocalDateTime data, int durata, int etaMin,int anno,float prezzo,int posti){
         this.genere = genere;
         this.titolo = titolo;
         this.regista = regista;
@@ -60,6 +62,7 @@ public class Proiezioni {
         this.etaMin = etaMin;
         this.anno = anno;
         this.prezzo = prezzo;
+        this.posti = posti;
     }
 
     /**
@@ -126,6 +129,8 @@ public class Proiezioni {
      */
     public float getPrezzo(){ return this.prezzo;}
 
+    public float getPosti(){return this.posti;}
+
     // setter
 
     /**
@@ -183,4 +188,7 @@ public class Proiezioni {
      * @param prezzo nuovo prezzo del biglietto
      */
     public void setPrezzo(float prezzo){ this.prezzo = prezzo; }
+
+
+    public void setPosti(int posti){this.posti = posti;}
 }

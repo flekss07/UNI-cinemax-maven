@@ -65,7 +65,7 @@ public class Menu {
         //release del biglietto
         System.out.println("Inserire il prezzo del film");
         float prezzo = this.priceCheck();
-        this.ph.proiezionicreator(genere, titolo, regista, dataProiezioni,durata, etaMin, uscita, prezzo);
+        this.ph.proiezionicreator(genere, titolo, regista, dataProiezioni,durata, etaMin, uscita, prezzo,0);
     }
 //funzione x selezione genere
     private Genres SelezioneGenere() {
