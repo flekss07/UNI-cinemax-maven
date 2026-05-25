@@ -569,7 +569,7 @@ public class Menu {
         if (pToModify.getDate().isAfter(LocalDateTime.now())){
             LinkedList<Proiezioni> foundProj = this.ph.afterData(this.ph.searchProiezione(pToModify.getTitolo()),LocalDateTime.now());
             stampaProjDate(foundProj);
-            pToModify.setDate(this.cambioData(foundProj));
+            this.prenh.modificaPrenotazione(pToModify.getId(),this.cambioData(foundProj));
             System.out.println("Data modificata con successo");
         }
         else{
