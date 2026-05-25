@@ -100,7 +100,7 @@ public class Menu {
     private int numbchecker(String s) {
         try {
             int value = Integer.parseInt(s);
-            if (value <= 0) {
+            if (value < 0) {
                 System.out.println("Il numero inserito non può essere negativo, rinserire il numero");
                 return numbchecker(this.stringCheck());
             } else if (value > 10) {
@@ -469,7 +469,7 @@ public class Menu {
                 case 1 -> {
                     this.cercaProiezioni();
                 }
-                case 2 -> this.prenh.visualizzaPrenotazioni(this.loggedUser.getUsername());
+                case 2 -> this.visualizzaPrenotazioni();
                 case 3 -> this.modificaPrenotazione();
                 case 4 -> this.cancellaPrenotazione();
                 case 5 -> repeat=false;
@@ -491,8 +491,12 @@ public class Menu {
     private void cercaProiezioni(){
         boolean repeat= true;
         while(repeat) {
-            System.out.println("inserire il titolo della proiezione da cercare");
+            System.out.println("inserire il titolo della proiezione da cercare, inserire 0 per annullare");
             String titolo = this.stringCheck();
+            if(titolo.equals("0")){
+                repeat = false;
+                continue;
+            }
             LinkedList<Proiezioni> proiezioniList = this.ph.searchProiezione(titolo);
             int index = 1;
             for (Proiezioni p : proiezioniList) {
@@ -500,7 +504,7 @@ public class Menu {
                 index++;
             }
             System.out.println("0)Esci \n1)Effettua una prenotazione \n2)Continua a cercare");
-            int num = numbCheck();
+            int num = Integer.parseInt(this.stringCheck());
             if(num==1) {
                 System.out.println("inserire l'indice della proiezioni da prenotare");
                 effettuaPrenotazione(proiezioniList.get(this.numbCheck()-1));
@@ -535,6 +539,12 @@ public class Menu {
         //UUID genera un ID univoco
         this.prenh.createBooking(this.loggedUser.getUsername(), p.getTitolo(), p.getData(), UUID.randomUUID().toString());
         System.out.println("prenotazione effettuata");
+    }
+
+    private void visualizzaPrenotazioni(){
+        LinkedList<Prenotazione> foundList = this.prenh.visualizzaPrenotazioni(this.loggedUser.getUsername());
+        for(Prenotazione tmp : foundList)
+            System.out.println("" + tmp.getUsername() + ", " + tmp.getTitolo() + ", " + tmp.getDate());
     }
 
     private void modificaPrenotazione(){
