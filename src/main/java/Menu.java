@@ -4,18 +4,31 @@ import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.UUID;
 
+/**
+ * Classe Menù che fa da "interfaccia" per l'intera applicazione
+ * @author Merzagora Mattia Renato
+ * @author Ognisanti Elia
+ * @author Piano Edoardo
+ * @author Scalone Lorenzo
+ */
 public class Menu {
     private final UserHandler uh;
     private final ProiezioniHandler ph ;
     private final PrenotazioniHandler prenh;
     private User loggedUser;
 
+    /**
+     * <p>Costruttore oggetti della classe userHandler</p>
+     */
     public Menu() { //costruzione oggetto classe userhandler
         this.uh = new UserHandler();
         this.ph= new ProiezioniHandler();
         this.prenh= new PrenotazioniHandler();
     }
 
+    /**
+     * <p>Metodo che si occupa chiedere all'utente se si vuole registrare, accedere oppure continuare come guest</p>
+     */
     public void menuSelect() { //metodo che crea il menu
         boolean repeat=true;
         while (repeat) {
@@ -42,6 +55,9 @@ public class Menu {
 
     }
 
+    /**
+     * <p>Metodo che si occupa di aggiungere le proiezioni a proiezioniHandler</p>
+     */
     public void addProiezioni() {
         //inserire il genere del film
         Genres genere = this.SelezioneGenere();
@@ -68,6 +84,11 @@ public class Menu {
         this.ph.proiezionicreator(genere, titolo, regista, dataProiezioni,durata, etaMin, uscita, prezzo);
     }
 //funzione x selezione genere
+
+    /**
+     * <p>Metodo che fa scegliere che genere inserire per una proiezione</p>
+     * @return in base alla scelta verrà inserito il genere selezionato
+     */
     private Genres SelezioneGenere() {
         System.out.println("Inserire il genere inserendo il numerino assegnato");
         System.out.println("ID\tGENERE");
@@ -97,6 +118,11 @@ public class Menu {
         };
     }
 
+    /**
+     *
+     * @param s
+     * @return
+     */
     private int numbchecker(String s) {
         try {
             int value = Integer.parseInt(s);
@@ -514,8 +540,7 @@ public class Menu {
     //metodo di testing per convertire i dati di un oggetto proiezione in una stringa
 
     /**
-     * Metodo che restituisce una rappresentazione testuale dell'oggetto Proiezioni
-     *
+     * <p>Metodo che restituisce una rappresentazione testuale dell'oggetto Proiezioni</p>
      * @param p oggetto Proiezione
      * @return oggetto Proiezione convertito a stringa
      */

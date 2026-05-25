@@ -51,7 +51,7 @@ public class FileHandler {
      */
     private final Path path;// percorso file csv proiezioni
     /**
-     * <p>Coatruttore dei contenitori per gli oggetti proiezioni, user e prenotazioni, con relative date e orari nel file CSV corretto</p>
+     * <p>Costruttore dei contenitori per gli oggetti proiezioni, user e prenotazioni, con relative date e orari nel file CSV corretto</p>
      * @param path percorso del file CSV
      */
     public FileHandler(String path) {
