@@ -30,9 +30,9 @@ public class ProiezioniHandler {
     }
 
     //funzione che carica in lista le proiezioni
-    public void proiezionicreator(Genres genere, String titolo, String regista, String data, int durata, int etaMIn, int  anno, float prezzo){
+    public void proiezionicreator(Genres genere, String titolo, String regista, String data, int durata, int etaMIn, int  anno, float prezzo,int posti){
     LocalDateTime dataProiezione = this.convertDate(data);
-    Proiezioni nuovaProiezione = new Proiezioni(genere, titolo, regista, dataProiezione, durata, etaMIn, anno, prezzo);
+    Proiezioni nuovaProiezione = new Proiezioni(genere, titolo, regista, dataProiezione, durata, etaMIn, anno, prezzo, posti);
     this.proiezioniList.add(nuovaProiezione);
     this.fh.saveProList(this.proiezioniList);
     this.proiezioniList= this.fh.getProList();

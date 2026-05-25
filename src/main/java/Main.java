@@ -1,13 +1,13 @@
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.LinkedList;
 import java.util.UUID;
 
 public class Main {
 
 
-    static void main(String[] args){
-        FileHandler fh = new FileHandler("users.csv");
-        UserHandler uh = new UserHandler();
+    static void main(String[] args) throws IOException {
         Menu menu = new Menu();
         try {
             menu.menuSelect();
