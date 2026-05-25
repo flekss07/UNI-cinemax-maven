@@ -54,7 +54,7 @@ public class Menu {
         String regista = this.stringCheck();
         //giorno e data della proiezione
         String dataProiezioni = this.dataproiezioni();
-        //durata  del film
+        //durata  del filmadd
         System.out.println("Inserire la durata della proiezione (in minuti)");
         int durata = this.duratacheck();
         //età minima x la visione del film
@@ -479,12 +479,32 @@ public class Menu {
 
     //metodo proiezionisti
     private void proiezionista(){
-        System.out.println("");
+        boolean repeat = true;
+        while (repeat){
+            System.out.println("1)Cercare una proiezione \n2)Aggiunta proiezione \n3)Modifica di una proiezione gia esistente \n4)Cancella una proiezione gia esistente");
+            int num = numbCheck();
+            switch (num){
+                case 1 -> this.cercaProiezioni();
+                case 2 -> this.addProiezioni();
+                case 3 -> {}//aggiungere un metodo per modifica una proiezione
+                case 4 -> {}//aggiungere un metodo per cancellare una proiezione
+            }
+        }
+
+
     }
 
     //metodo bigliettai
     private void bigliettaio(){
-        System.out.println("");
+        boolean repeat = true;
+        while(repeat){
+            System.out.println("1)Cerca una proiezione \n2)Visualizza tutte le prenotazioni");
+            int num = numbCheck();
+            switch (num){
+                case 1 -> this.cercaProiezioni();
+                case 2 -> {}//aggiungere un metodo per visualizzare ogni prenotazione effettuata, magari differenziando tutte le prenotazioni in base alla proiezione
+            }
+        }
     }
 
     private void cercaProiezioni(){
