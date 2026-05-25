@@ -138,7 +138,6 @@ FileHandler {
     /**
      * Metodo per salvare i dati delle proiezioni su file CSV
      *
-     * @param path percorso del file
      * @throws IOException errore durante la scrittura dei dati
      */
     public void writeToProCsv() throws IOException {
