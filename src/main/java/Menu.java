@@ -622,7 +622,7 @@ public class Menu {
         if(result)
             System.out.println("prenotazione rimossa con successo");
         else
-            System.out.println("errore nel cancellamento della prenotazione: \nnon trovata o data della proiezione inferiore a quella odierna,\nriprovare");
+            System.out.println("errore nel cancellamento della prenotazione: \nnon trovata o data della proiezione successiva a quella odierna,\nriprovare");
     }
 
 
