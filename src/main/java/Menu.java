@@ -480,7 +480,7 @@ public class Menu {
         boolean repeat = true;
         while (repeat){
             System.out.println("0)Esci \n1)Cercare una proiezione \n2)Aggiunta proiezione");
-            int num = numbCheck();
+            int num = checkNumIn();
             switch (num){
                 case 0 -> repeat=false;
                 case 1 -> this.cercaProPro();  //da modificare passandogli il RUOLO
