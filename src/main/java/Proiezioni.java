@@ -3,46 +3,62 @@ import java.time.LocalDateTime;
 
 /**
  * Classe che gestisce oggetti di tipo proiezione con tutte le informazioni principali dei film e della programmazione
+ *
+ * @author Merzagora Mattia Renato
+ * @author Ognissanti Elia
+ * @author Piano Edoardo
+ * @author Scalone Lorenzo
  */
 public class Proiezioni {
 
     /**
-     * variabile enum per indicare i generi
+     * <p>Variabile enum per indicare i generi</p>
+     * <code>genere</code>
      */
     private Genres genere;// da modifica in enum
     /**
-     * variabile che indica i titoli dei film
+     * <p>Variabile che indica i titoli dei film</p>
+     * <code>titolo</code>
      */
     private String titolo;
     /**
-     * variabile che indica il nome del regista
+     * <p>Variabile che indica il nome del regista</p>
+     * <code>regista</code>
      */
     private String regista;
     /**
-     * variabile che indica data e ora della proiezione
+     * <p>Variabile che indica data e ora della proiezione</p>
+     * <code>data</code>
      */
     private LocalDateTime data;
     /**
-     * variabile che indica la durata del film in minuti
+     * <p>Variabile che indica la durata del film in minuti</p>
+     * <code>durata</code>
      */
     private int durata;
     /**
-     * variabile che indica l'età minima del pubblico
+     * <p>Variabile che indica l'età minima del pubblico</p>
+     * <code>etaMin</code>
      */
     private int etaMin;
     /**
-     * variabile che indica l'anno di uscita del film
+     * <p>Variabile che indica l'anno di uscita del film</p>
+     * <code>anno</code>
      */
     private int anno;
     /**
-     * variabile che indica il prezzo del biglietto
+     * <p>Variabile che indica il prezzo del biglietto</p>
+     * <code>prezzo</code>
      */
     private float prezzo;
-
+    /**
+     * <p>Variabile che indica i posti</p>
+     * <code>posti</code>
+     */
     private int posti;
 
     /**
-     * Costruttore completo della classe Proiezioni
+     * <p>Costruttore completo della classe Proiezioni</p>
      *
      * @param genere genere del film
      * @param titolo titolo del film
@@ -66,7 +82,7 @@ public class Proiezioni {
     }
 
     /**
-     * Costruttore vuoto della classe Proiezioni.
+     * Costruttore vuoto della classe Proiezioni
      */
     public Proiezioni(){
 
@@ -74,121 +90,112 @@ public class Proiezioni {
     // getter
 
     /**
-     * Restituisce il genre del film
-     *
+     * <p>Restituisce il genre del film</p>
      * @return genere del film
      */
     public Genres getGeneri() { return this.genere; }
 
     /**
-     * Restituisce il titolo del film
-     *
+     * <p>Restituisce il titolo del film</p>
      * @return titolo del film
      */
     public String getTitolo() { return this.titolo; }
 
     /**
-     * Resituisce il regista del film
-     *
+     * <p>Restituisce il regista del film</p>
      * @return nome del regista
      */
     public String getRegista() { return this.regista; }
 
     /**
-     * Restituisce la data e l'ora della proiezione
-     *
+     * <p>Restituisce la data e l'ora della proiezione</p>
      * @return data della proiezione
      */
     public LocalDateTime getData() { return this.data; }
 
     /**
-     * Restituisce la durata del film
-     *
+     * <p>Restituisce la durata del film</p>
      * @return durata in minuti
      */
     public int getDurata() { return this.durata; }
 
     /**
-     * Restituisce l'età minima consentita
-     *
+     * <p>Restituisce l'età minima consentita</p>
      * @return età minima
      */
     public int getEtaMin() { return this.etaMin; }
 
     /**
-     * Restituisce l'anno di uscita del film
-     *
+     * <p>Restituisce l'anno di uscita del film</p>
      * @return anno di uscita
      */
     public int getAnno(){ return this.anno; }
 
     /**
-     * Restituisce il prezzo del biglietto
-     *
+     * <p>Restituisce il prezzo del biglietto</p>
      * @return prezzo del biglietto
      */
     public float getPrezzo(){ return this.prezzo;}
 
+    /**
+     * <p>Restituisce i posti disponibili</p>
+     * @return posti disponibili
+     */
     public float getPosti(){return this.posti;}
 
     // setter
 
     /**
-     * Imposta il genere del film
-     *
+     * <p>Imposta il genere del film</p>
      * @param genere nuovo genere del film
      */
     public void setGeneri(Genres genere){ this.genere = genere;  }
 
     /**
-     * Imposta il titolo del film
-     *
+     * <p>Imposta il titolo del film</p>
      * @param titolo nuovo titolo del film
      */
     public void setTitolo(String titolo){ this.titolo = titolo; }
 
     /**
-     * Imposta il regista del film
-     *
+     * <p>Imposta il regista del film</p>
      * @param regista nuovo regista del film
      */
     public void setRegista(String regista){ this.regista = regista; }
 
     /**
-     *Imposta la data della proiezione
-     *
+     *<p>Imposta la data della proiezione</p>
      * @param data nuova data e ora della proiezione
      */
     public void setData(LocalDateTime data){ this.data = data; }
 
     /**
-     *Imposta la durata del film
-     *
+     *<p>Imposta la durata del film</p>
      * @param durata nuova durata in minuti
      */
     public void setDurata(int durata){ this.durata = durata; }
 
     /**
-     *Imposta l'età minima consentita
-     *
+     *<p>Imposta l'età minima consentita</p>
      * @param etaMin nuova età minima
      */
     public void setEtaMin(int etaMin){ this.etaMin = etaMin; }
 
     /**
-     *Imposta l'anno di uscita del film
-     *
+     * <p>Imposta l'anno di uscita del film</p>
      * @param anno nuovo anno di uscita
      */
     public void setAnno(int anno){ this.anno = anno; }
 
     /**
-     *Imposta il prezzo del biglietto
-     *
+     * <p>Imposta il prezzo del biglietto</p>
      * @param prezzo nuovo prezzo del biglietto
      */
     public void setPrezzo(float prezzo){ this.prezzo = prezzo; }
 
-
+    /**
+     * <p>Imposta i posti disponibili</p>
+     * @param posti posti disponibili
+     */
     public void setPosti(int posti){this.posti = posti;}
 }

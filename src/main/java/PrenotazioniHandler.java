@@ -6,19 +6,23 @@ import java.util.UUID;
 
 /**
  * Classe che si occupa di gestire le proiezioni degli utenti
+ *
+ * @author Piano Edoardo
  */
 public class PrenotazioniHandler {
     /**
-     * LinkedList che contiene le prenotazioni degli utenti
+     * <p>LinkedList che contiene le prenotazioni degli utenti</p>
+     * <code>prenList</code>
      */
     private LinkedList<Prenotazione> prenList;
     /**
-     * oggetto di FileHandler
+     * <p>Oggetto di FileHandler</p>
+     * <code>fh</code>
      */
     private FileHandler fh;
 
     /**
-     * Costruttore della classe
+     * <p>Costruttore degli oggetti prenotazione</p>
      */
     public PrenotazioniHandler(){
         this.fh = new FileHandler("prenotazioni.csv");
@@ -26,9 +30,8 @@ public class PrenotazioniHandler {
     }
 
     //metodo che crea una nuova prenotazione
-
     /**
-     * Metodo che si occupa di creare una prenotazione
+     * <p>Metodo che si occupa di creare una prenotazione</p>
      *
      * @param username username dell'utente
      * @param titolo titolo del film
@@ -44,8 +47,7 @@ public class PrenotazioniHandler {
     //metodo di ricerca delle prenotazioni di uno user che ritorna una linkedlist con le prenotazioni trovate
 
     /**
-     * Metodo di ricerca delle prenotazioni
-     *
+     * <p>Metodo di ricerca delle prenotazioni</p>
      * @param username nome utente
      * @return LinkedList contenente le prenotazioni trovate
      */
@@ -59,8 +61,7 @@ public class PrenotazioniHandler {
     //metodo di cancellamento di una prenotazione
 
     /**
-     * Metodo che si occupa della cancellazione delle prenotazioni
-     *
+     * <p>Metodo che si occupa della cancellazione delle prenotazioni</p>
      * @param id id generato automatico
      * @return conferma la riuscita o meno della rimozione della prenotazione
      */
@@ -78,10 +79,8 @@ public class PrenotazioniHandler {
     }
 
     //metodo che modifica una prenotazione
-
     /**
-     * Metodo che si occupa della modifica della prenotazione
-     *
+     * <p>Metodo che si occupa della modifica della prenotazione</p>
      * @param id id generato, al momento della prenotazione
      * @param date data della prenotazione
      * @return conferma la riuscita della modifica o meno della prenotazione
