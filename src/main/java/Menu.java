@@ -180,15 +180,13 @@ public class Menu {
         System.out.println("selezionare ruolo:\n1)cliente\n2)proiezionista\n3)bibliettaio ");
         int choice = Integer.parseInt(this.stringCheck());
         switch (choice) {
-            case 1:
-                return Roles.CLIENTE;
-            case 2:
-                return Roles.PROIEZIONISTA;
-            case 3:
-                return Roles.BIGLIETTAIO;
-            default:
+            case 1 -> {return Roles.CLIENTE;}
+            case 2 -> {return Roles.PROIEZIONISTA;}
+            case 3 -> {return Roles.BIGLIETTAIO;}
+            default -> {
                 System.out.println("input non valido, riprovare");
                 return null;
+            }
         }
     }
 
