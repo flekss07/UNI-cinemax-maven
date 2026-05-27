@@ -2,6 +2,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Scanner;
 
@@ -112,5 +113,18 @@ public class ProiezioniHandler {
                 filteredList.add(p); // lo aggiunge alla linkedlist di oggetti trovati
         }
         return filteredList; // ritorna la lista o vuota se non trova nulla o con i valori filtrati
+    }
+
+    public boolean modificaProj(String titolo, LocalDateTime date,Proiezioni pr) {
+        Iterator<Proiezioni> proIt = this.proiezioniList.iterator();// crea un iteratore della lista per poterla modificare mentre viene iterata (non si puo fare con foreach)
+        while (proIt.hasNext()) {// continua a iterare la lista fino a che non arriva alla fine o non viene trovato un oggetto prenotazione
+            Proiezioni p = proIt.next(); // prende oggetto successivo per check
+            if (p.getData().equals(date) && p.getTitolo().equals(titolo)) {
+                p = pr;
+                this.fh.saveProList(this.proiezioniList);
+                return true; // conferma modifica
+            }
+        }
+        return false; // conferma di non aver trovato la prenotazione da modificare o che la data di quella trovata è precedente a quella attuale
     }
 }
