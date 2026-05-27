@@ -38,7 +38,7 @@ public class ProiezioniHandler {
     this.fh.saveProList(this.proiezioniList);
     this.proiezioniList= this.fh.getProList();
     }
-    private LocalDateTime convertDate(String strDate) {
+    public LocalDateTime convertDate(String strDate) {
         LocalDateTime projectionDate = LocalDateTime.parse(strDate, this.formatter); // fa il parse della data nel formato preimpostato
         return projectionDate;
     }
@@ -120,7 +120,14 @@ public class ProiezioniHandler {
         while (proIt.hasNext()) {// continua a iterare la lista fino a che non arriva alla fine o non viene trovato un oggetto prenotazione
             Proiezioni p = proIt.next(); // prende oggetto successivo per check
             if (p.getData().equals(date) && p.getTitolo().equals(titolo)) {
-                p = pr;
+                p.setTitolo(pr.getTitolo());
+                p.setData(pr.getData());
+                p.setPrezzo(pr.getPrezzo());
+                p.setAnno(pr.getAnno());
+                p.setGeneri(pr.getGeneri());
+                p.setDurata(pr.getDurata());
+                p.setRegista(pr.getRegista());
+                p.setEtaMin(pr.getEtaMin());
                 this.fh.saveProList(this.proiezioniList);
                 return true; // conferma modifica
             }

@@ -288,8 +288,8 @@ public class Menu {
         try {
            User user=this.uh.loginUser(); //chiedo all'utente di loggare e salva l'utente se lo trova
            if(user!=null) {
-               loggedUser = user;
-               System.out.println("Login effettuato come "+ loggedUser.getUsername());
+               this.loggedUser = user;
+               System.out.println("Login effettuato come "+ this.loggedUser.getUsername());
                this.userMenu();
            }
            else
@@ -506,7 +506,8 @@ public class Menu {
     private void cercaProiezioni(){
         boolean repeat= true;
         while(repeat) {
-            this.stampaProiezioni();
+            LinkedList<Proiezioni> proiezioniList = this.cercaProFilter();
+            this.stampaProiezioni(proiezioniList);
             //un qualsiasi numero che non sia 0 o 1 continua a cercare proiezioni
             System.out.println("0)Esci \n1)Effettua una prenotazione \n2)Continua a cercare");
             int num = Integer.parseInt(this.stringCheck());
@@ -518,17 +519,18 @@ public class Menu {
         }
     }
 
+
     private void cercaProPro(){
         boolean repeat=true;
         while(repeat){
-            this.stampaProiezioni();
-            System.out.println("0)Esci \n1)Continua a cercare \n2)modifica una proiezione \n3)cancella una proiezione");
+            LinkedList<Proiezioni> proiezioniList = this.cercaProFilter();
+            this.stampaProiezioni(proiezioniList);
+            System.out.println("0)Esci \n1)modifica una proiezione \n2)cancella una proiezione");
             int num=numbCheck();
             switch (num){
                 case 0 -> repeat=false;
-                case 1 -> cercaProPro();
-                case 2 -> {}//modifica proiezione
-                case 3 -> {}//cancella proiezione
+                case 1 -> this.modificaProiezione(proiezioniList);
+                case 2 -> {}//cancella proiezione
                 default -> System.out.println("input non valido");
             }
 
@@ -539,15 +541,50 @@ public class Menu {
         boolean repeat=true;
         System.out.println("inserire l'indice della proiezione da modificare");
         int index = checkNumIn();
-        if(!this.cercaExPren(foundP.get(index)))
-            this.selezionaModificaPro(foundP.get(index));
+        Proiezioni p =foundP.get(index);
+        if(!this.cercaExPren(p))
+            this.selezionaModificaPro(p,p.getTitolo(),p.getData());
+
     }
 
-    private void selezionaModificaPro(String titolo, LocalDateTime data){
+    private void selezionaModificaPro(Proiezioni p, String titolo, LocalDateTime data){
         boolean repeat=true;
-        Proiezioni p= this
-
         while (repeat){
+            System.out.println("0)Esci \n1)Modifica Titolo \n2)Modifica Regista \n3)Modifica Genere \n4)Modifica Eta minima \n5)Modifica Data \n6)Modifca Prezzo \n7)Modifica Anno \n8)Modifica Durata");
+            int num = this.checkNumIn();
+            switch (num){
+                case 0 -> repeat=false;
+                case 1 -> {//modifica titolo
+                    System.out.println("inserire il titolo modificato");
+                    p.setTitolo(this.stringCheck());
+                }
+                case 2 -> {//modifica autore
+                    System.out.println("inserire il regista modificato");
+                    p.setRegista(this.stringCheck());
+                }
+                case 3 -> this.selezioneGenere(); //modifica genere
+                case 4 -> {
+                    System.out.println("inserire la nuova eta minima");
+                    p.setEtaMin(this.etaCheck());
+                }//modifica eta minima
+                case 5 -> { //modifica data
+                    System.out.println("inserire la nuova data");
+                    p.setData(this.ph.convertDate(this.inserireData()));
+                }
+                case 6 -> { //modifica prezzo
+                    System.out.println("inserire il nuovo prezzo");
+                    p.setPrezzo(this.checkNumFloat());
+                }
+                case 7 -> { //modifica anno
+                    System.out.println("inserire il nuovo anno");
+                    p.setAnno(this.checkNumIn());
+                }
+                case 8 -> {
+                    System.out.println("inserire la nuova durata, in minuti");
+                    p.setDurata(this.checkNumIn());
+                }//modifica durata
+                default -> System.out.println("input non valido");
+            }
 
         }
 
@@ -567,8 +604,7 @@ public class Menu {
         return false;
     }
 
-    private void stampaProiezioni(){
-        LinkedList<Proiezioni> proiezioniList = this.cercaProFilter();
+    private void stampaProiezioni(LinkedList <Proiezioni> proiezioniList){
         int index = 1;
         for (Proiezioni p : proiezioniList) {
             System.out.println("" + index + ")" + this.printProj(p));
