@@ -8,7 +8,7 @@ import java.util.UUID;
 /**
  * Classe Menù che fa da "interfaccia" per l'intera applicazione
  * @author Merzagora Mattia Renato
- * @author Ognisanti Elia
+ * @author Ognissanti Elia
  * @author Piano Edoardo
  * @author Scalone Lorenzo
  */
@@ -485,7 +485,7 @@ public class Menu {
 
     /**
      * <p>Metodo che controlla l'età inserita durante l'inserimento di una proiezione</p>
-     * @return
+     * @return esegue delle chiamate ricorsive nel caso in cui:l'input inserito non sia un numero, il numero inserito sia negativo, restituisce l'età inserita negli altri casi
      */
     private int etaCheck(){
         String str = this.stringCheck();
@@ -507,6 +507,11 @@ public class Menu {
             return etaCheck();
         }
     }
+
+    /**
+     * <p>Metodo che si occupa di controllare la data di rilascio durante l'aggiunta di una proiezione</p>
+     * @return esegue delle chiamate ricorsive nel caso in cui: la data rilasciata sia inferiore al 1888 o l'input inserito non sai affatto un numero, restituisce l'anno inserito
+     */
     private int releaseCheck(){
         String str = this.stringCheck();
         try {
@@ -522,6 +527,9 @@ public class Menu {
     }
 
     //metodo userMenu
+    /**
+     * <p>Metodo che si occupa di indirizzare in base al ruolo, l' utente che ne usufruisce</p>
+     */
     public void userMenu(){
         switch (this.loggedUser.getRole()){
             case CLIENTE -> this.client();
@@ -532,6 +540,9 @@ public class Menu {
     }
 
     //metodo guest
+    /**
+     * <p>Metodo che simula il menu dei guest</p>
+     */
     public void guest() {
         boolean repeat = true;
         while (repeat) {
@@ -558,6 +569,9 @@ public class Menu {
     }
 
     //metodo clienti
+    /**
+     * <p>Metodo che simula il menu dei cliente</p>
+     */
     private void client(){
         boolean repeat = true;
         while(repeat){
@@ -575,6 +589,9 @@ public class Menu {
     }
 
     //metodo proiezionisti
+    /**
+     * <p>Metodo che simula il menu dei proiezionisti</p>
+     */
     private void proiezionista(){
         boolean repeat = true;
         while (repeat){
@@ -592,6 +609,9 @@ public class Menu {
     }
 
     //metodo bigliettai
+    /**
+     * <p>Metodo che si occupa di simulare il menu dei bigliettai</p>
+     */
     private void bigliettaio(){
         boolean repeat = true;
         while(repeat){
@@ -632,7 +652,6 @@ public class Menu {
     }
 
     //metodo di testing per convertire i dati di un oggetto proiezione in una stringa
-
     /**
      * <p>Metodo che restituisce una rappresentazione testuale dell'oggetto Proiezioni</p>
      * @param p oggetto Proiezione
@@ -650,12 +669,19 @@ public class Menu {
                 ", " + p.getPrezzo();
     }
 
+    /**
+     * <p>Metodo che si occupa di effettuare la prenotazione per una proiezione</p>
+     * @param p proiezione per cui si vuole fare una prenotazione
+     */
     private void effettuaPrenotazione(Proiezioni p){
         //UUID genera un ID univoco
         this.prenh.createBooking(this.loggedUser.getUsername(), p.getTitolo(), p.getData(), UUID.randomUUID().toString());
         System.out.println("prenotazione effettuata");
     }
 
+    /**
+     * <p>Metodo che fa visualizzare le prenotazione all'utente</p>
+     */
     private void visualizzaPrenotazioni(){
         Boolean repeat = true;
         while(repeat) {
@@ -678,6 +704,10 @@ public class Menu {
         }
     }
 
+    /**
+     * <p>Metodo che permette all'utente di poter cambiare la data di una prenotazione</p>
+     * @param foundList lista delle prenotazioni
+     */
     private void modificaPrenotazione(LinkedList<Prenotazione> foundList){
         System.out.println("inserisci indice della prenotazione da modificare");
         int index = this.checkNumIn();
@@ -694,6 +724,11 @@ public class Menu {
     }
 
     //chiede all'utente la data con cui cambiare la prenotazione
+    /**
+     * <p>Metodo che esegue il cambio di date delle prenotazioni</p>
+     * @param foundProj lista delle proiezioni
+     * @return restituisce la nuova data della prenotazione
+     */
     private LocalDateTime cambioData(LinkedList<Proiezioni> foundProj){
         System.out.println("inserire l'indice della data con cui si vuole sostituire la prenotazione");
         int index = this.checkNumIn();
@@ -701,6 +736,10 @@ public class Menu {
     }
 
     //stampa la lista di tutte le date possibili
+    /**
+     * <p>Metodo che fa vedere all'utente tutte le possibile date per una proiezione</p>
+     * @param foundProj lista delle proiezioni
+     */
     private void stampaProjDate(LinkedList<Proiezioni> foundProj){
         int index=1;
         for (Proiezioni tmp:foundProj){
@@ -708,8 +747,11 @@ public class Menu {
         }
     }
 
-
     //metodo che cancella le prenotazioni
+    /**
+     * <p>Metodo che si occupa di cancellare una prenotazione</p>
+     * @param foundList lista delle prenotazioni
+     */
     private void cancellaPrenotazione(LinkedList<Prenotazione> foundList){
         System.out.println("inserisci indice prenotazione da cancellare");
         int index = this.checkNumIn();
@@ -721,8 +763,11 @@ public class Menu {
             System.out.println("errore nel cancellamento della prenotazione: \nnon trovata o data della proiezione successiva a quella odierna,\nriprovare");
     }
 
-
     //sotto metodo che prende in input un intero e lo controla
+    /**
+     * <p>Metodo che controllare i numeri in input</p>
+     * @return restituisce il numero inserito se non ci sono problemi, altrimenti esegue una chiamata ricorsiva
+     */
     private int checkNumIn(){
         int num = Integer.parseInt(this.stringCheck());
         if(num < 0){
