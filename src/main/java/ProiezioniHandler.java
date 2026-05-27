@@ -57,7 +57,7 @@ public class ProiezioniHandler {
     // metodo di filtro per autore del film
     public LinkedList<Proiezioni> filtroAutore(LinkedList<Proiezioni> pList, String target){
         LinkedList<Proiezioni> filteredList = new LinkedList<>();
-        for (Proiezioni p:filteredList){
+        for (Proiezioni p:pList){
             if(p.getRegista().toLowerCase().trim().contains(target.toLowerCase().trim())) // se autore trovato
                 filteredList.add(p); // lo aggiunge alla linkedlist di oggetti trovati
         }
@@ -67,7 +67,7 @@ public class ProiezioniHandler {
     // metodo di filtro per titolo del film
     public LinkedList<Proiezioni> filtroTitolo(LinkedList<Proiezioni> pList, String target){
         LinkedList<Proiezioni> filteredList = new LinkedList<>();
-        for (Proiezioni p:filteredList){
+        for (Proiezioni p:pList){
             if(p.getTitolo().toLowerCase().trim().contains(target.toLowerCase().trim())) // se titolo trovato
                 filteredList.add(p); // lo aggiunge alla linkedlist di oggetti trovati
         }
@@ -77,7 +77,7 @@ public class ProiezioniHandler {
     // metodo di filtro per genere del film
     public LinkedList<Proiezioni> filtroGenere(LinkedList<Proiezioni> pList, Genres target){
         LinkedList<Proiezioni> filteredList = new LinkedList<>();
-        for (Proiezioni p:filteredList){
+        for (Proiezioni p:pList){
             if(p.getGeneri().equals(target)) // se genere trovato
                 filteredList.add(p); // lo aggiunge alla linkedlist di oggetti trovati
         }
@@ -85,10 +85,12 @@ public class ProiezioniHandler {
     }
 
     // metodo di filtro per intervallo di date del film
-    public LinkedList<Proiezioni> filtroData(LinkedList<Proiezioni> pList, LocalDateTime start, LocalDateTime end){
+    public LinkedList<Proiezioni> filtroData(LinkedList<Proiezioni> pList, String start, String end){
+        LocalDateTime convStart = this.convertDate(start);
+        LocalDateTime convEnd = this.convertDate(end);
         LinkedList<Proiezioni> filteredList = new LinkedList<>();
         for (Proiezioni p:pList){
-            if(p.getData().isBefore(end) && p.getData().isAfter(start) || p.getData().isEqual(start) || p.getData().isEqual(end))  // se interv date trovato
+            if(p.getData().isBefore(convEnd) && p.getData().isAfter(convStart) || p.getData().isEqual(convStart) || p.getData().isEqual(convEnd))  // se interv date trovato
                 filteredList.add(p); // lo aggiunge alla linkedlist di oggetti trovati
         }
         return filteredList; // ritorna la lista o vuota se non trova nulla o con i valori filtrati
@@ -99,6 +101,15 @@ public class ProiezioniHandler {
         LinkedList<Proiezioni> filteredList = new LinkedList<>();
         for (Proiezioni p:pList){
             if(p.getData().isAfter(start))  // se interv date trovato
+                filteredList.add(p); // lo aggiunge alla linkedlist di oggetti trovati
+        }
+        return filteredList; // ritorna la lista o vuota se non trova nulla o con i valori filtrati
+    }
+
+    public LinkedList<Proiezioni> filtroPrezzo(LinkedList<Proiezioni> pList, float prezzo){
+        LinkedList<Proiezioni> filteredList = new LinkedList<>();
+        for (Proiezioni p:pList){
+            if(p.getPrezzo()==prezzo) // se titolo trovato
                 filteredList.add(p); // lo aggiunge alla linkedlist di oggetti trovati
         }
         return filteredList; // ritorna la lista o vuota se non trova nulla o con i valori filtrati
