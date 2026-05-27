@@ -119,9 +119,9 @@ public class Menu {
     }
 
     /**
-     *
-     * @param s
-     * @return
+     * <p>Metodo che si occupa di controllare se l'input numerico inserito dall'utente sia corretto</p>
+     * @param s input inserito dall'utente
+     * @return esegue chiamate ricorsive nel caso l'input inserito risulti essere un numero negativo, non essere all'interno del range indicato o non essere affatto un numero
      */
     private int numbchecker(String s) {
         try {
@@ -141,6 +141,10 @@ public class Menu {
         }
     }
 
+    /**
+     * <p>Metodo che si occupa della funzione di registrarsi al sito</p>
+     * @throws Exception eccezione lanciata nel caso qualcosa durante la registrazione andasse storto
+     */
     public void userRegister() throws Exception {
         //Inserimento nome
         System.out.println("Inserire Nome");
@@ -161,16 +165,24 @@ public class Menu {
 
     }
 
+    /**
+     * <p>Metodo che si occupa di controllare se un nome utente sia già esistente o meno</p>
+     * @return esegue una chiamata ricorsiva nel caso il nome utente sia già stato usato da un altro utente oppure restituisce il nome utente inserito
+     */
     //metodo che fa un check anti duplicati sullo username
     private String checkUsernameDupe(){
         System.out.println("Inserire Username");
         String username = this.stringCheck();
         if(this.uh.checkUser(username) == null)
             return username;
-        System.out.println("username gia esistente, cambiarlo: ");
+        System.out.println("username non disponibile, cambiarlo: ");
         return this.checkUsernameDupe();
     }
 
+    /**
+     * <p>Metodo che si occupa controllare se la stringa inserita dall'utente sia corretto</p>
+     * @return esegue una chiamata ricorsiva nel caso la stringa inserita non rispetti i criteri, nel caso positivo restituisce la stringa inserita
+     */
     private String stringCheck() {
         Scanner sc = new Scanner(System.in);
         String str = sc.nextLine();
@@ -181,6 +193,11 @@ public class Menu {
         return str;
     }
 
+    /**
+     * <p>Metodo il quale scopo è il richiedere la password durante la procedura di registrazione /p>
+     * @return se le password inserite dall'utente non sono le stesse esegue una chiamata ricorsiva per richiedere l'inserimento, nel caso positivo il metodo esegue una chiamata tramite l'istruzione <code>AESencrypt.encrypt(password)</code> una chiamata per la cryptazione della password
+     * @throws Exception eccezione lanciata durante la cryptazione della password inserita
+     */
     private String passencryption() throws Exception {
         System.out.println("inserire una password");
         String password = this.stringCheck();
@@ -191,7 +208,6 @@ public class Menu {
             return passencryption();
         }
         //encrypting della password
-
         try {
             return AESencrypt.encrypt(password);
         } catch (Exception e) {
@@ -200,6 +216,10 @@ public class Menu {
         }
     }
 
+    /**
+     * <p>Metodo che si occupa della scelta del ruolo da parte degli utenti durante la registrazione</p>
+     * @return in base alla scelta effettuata dal cliente, assegna il ruolo associato in base alla scelta, ritorna null se l'input inserito non sia valido
+     */
     private Roles chooseRole() {
         System.out.println("selezionare ruolo:\n1)cliente\n2)proiezionista\n3)bibliettaio ");
         int choice = Integer.parseInt(this.stringCheck());
@@ -216,6 +236,10 @@ public class Menu {
         }
     }
 
+    /**
+     * <p>Metodo il cui scopo è controllare se il giorno inserito dall'utente sia valido o non valido</p>
+     * @return effettua tre chiamate ricorsive se il numero inserito è minore uguale a zero, maggiore di 31 o nel caso l'utente non inserisca affatto un numero
+     */
     private int numbcheckergiorni() {
         String str = this.stringCheck();
         try {
@@ -235,6 +259,10 @@ public class Menu {
         }
     }
 
+    /**
+     * <p>Metodo che si occupa di controllare se il mese inserito in numero si valido o meno</p>
+     * @return esegue tre chiamate ricorsive nel caso in cui l'input inserito sia minore uguale di zero, maggiore di dodici o nel caso l'utente non inserisca affatto un numero
+     */
     private int numbcheckermesi() {
         String str = this.stringCheck();
         try {
@@ -244,7 +272,7 @@ public class Menu {
                 return numbcheckermesi();
             }
             if (numInt > 12) {
-                System.out.println("Il numeroinserito non può essere maggiore di 12, rinserire il numero");
+                System.out.println("Il numero inserito non può essere maggiore di 12, rinserire il numero");
                 return numbcheckermesi();
             }
             return numInt;
@@ -254,6 +282,10 @@ public class Menu {
         }
     }
 
+    /**
+     * <p>Metodo che si occupa se l'anno di nascita inserito sia valido o meno</p>
+     * @return esegue tre chiamate ricorsive nel caso in cui l'input inserito sia minore uguale all'anno attuale meno 200, maggiore dell'anno odierno o nel caso l'utente non inserisca affatto un numero
+     */
     private int numbcheckeranno() {
         String str = this.stringCheck();
         try {
@@ -273,6 +305,10 @@ public class Menu {
         }
     }
 
+    /**
+     * <p>Metodo che controlla la data di nascita inserita dall'utente</p>
+     * @return restituisce la data inserita con il formato anno-mese-giorno
+     */
     private String inseriredata() {
         System.out.println("Inserire il giorno di nascita");
         int giorni = this.numbcheckergiorni();
@@ -295,6 +331,10 @@ public class Menu {
         return anno + "-" + valMesi + "-" + valGiorni;
     }
 
+    /**
+     * <p>Metodo che si di controllare se l'input inserito dall'utente sia valido</p>
+     * @return esegue due chiamate ricorsive nel caso il numero inserito sia minore uguale di zero o nel caso l'input inserito non sia affatto un numero
+     */
     private int numbCheck() {
         String str = this.stringCheck().trim();
         try {
@@ -310,6 +350,10 @@ public class Menu {
         }
     }
 
+    /**
+     * <p>Metodo che si ooccupa della funzione di login dei nuovi utenti</p>
+     * @throws RuntimeException eccezione lanciata nel caso durante la procedura di login sia andato qualcosa storto
+     */
     public void userLogin() throws RuntimeException {
         try {
            User user=this.uh.loginUser(); //chiedo all'utente di loggare e salva l'utente se lo trova
@@ -327,7 +371,10 @@ public class Menu {
         }
     }
 
-
+    /**
+     * <p>Metodo che si occupa dell'aggiunta delle proiezioni</p>
+     * @return restituisce la data e l'orario della proiezione nel formato anno-mese-giorno-ore-minuti
+     */
     private String dataproiezioni() {
         System.out.println("Inserire il giorno della proiezione");
         int giorni = this.numbcheckergiorni();
@@ -353,6 +400,11 @@ public class Menu {
         return anno + "-" + valMesi + "-" + valGiorni+" "+ore+":"+minuti;
 
     }
+
+    /**
+     * <p>Metodo che si occupa di controllare i minuti inseriti durante la l'aggiunta delle proiezioni</p>
+     * @return esegue delle chiamate ricorsive se l'input inserito è minore uguale a zero o maggiore di 60, nel caso positivo restituisce il numero di minuti
+     */
     private int numbcheckmin(){
         String str = this.stringCheck();
         try{
@@ -369,6 +421,10 @@ public class Menu {
         }
     }
 
+    /**
+     * <p>Metodo che si occupa di controllare le ore inseriti durante la l'aggiunta delle proiezioni</p>
+     * @return esegue delle chiamate ricorsive se l'input inserito è minore uguale a zero o maggiore di 24 nel caso positivo restituisce il numero di ore
+     */
     private int numbcheckore(){
         String str = this.stringCheck();
         try{
@@ -384,6 +440,11 @@ public class Menu {
             throw new RuntimeException(e);
         }
     }
+
+    /**
+     * <p>Metodo che si occupa di controllare il prezzo del biglietto della proiezione</p>
+     * @return esegue delle chiamate ricorsive nel caso l'input inserito sia negativo o l'input non sia affatto un prezzo, nel caso positivo restituisce il prezzo del biglietto inserito
+     */
     private float priceCheck() {
         String str = this.stringCheck();
         try {
@@ -400,6 +461,11 @@ public class Menu {
 
 
     }
+
+    /**
+     * <p>Metodo che controlla la durata della proiezione durante l'aggiunta</p>
+     * @return esegue una chiamata ricorsiva nel caso in cui l'input inserito sia negativo, nel caso positivo restituisce la durata inserita
+     */
     private int duratacheck(){{
         String str = this.stringCheck();
         try {
@@ -415,6 +481,11 @@ public class Menu {
         }
        }
     }
+
+    /**
+     * <p>Metodo che controlla l'età inserita durante l'inserimento di una proiezione</p>
+     * @return
+     */
     private int etaCheck(){
         String str = this.stringCheck();
         try{
