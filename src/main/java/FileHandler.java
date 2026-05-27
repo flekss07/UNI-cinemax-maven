@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
+import java.util.Random;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
@@ -50,6 +51,9 @@ public class FileHandler {
      * <code>path</code>
      */
     private final Path path;// percorso file csv proiezioni
+
+    private Random random; // da eliminare -----------------------
+
     /**
      * <p>Costruttore dei contenitori per gli oggetti proiezioni, user e prenotazioni, con relative date e orari nel file CSV corretto</p>
      * @param path percorso del file CSV
@@ -61,6 +65,9 @@ public class FileHandler {
         this.formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         this.localDateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         this.path = Paths.get("data",path); // imposta percorso file corretto
+
+
+        this.random= new Random(); //random
     }
 
     // metodo per caricare i dati delle proiezioni da csv
@@ -89,7 +96,8 @@ public class FileHandler {
         int durata = Integer.parseInt(record.get("durata_minuti"));
         int etaMin = Integer.parseInt(record.get("eta_minima"));
         float prezzo = Float.parseFloat(record.get("prezzo_biglietto"));
-        Proiezioni p = new Proiezioni(genere, titolo, regista, date, durata, etaMin, anno, prezzo); // crea oggetto proiezioni
+        int posti = Integer.parseInt(record.get("posti_occupati"));
+        Proiezioni p = new Proiezioni(genere, titolo, regista, date, durata, etaMin, anno, prezzo,posti); // crea oggetto proiezioni
         this.proList.add(p); // aggiunge oggetto proiezioni alla linkedlist delle proiezioni
     }
 
@@ -107,11 +115,10 @@ public class FileHandler {
     //metodo che salva i dati delle proiezioni su file
     /**
      * <p>Metodo per salvare i dati delle proiezioni su file CSV</p>
-     * @param path percorso del file
      * @throws IOException errore durante la scrittura dei dati
      */
-    public void writeToProCsv(String path) throws IOException {
-        Writer writer = new FileWriter(path); // crea writer per scrivere su file
+    public void writeToProCsv() throws IOException {
+        Writer writer = new FileWriter(this.path.toFile()); // crea writer per scrivere su file
         CSVPrinter printer = new CSVPrinter(writer, CSVFormat.DEFAULT); // crea csv printer per creare record da scrivere su file
         this.createHeader(printer);
         for (Proiezioni pro : this.proList)
@@ -136,7 +143,8 @@ public class FileHandler {
                 "anno",
                 "durata_minuti",
                 "eta_minima",
-                "prezzo_biglietto"
+                "prezzo_biglietto",
+                "posti_occupati"
         );
     }
 
@@ -156,7 +164,8 @@ public class FileHandler {
                 p.getAnno(),
                 p.getDurata(),
                 p.getEtaMin(),
-                p.getPrezzo()
+                p.getPrezzo(),
+                p.getPosti()
         );
     }
 
@@ -342,7 +351,7 @@ public class FileHandler {
     public void saveProList(LinkedList<Proiezioni> proList){
         this.proList = proList; // aggiorna lista salvata in cache
         try {
-            this.writeToProCsv("proiezioni.csv"); // riscrive file proiezioni csv
+            this.writeToProCsv(); // riscrive file proiezioni csv
         }catch(IOException e){
             throw new RuntimeException(e);
         }
