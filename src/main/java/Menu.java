@@ -479,13 +479,13 @@ public class Menu {
     private void proiezionista(){
         boolean repeat = true;
         while (repeat){
-            System.out.println("1)Cercare una proiezione \n2)Aggiunta proiezione \n3)Modifica di una proiezione gia esistente \n4)Cancella una proiezione gia esistente");
+            System.out.println("0)Esci \n1)Cercare una proiezione \n2)Aggiunta proiezione");
             int num = numbCheck();
             switch (num){
-                case 1 -> this.cercaProiezioni();  //da modificare passandogli il RUOLO
+                case 0 -> repeat=false;
+                case 1 -> this.cercaProPro();  //da modificare passandogli il RUOLO
                 case 2 -> this.addProiezioni();
-                case 3 -> {}//aggiungere un metodo per modifica una proiezione
-                case 4 -> {}//aggiungere un metodo per cancellare una proiezione
+                default -> System.out.println("input non valido");
             }
         }
     }
@@ -506,12 +506,7 @@ public class Menu {
     private void cercaProiezioni(){
         boolean repeat= true;
         while(repeat) {
-            LinkedList<Proiezioni> proiezioniList = this.cercaProFilter();
-            int index = 1;
-            for (Proiezioni p : proiezioniList) {
-                System.out.println("" + index + ")" + this.printProj(p));
-                index++;
-            }
+            this.stampaProiezioni();
             //un qualsiasi numero che non sia 0 o 1 continua a cercare proiezioni
             System.out.println("0)Esci \n1)Effettua una prenotazione \n2)Continua a cercare");
             int num = Integer.parseInt(this.stringCheck());
@@ -520,6 +515,64 @@ public class Menu {
                 effettuaPrenotazione(proiezioniList.get(this.numbCheck()-1));
             }
             if(num==0) repeat = false;
+        }
+    }
+
+    private void cercaProPro(){
+        boolean repeat=true;
+        while(repeat){
+            this.stampaProiezioni();
+            System.out.println("0)Esci \n1)Continua a cercare \n2)modifica una proiezione \n3)cancella una proiezione");
+            int num=numbCheck();
+            switch (num){
+                case 0 -> repeat=false;
+                case 1 -> cercaProPro();
+                case 2 -> {}//modifica proiezione
+                case 3 -> {}//cancella proiezione
+                default -> System.out.println("input non valido");
+            }
+
+        }
+    }
+
+    private void modificaProiezione(LinkedList<Proiezioni> foundP){
+        boolean repeat=true;
+        System.out.println("inserire l'indice della proiezione da modificare");
+        int index = checkNumIn();
+        if(!this.cercaExPren(foundP.get(index)))
+            this.selezionaModificaPro(foundP.get(index));
+    }
+
+    private void selezionaModificaPro(String titolo, LocalDateTime data){
+        boolean repeat=true;
+        Proiezioni p= this
+
+        while (repeat){
+
+        }
+
+    }
+
+    private void cancellaProiezione(){
+
+    }
+
+    private boolean cercaExPren(Proiezioni p){
+        LinkedList<Prenotazione> prenList = this.prenh.getPrenList();
+        for(Prenotazione pren:prenList){
+            if(pren.getDate().equals(p.getData()) && pren.getTitolo().equals(p.getTitolo())){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void stampaProiezioni(){
+        LinkedList<Proiezioni> proiezioniList = this.cercaProFilter();
+        int index = 1;
+        for (Proiezioni p : proiezioniList) {
+            System.out.println("" + index + ")" + this.printProj(p));
+            index++;
         }
     }
 
@@ -566,7 +619,6 @@ public class Menu {
         int giorno = this.numbcheckergiorni();
         return anno+"-"+mese+"-"+giorno;
     }
-
 
 
     //metodo di testing per convertire i dati di un oggetto proiezione in una stringa

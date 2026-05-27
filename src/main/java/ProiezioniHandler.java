@@ -44,7 +44,6 @@ public class ProiezioniHandler {
 
     //metodo getter della linkedlist
     public LinkedList<Proiezioni> getProiezioniList(){return this.proiezioniList;}
-
     public LinkedList<Proiezioni> searchProiezione(String titolo){
         LinkedList<Proiezioni> foundProj= new LinkedList<>(); // lista proiezioni trovate che rispettano i criteri di ricerca
         for(Proiezioni p : this.proiezioniList){
