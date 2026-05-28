@@ -534,7 +534,7 @@ public class Menu {
             switch (num){
                 case 0 -> repeat=false;
                 case 1 -> this.modificaProiezione(proiezioniList);
-                case 2 -> {}//cancella proiezione
+                case 2 -> this.cancellaProiezione(proiezioniList);
                 default -> System.out.println("input non valido");
             }
 

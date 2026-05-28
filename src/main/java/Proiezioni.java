@@ -129,7 +129,7 @@ public class Proiezioni {
      */
     public float getPrezzo(){ return this.prezzo;}
 
-    public float getPosti(){return this.posti;}
+    public int getPosti(){return this.posti;}
 
     // setter
 
