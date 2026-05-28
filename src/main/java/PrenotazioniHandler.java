@@ -101,5 +101,9 @@ public class PrenotazioniHandler {
     }
 
     //metodo getter della linkedlist
+    /**
+     * <p>Metodo che restituisce la lista delle prenotazioni</p>
+     * @return lista delle prenotazioni
+     */
     public LinkedList<Prenotazione> getPrenList(){return this.prenList;}
 }

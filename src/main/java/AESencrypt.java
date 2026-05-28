@@ -5,6 +5,7 @@ import javax.crypto.spec.SecretKeySpec;
  * <h1>Classe di cifratura delle password</h1>
  * Classe che si occupa della cifratura e la decifratura delle password,
  * sfruttando l'algoritmo AES(Advanced Encryption Standard)
+ *
  * @author Scalone Lorenzo
  * */
 public class AESencrypt {

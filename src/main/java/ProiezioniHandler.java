@@ -178,6 +178,12 @@ public class ProiezioniHandler {
         return filteredList; // ritorna la lista o vuota se non trova nulla o con i valori filtrati
     }
 
+    /**
+     * <p>Metodo che si occupa della funzione di filtro per prezzo nella ricerca dei film</p>
+     * @param pList lista delle proiezioni
+     * @param prezzo prezzo del biglietto inserito dall'utente
+     * @return restituisce la lista con i film in base al filtro inserito
+     */
     public LinkedList<Proiezioni> filtroPrezzo(LinkedList<Proiezioni> pList, float prezzo){
         LinkedList<Proiezioni> filteredList = new LinkedList<>();
         for (Proiezioni p:pList){
@@ -187,6 +193,13 @@ public class ProiezioniHandler {
         return filteredList; // ritorna la lista o vuota se non trova nulla o con i valori filtrati
     }
 
+    /**
+     * <p>Metodo che permette la modifica delle proiezioni</p>
+     * @param titolo titolo del film
+     * @param date data del film
+     * @param pr proiezione
+     * @return restituisce un booleano nel caso in cui la modifica sia riuscita o meno
+     */
     public boolean modificaProj(String titolo, LocalDateTime date,Proiezioni pr) {
         Iterator<Proiezioni> proIt = this.proiezioniList.iterator();// crea un iteratore della lista per poterla modificare mentre viene iterata (non si puo fare con foreach)
         while (proIt.hasNext()) {// continua a iterare la lista fino a che non arriva alla fine o non viene trovato un oggetto prenotazione

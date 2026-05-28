@@ -18,6 +18,7 @@ import org.apache.commons.csv.CSVRecord;
 
 /**
  * Classe che si occupa di gestire tutti i dati che verranno inseriti nei file CSV
+ *
  * @author Piano Edoardo
  */
 public class FileHandler {
@@ -84,7 +85,7 @@ public class FileHandler {
 
     // sotto metodo che crea oggetti della classe proiezione e gli assegna i dati
     /**
-     * <p>Metodo che si occupa di creare oggetti della classe proiezione e assegne i dati relativi</p>
+     * <p>Metodo che si occupa di creare oggetti della classe proiezione e assegna i dati relativi</p>
      * @param record record CSV della proiezione
      */
     private void createProObj(CSVRecord record) {

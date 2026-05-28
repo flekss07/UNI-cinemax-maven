@@ -14,9 +14,25 @@ import java.util.UUID;
  * @author Scalone Lorenzo
  */
 public class Menu {
+    /**
+     * <p>Oggetto della classe UserHandler</p>
+     * <code>uh</code>
+     */
     private final UserHandler uh;
+    /**
+     * <p>Oggetto della classe ProiezioniHandler</p>
+     * <code>ph</code>
+     */
     private final ProiezioniHandler ph ;
+    /**
+     * <p>Oggetto della classe PrenotazioneHandler</p>
+     * <code>prenh</code>
+     */
     private final PrenotazioniHandler prenh;
+    /**
+     * <p>Oggetto della classe user che salva le informazioni dell'utente quando accede con le sue credenziali</p>
+     * <code>loggedUser</code>
+     */
     private User loggedUser;
 
     /**
@@ -620,6 +636,9 @@ public class Menu {
         }
     }
 
+    /**
+     * <p>Metodo che permette di cercare le proiezioni</p>
+     */
     private void cercaProiezioni(){
         boolean repeat= true;
         while(repeat) {
@@ -636,7 +655,9 @@ public class Menu {
         }
     }
 
-
+    /**
+     * <p>Metodo che permette al proiezionista di cancellare e/o modificare le proiezioni</p>
+     */
     private void cercaProPro(){
         boolean repeat=true;
         while(repeat){
@@ -654,6 +675,10 @@ public class Menu {
         }
     }
 
+    /**
+     * <p>Metodo che permette la modifica di una proiezione</p>
+     * @param foundP lista della proiezioni
+     */
     private void modificaProiezione(LinkedList<Proiezioni> foundP){
         boolean repeat=true;
         System.out.println("inserire l'indice della proiezione da modificare");
@@ -664,6 +689,12 @@ public class Menu {
 
     }
 
+    /**
+     * <p>Metodo per il proiezionista, che fa da interfaccia per le azioni disponibili</p>
+     * @param p
+     * @param titolo
+     * @param data
+     */
     private void selezionaModificaPro(Proiezioni p, String titolo, LocalDateTime data){
         boolean repeat=true;
         while (repeat){
@@ -711,6 +742,11 @@ public class Menu {
 
     }
 
+    /**
+     * <p>Metodo per cercare le prenotazioni esistenti</p>
+     * @param p oggetto di tipo prenotazione
+     * @return restituisce un valore booleano in base all'esito della ricerca
+     */
     private boolean cercaExPren(Proiezioni p){
         LinkedList<Prenotazione> prenList = this.prenh.getPrenList();
         for(Prenotazione pren:prenList){
@@ -721,6 +757,10 @@ public class Menu {
         return false;
     }
 
+    /**
+     * <p>Metodo che restituisce a schermo la lista delle proiezioni</p>
+     * @param proiezioniList lista delle proiezioni
+     */
     private void stampaProiezioni(LinkedList <Proiezioni> proiezioniList){
         int index = 1;
         for (Proiezioni p : proiezioniList) {
@@ -729,6 +769,10 @@ public class Menu {
         }
     }
 
+    /**
+     * <p>Metodo che esegue la funzione ri cerca filtrata per la ricerca delle proiezioni</p>
+     * @return restituisce la lista delle proiezioni compatibili con i filtri selezionati
+     */
     private LinkedList<Proiezioni> cercaProFilter(){
         boolean repeat=true;
         LinkedList<Proiezioni> proiezioniList = this.ph.getProiezioniList();
@@ -763,6 +807,10 @@ public class Menu {
         return proiezioniList;
     }
 
+    /**
+     * <p>Metodo che si occupa di richiedere e controllare la data inserita</p>
+     * @return restituisce la data inserita nel formato: anno-mese-giorno
+     */
     private String inserireData(){
         System.out.println("inserire anno: ");
         int anno = this.numbcheckeranno();
@@ -902,6 +950,10 @@ public class Menu {
     }
 
     //sotto metodo che prende in input un float e lo controlla
+    /**
+     * <p>Metodo che controlla i prezzi del biglietto</p>
+     * @return esegue una chiamata ricorsiva nel caso in cui il numero siamo minore di zero, restituisce il numero inserito nel caso l'input sia valido
+     */
     private float checkNumFloat(){
         float num = Float.parseFloat(this.stringCheck());
         if(num < 0){
