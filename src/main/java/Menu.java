@@ -301,7 +301,6 @@ public class Menu {
         }
     }
 
-
     private String dataproiezioni() {
         System.out.println("Inserire il giorno della proiezione");
         int giorni = this.numbcheckergiorni();
@@ -519,7 +518,6 @@ public class Menu {
         }
     }
 
-
     private void cercaProPro(){
         boolean repeat=true;
         while(repeat){
@@ -538,13 +536,11 @@ public class Menu {
     }
 
     private void modificaProiezione(LinkedList<Proiezioni> foundP){
-        boolean repeat=true;
         System.out.println("inserire l'indice della proiezione da modificare");
         int index = checkNumIn();
         Proiezioni p =foundP.get(index);
         if(!this.cercaExPren(p))
             this.selezionaModificaPro(p,p.getTitolo(),p.getData());
-
     }
 
     private void selezionaModificaPro(Proiezioni p, String titolo, LocalDateTime data){
@@ -590,8 +586,15 @@ public class Menu {
 
     }
 
-    private void cancellaProiezione(){
-
+    private void cancellaProiezione(LinkedList<Proiezioni> foundP){
+        System.out.println("inserire l'indice della proiezione da modificare");
+        int index = checkNumIn();
+        Proiezioni p = foundP.get(index);
+        if(!this.cercaExPren(p))
+            if(this.ph.cancellaProj(p))
+                System.out.println("proiezione cancellata con successo");
+            else
+                System.out.println("errore nella cancellazione della proiezione");
     }
 
     private boolean cercaExPren(Proiezioni p){
@@ -769,6 +772,3 @@ public class Menu {
         return num;
     }
 }
-
-
-

@@ -134,4 +134,17 @@ public class ProiezioniHandler {
         }
         return false; // conferma di non aver trovato la prenotazione da modificare o che la data di quella trovata è precedente a quella attuale
     }
+
+    public boolean cancellaProj(Proiezioni pr){
+        Iterator<Proiezioni> proIt = this.proiezioniList.iterator();// crea un iteratore della lista per poterla modificare mentre viene iterata (non si puo fare con foreach)
+        while (proIt.hasNext()) {// continua a iterare la lista fino a che non arriva alla fine o non viene trovato un oggetto prenotazione
+            Proiezioni p = proIt.next(); // prende oggetto successivo per check
+            if(p.getTitolo().equals(pr.getTitolo()) && pr.getData().equals(p.getData())) {
+                proIt.remove();
+                this.fh.saveProList(this.proiezioniList);
+                return true;
+            }
+        }
+        return false;
+    }
 }
