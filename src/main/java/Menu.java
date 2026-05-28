@@ -1,3 +1,4 @@
+import javax.management.relation.Role;
 import java.awt.desktop.AboutEvent;
 import java.time.LocalDateTime;
 import java.time.Year;
@@ -61,7 +62,7 @@ public class Menu {
      */
     public void addProiezioni() {
         //inserire il genere del film
-        Genres genere = this.SelezioneGenere();
+        Genres genere = this.selezioneGenere();
         //inserire il titolo
         System.out.println("Inserire il Titolo");
         String titolo = this.stringCheck();
@@ -90,7 +91,7 @@ public class Menu {
      * <p>Metodo che fa scegliere che genere inserire per una proiezione</p>
      * @return in base alla scelta verrà inserito il genere selezionato
      */
-    private Genres SelezioneGenere() {
+    private Genres selezioneGenere() {
         System.out.println("Inserire il genere inserendo il numerino assegnato");
         System.out.println("ID\tGENERE");
         System.out.println("─────────────────");
@@ -114,7 +115,7 @@ public class Menu {
             case 10 -> genere = Genres.Thriller;
             default -> {
                 System.out.println("Qualcosa è andato storto, riprova");
-                yield this.SelezioneGenere();
+                yield this.selezioneGenere();
             }
         };
     }
@@ -225,15 +226,13 @@ public class Menu {
         System.out.println("selezionare ruolo:\n1)cliente\n2)proiezionista\n3)bibliettaio ");
         int choice = Integer.parseInt(this.stringCheck());
         switch (choice) {
-            case 1:
-                return Roles.CLIENTE;
-            case 2:
-                return Roles.PROIEZIONISTA;
-            case 3:
-                return Roles.BIGLIETTAIO;
-            default:
+            case 1 -> {return Roles.CLIENTE;}
+            case 2 -> {return Roles.PROIEZIONISTA;}
+            case 3 -> {return Roles.BIGLIETTAIO;}
+            default -> {
                 System.out.println("input non valido, riprovare");
                 return null;
+            }
         }
     }
 
@@ -292,7 +291,7 @@ public class Menu {
         try {
             int numInt = Integer.parseInt(str);
             if (numInt <= Year.now().getValue()-200) {
-                System.out.println("Anno di nascita non valido");
+                System.out.println("Anno non valido");
                 return numbcheckeranno();
             }
             if (numInt > Year.now().getValue()) {
@@ -359,8 +358,8 @@ public class Menu {
         try {
            User user=this.uh.loginUser(); //chiedo all'utente di loggare e salva l'utente se lo trova
            if(user!=null) {
-               loggedUser = user;
-               System.out.println("Login effettuato come "+ loggedUser.getUsername());
+               this.loggedUser = user;
+               System.out.println("Login effettuato come "+ this.loggedUser.getUsername());
                this.userMenu();
            }
            else
@@ -487,11 +486,10 @@ public class Menu {
      * <p>Metodo che controlla l'età inserita durante l'inserimento di una proiezione</p>
      * @return esegue delle chiamate ricorsive nel caso in cui:l'input inserito non sia un numero, il numero inserito sia negativo, restituisce l'età inserita negli altri casi
      */
-    private int etaCheck(){
-        String str = this.stringCheck();
+    private int etaCheck(){ //da ricontrollare
         try{
-            int etaMinInt = Integer.parseInt(str);
-            if (etaMinInt >= 0) {
+            int etaMinInt = this.checkNumIn();
+            if (etaMinInt > 0) {
                 if (etaMinInt >= 18) {
                     System.out.println("L'eta inserita supera la maggiore eta, il limite sarà impostato a 18");
                     etaMinInt = 18;
@@ -595,17 +593,15 @@ public class Menu {
     private void proiezionista(){
         boolean repeat = true;
         while (repeat){
-            System.out.println("1)Cercare una proiezione \n2)Aggiunta proiezione \n3)Modifica di una proiezione gia esistente \n4)Cancella una proiezione gia esistente");
-            int num = numbCheck();
+            System.out.println("0)Esci \n1)Cercare una proiezione \n2)Aggiunta proiezione");
+            int num = checkNumIn();
             switch (num){
-                case 1 -> this.cercaProiezioni();
+                case 0 -> repeat=false;
+                case 1 -> this.cercaProPro();  //da modificare passandogli il RUOLO
                 case 2 -> this.addProiezioni();
-                case 3 -> {}//aggiungere un metodo per modifica una proiezione
-                case 4 -> {}//aggiungere un metodo per cancellare una proiezione
+                default -> System.out.println("input non valido");
             }
         }
-
-
     }
 
     //metodo bigliettai
@@ -627,18 +623,9 @@ public class Menu {
     private void cercaProiezioni(){
         boolean repeat= true;
         while(repeat) {
-            System.out.println("inserire il titolo della proiezione da cercare, inserire 0 per annullare");
-            String titolo = this.stringCheck();
-            if(titolo.equals("0")){
-                repeat = false;
-                continue;
-            }
-            LinkedList<Proiezioni> proiezioniList = this.ph.searchProiezione(titolo);
-            int index = 1;
-            for (Proiezioni p : proiezioniList) {
-                System.out.println("" + index + ")" + this.printProj(p));
-                index++;
-            }
+            LinkedList<Proiezioni> proiezioniList = this.cercaProFilter();
+            this.stampaProiezioni(proiezioniList);
+            //un qualsiasi numero che non sia 0 o 1 continua a cercare proiezioni
             System.out.println("0)Esci \n1)Effettua una prenotazione \n2)Continua a cercare");
             int num = Integer.parseInt(this.stringCheck());
             if(num==1) {
@@ -646,10 +633,146 @@ public class Menu {
                 effettuaPrenotazione(proiezioniList.get(this.numbCheck()-1));
             }
             if(num==0) repeat = false;
+        }
+    }
 
+
+    private void cercaProPro(){
+        boolean repeat=true;
+        while(repeat){
+            LinkedList<Proiezioni> proiezioniList = this.cercaProFilter();
+            this.stampaProiezioni(proiezioniList);
+            System.out.println("0)Esci \n1)modifica una proiezione \n2)cancella una proiezione");
+            int num=numbCheck();
+            switch (num){
+                case 0 -> repeat=false;
+                case 1 -> this.modificaProiezione(proiezioniList);
+                case 2 -> {}//cancella proiezione
+                default -> System.out.println("input non valido");
+            }
 
         }
     }
+
+    private void modificaProiezione(LinkedList<Proiezioni> foundP){
+        boolean repeat=true;
+        System.out.println("inserire l'indice della proiezione da modificare");
+        int index = checkNumIn();
+        Proiezioni p =foundP.get(index);
+        if(!this.cercaExPren(p))
+            this.selezionaModificaPro(p,p.getTitolo(),p.getData());
+
+    }
+
+    private void selezionaModificaPro(Proiezioni p, String titolo, LocalDateTime data){
+        boolean repeat=true;
+        while (repeat){
+            System.out.println("0)Esci \n1)Modifica Titolo \n2)Modifica Regista \n3)Modifica Genere \n4)Modifica Eta minima \n5)Modifica Data \n6)Modifca Prezzo \n7)Modifica Anno \n8)Modifica Durata");
+            int num = this.checkNumIn();
+            switch (num){
+                case 0 -> repeat=false;
+                case 1 -> {//modifica titolo
+                    System.out.println("inserire il titolo modificato");
+                    p.setTitolo(this.stringCheck());
+                }
+                case 2 -> {//modifica autore
+                    System.out.println("inserire il regista modificato");
+                    p.setRegista(this.stringCheck());
+                }
+                case 3 -> this.selezioneGenere(); //modifica genere
+                case 4 -> {
+                    System.out.println("inserire la nuova eta minima");
+                    p.setEtaMin(this.etaCheck());
+                }//modifica eta minima
+                case 5 -> { //modifica data
+                    System.out.println("inserire la nuova data");
+                    p.setData(this.ph.convertDate(this.inserireData()));
+                }
+                case 6 -> { //modifica prezzo
+                    System.out.println("inserire il nuovo prezzo");
+                    p.setPrezzo(this.checkNumFloat());
+                }
+                case 7 -> { //modifica anno
+                    System.out.println("inserire il nuovo anno");
+                    p.setAnno(this.checkNumIn());
+                }
+                case 8 -> {
+                    System.out.println("inserire la nuova durata, in minuti");
+                    p.setDurata(this.checkNumIn());
+                }//modifica durata
+                default -> System.out.println("input non valido");
+            }
+
+        }
+
+    }
+
+    private void cancellaProiezione(){
+
+    }
+
+    private boolean cercaExPren(Proiezioni p){
+        LinkedList<Prenotazione> prenList = this.prenh.getPrenList();
+        for(Prenotazione pren:prenList){
+            if(pren.getDate().equals(p.getData()) && pren.getTitolo().equals(p.getTitolo())){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void stampaProiezioni(LinkedList <Proiezioni> proiezioniList){
+        int index = 1;
+        for (Proiezioni p : proiezioniList) {
+            System.out.println("" + index + ")" + this.printProj(p));
+            index++;
+        }
+    }
+
+    private LinkedList<Proiezioni> cercaProFilter(){
+        boolean repeat=true;
+        LinkedList<Proiezioni> proiezioniList = this.ph.getProiezioniList();
+        while (repeat){
+            System.out.println("scegliere il filtro delle proiezioni: \n0)Applica i filtri selezionati \n1)Titolo \n2)Genere \n3)Data \n4)Autore \n5)Costo del biglietto");
+            int num=Integer.parseInt(this.stringCheck());
+            switch(num){
+                case 0 -> repeat=false;
+                case 1 -> {
+                    System.out.println("inserire titolo: ");
+                    proiezioniList=this.ph.filtroTitolo(proiezioniList,this.stringCheck());
+                }
+                case 2 -> {
+                    System.out.println("Inserire il genere del film: ");
+                    proiezioniList=this.ph.filtroGenere(proiezioniList,this.selezioneGenere());
+                }
+                case 3 -> {
+                    System.out.println("Inserire le due date, prima quella iniziale e poi quella finale: ");
+                    proiezioniList=this.ph.filtroData(proiezioniList,this.inseriredata(),this.inserireData());
+                }
+                case 4 -> {
+                    System.out.println("Inserire l'autore del film: ");
+                    proiezioniList=this.ph.filtroAutore(proiezioniList,this.stringCheck());
+                }
+                case 5 -> {
+                    System.out.println("Inserire prezzo: ");
+                    proiezioniList=this.ph.filtroPrezzo(proiezioniList, this.checkNumFloat());
+                }
+                default -> System.out.println("Input non valido");
+            }
+        }
+        return proiezioniList;
+    }
+
+    private String inserireData(){
+        System.out.println("inserire anno: ");
+        int anno = this.numbcheckeranno();
+        System.out.println("inserire mese: ");
+        int mese = this.numbcheckermesi();
+        System.out.println("inserire giorno: ");
+        int giorno = this.numbcheckergiorni();
+        return anno+"-"+mese+"-"+giorno;
+    }
+
 
     //metodo di testing per convertire i dati di un oggetto proiezione in una stringa
     /**
@@ -768,11 +891,22 @@ public class Menu {
      * <p>Metodo che controllare i numeri in input</p>
      * @return restituisce il numero inserito se non ci sono problemi, altrimenti esegue una chiamata ricorsiva
      */
+    //sotto metodo che prende in input un intero e lo controlla
     private int checkNumIn(){
         int num = Integer.parseInt(this.stringCheck());
         if(num < 0){
             System.out.println("numeri < 0 non validi");
             return this.checkNumIn();
+        }
+        return num;
+    }
+
+    //sotto metodo che prende in input un float e lo controlla
+    private float checkNumFloat(){
+        float num = Float.parseFloat(this.stringCheck());
+        if(num < 0){
+            System.out.println("numeri < 0 non validi");
+            return this.checkNumFloat();
         }
         return num;
     }

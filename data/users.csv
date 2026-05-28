@@ -1,16 +1,3 @@
 nome,cognome,password,username,data_di_nascita,indirizzo,ruolo
-c,c,EJMI79x7EEj9IkgXCsBViA==,c,2000-01-01,c,CLIENTE
-a,a,EJMI79x7EEj9IkgXCsBViA==,a,2000-01-01,a,CLIENTE
-lorenzo,scalone,zmAuxUKVRru3qNERA4A18g==,lord,2005-08-28,via mario civelli 13,CLIENTE
-bibbo,topolino,NRLplCBRwhjbUN0xv/psiw==,pluto,2001-08-02,topolinia 13,CLIENTE
-lorenzo,scalone,+S3BDp+2f+uLnkJVcAQzuQ==,lord,2005-08-28,via mario civelli 13,CLIENTE
-lorenzo,scalone,zmAuxUKVRru3qNERA4A18g==,brave,2005-08-28,l,CLIENTE
-edoardo,piano,H1Pc1zJLGnRJGW1hLWEWpQ==,ep,2006-01-07,olgiate c,CLIENTE
-elia,elia,H1Pc1zJLGnRJGW1hLWEWpQ==,udjj,2000-12-12,via v,CLIENTE
-elia,elia,H1Pc1zJLGnRJGW1hLWEWpQ==,udjj,2000-12-12,v,CLIENTE
-elia,elia,H1Pc1zJLGnRJGW1hLWEWpQ==,udjj,2000-12-12,v,CLIENTE
-elia,elia,H1Pc1zJLGnRJGW1hLWEWpQ==,udjj,2000-12-12,v,CLIENTE
-elia,elia,H1Pc1zJLGnRJGW1hLWEWpQ==,udjj,2000-12-12,v,CLIENTE
-asdf,asdf,H1Pc1zJLGnRJGW1hLWEWpQ==,test1,2000-12-12,adsf,CLIENTE
-elia,elia,H1Pc1zJLGnRJGW1hLWEWpQ==,udjj secondo,2000-12-12,v,CLIENTE
-Mattia Renato,Merzagora,rvFiO42nxCSyL858ndpfZg==,T1m3x,2004-07-24,Leggiuno,CLIENTE
+elia,elia,H1Pc1zJLGnRJGW1hLWEWpQ==,udjj,2000-12-12,v,PROIEZIONISTA
+elia,elia,H1Pc1zJLGnRJGW1hLWEWpQ==,udjj2,2000-12-12,v,CLIENTE

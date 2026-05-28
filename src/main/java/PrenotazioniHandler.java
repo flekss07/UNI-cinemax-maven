@@ -99,4 +99,7 @@ public class PrenotazioniHandler {
         }
         return false; // conferma di non aver trovato la prenotazione da modificare o che la data di quella trovata è precedente a quella attuale
     }
+
+    //metodo getter della linkedlist
+    public LinkedList<Prenotazione> getPrenList(){return this.prenList;}
 }

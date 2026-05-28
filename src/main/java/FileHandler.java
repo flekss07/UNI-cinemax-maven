@@ -193,7 +193,7 @@ public class FileHandler {
         String username = record.get("username");
         LocalDate dataDiNascita =  LocalDate.parse(record.get("data_di_nascita")); // converte la data di nascita in formato date
         String indirizzo = record.get("indirizzo");
-        Roles ruolo = Roles.CLIENTE;
+        Roles ruolo = Roles.valueOf(record.get("ruolo"));
         User u = new User(nome,cognome,password,username,dataDiNascita,indirizzo,ruolo); // crea nuovo oggetto user con i dati
         this.userList.add(u); // aggiunge user alla linkedlist dedicata
     }
