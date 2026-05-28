@@ -2,3 +2,4 @@ nome,cognome,password,username,data_di_nascita,indirizzo,ruolo
 elia,elia,H1Pc1zJLGnRJGW1hLWEWpQ==,udjj,2000-12-12,v,PROIEZIONISTA
 elia,elia,H1Pc1zJLGnRJGW1hLWEWpQ==,udjj2,2000-12-12,v,CLIENTE
 edoardo,piano,H1Pc1zJLGnRJGW1hLWEWpQ==,ep,2006-01-07,alfkjasdf,CLIENTE
+test,proiezionista,H1Pc1zJLGnRJGW1hLWEWpQ==,tproj,2000-01-01,milano,PROIEZIONISTA

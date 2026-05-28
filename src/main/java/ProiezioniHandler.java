@@ -25,6 +25,7 @@ public class ProiezioniHandler {
     private DateTimeFormatter localDateFormatter;
 
     public ProiezioniHandler() {
+        this.formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         this.localDateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         this.fh = new FileHandler("proiezioni.csv");
         this.proiezioniList = this.fh.getProList();
@@ -32,15 +33,11 @@ public class ProiezioniHandler {
 
     //funzione che carica in lista le proiezioni
     public void proiezionicreator(Genres genere, String titolo, String regista, String data, int durata, int etaMIn, int  anno, float prezzo,int posti){
-    LocalDateTime dataProiezione = this.convertDate(data);
+    LocalDateTime dataProiezione = LocalDateTime.parse(data,this.formatter);
     Proiezioni nuovaProiezione = new Proiezioni(genere, titolo, regista, dataProiezione, durata, etaMIn, anno, prezzo, posti);
     this.proiezioniList.add(nuovaProiezione);
     this.fh.saveProList(this.proiezioniList);
     this.proiezioniList= this.fh.getProList();
-    }
-    public LocalDateTime convertDate(String strDate) {
-        LocalDateTime projectionDate = LocalDateTime.parse(strDate, this.formatter); // fa il parse della data nel formato preimpostato
-        return projectionDate;
     }
 
     //metodo getter della linkedlist
@@ -86,8 +83,8 @@ public class ProiezioniHandler {
 
     // metodo di filtro per intervallo di date del film
     public LinkedList<Proiezioni> filtroData(LinkedList<Proiezioni> pList, String start, String end){
-        LocalDateTime convStart = this.convertDate(start);
-        LocalDateTime convEnd = this.convertDate(end);
+        LocalDateTime convStart = LocalDateTime.parse(start,this.formatter);
+        LocalDateTime convEnd = LocalDateTime.parse(end,this.formatter);
         LinkedList<Proiezioni> filteredList = new LinkedList<>();
         for (Proiezioni p:pList){
             if(p.getData().isBefore(convEnd) && p.getData().isAfter(convStart) || p.getData().isEqual(convStart) || p.getData().isEqual(convEnd))  // se interv date trovato

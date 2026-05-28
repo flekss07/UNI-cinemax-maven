@@ -1,28 +1,34 @@
 import javax.management.relation.Role;
 import java.awt.desktop.AboutEvent;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Year;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.UUID;
+import java.util.stream.StreamSupport;
 
 public class Menu {
     private final UserHandler uh;
     private final ProiezioniHandler ph ;
     private final PrenotazioniHandler prenh;
+    private DateTimeFormatter formatter;
     private User loggedUser;
 
     public Menu() { //costruzione oggetto classe userhandler
         this.uh = new UserHandler();
         this.ph= new ProiezioniHandler();
         this.prenh= new PrenotazioniHandler();
+        this.formatter = DateTimeFormatter.ofPattern("yy-MM-dd");
     }
 
     public void menuSelect() { //metodo che crea il menu
         boolean repeat=true;
         while (repeat) {
             System.out.println("Inserire il numero corrispondente alla funzione per attivarla\n1)registrarsi\n2)effettuare il login\n3)Continuare come quest \n4)Uscire dal programma");
-            int selector = this.numbCheck();
+            int selector = this.checkNumIn();
             switch (selector) {
                 case 1-> { //registrarsi
                     try {
@@ -40,8 +46,6 @@ public class Menu {
                 default-> System.out.println("Qualcosa è andato storto...");
             }
         }
-
-
     }
 
     public void addProiezioni() {
@@ -55,7 +59,7 @@ public class Menu {
         String regista = this.stringCheck();
         //giorno e data della proiezione
         String dataProiezioni = this.dataproiezioni();
-        //durata  del filmadd
+        //durata  del film
         System.out.println("Inserire la durata della proiezione (in minuti)");
         int durata = this.duratacheck();
         //età minima x la visione del film
@@ -68,8 +72,10 @@ public class Menu {
         System.out.println("Inserire il prezzo del film");
         float prezzo = this.priceCheck();
         this.ph.proiezionicreator(genere, titolo, regista, dataProiezioni,durata, etaMin, uscita, prezzo,0);
+        System.out.println("proiezione aggiunta");
     }
-//funzione x selezione genere
+
+    //funzione x selezione genere
     private Genres selezioneGenere() {
         System.out.println("Inserire il genere inserendo il numerino assegnato");
         System.out.println("ID\tGENERE");
@@ -323,7 +329,7 @@ public class Menu {
         System.out.println("Inserire l'ora di  inizio del film:");
         String ore = String.valueOf(this.numbcheckore());
         String minuti = String.valueOf(this.numbcheckmin());
-        return anno + "-" + valMesi + "-" + valGiorni+" "+ore+":"+minuti;
+        return anno + "-" + valMesi + "-" + valGiorni+" "+ore+":"+minuti+":00";
 
     }
     private int numbcheckmin(){
@@ -524,7 +530,7 @@ public class Menu {
             LinkedList<Proiezioni> proiezioniList = this.cercaProFilter();
             this.stampaProiezioni(proiezioniList);
             System.out.println("0)Esci \n1)modifica una proiezione \n2)cancella una proiezione");
-            int num=numbCheck();
+            int num=checkNumIn();
             switch (num){
                 case 0 -> repeat=false;
                 case 1 -> this.modificaProiezione(proiezioniList);
@@ -565,7 +571,7 @@ public class Menu {
                 }//modifica eta minima
                 case 5 -> { //modifica data
                     System.out.println("inserire la nuova data");
-                    p.setData(this.ph.convertDate(this.inserireData()));
+                    p.setData(LocalDateTime.parse(this.inserireData(),this.formatter));
                 }
                 case 6 -> { //modifica prezzo
                     System.out.println("inserire il nuovo prezzo");
