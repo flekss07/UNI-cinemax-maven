@@ -1,6 +1,7 @@
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
+import java.util.Locale;
 import java.util.Scanner;
 
 /**
@@ -145,5 +146,14 @@ public class UserHandler {
 
         //encrypting della password
         return AESencrypt.encrypt(password);
+    }
+
+    // metodo di filtro per nome e cognome
+    public String filtroNC (String nome, String cognome){
+        for (User u:userList){
+            if(u.getNome().toLowerCase().trim().equals(nome.toLowerCase().trim()) && u.getCognome().toLowerCase().trim().equals(cognome.toLowerCase().trim())) // se titolo trovato
+                return u.getUsername();
+        }
+        return null;
     }
 }

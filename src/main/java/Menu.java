@@ -27,9 +27,10 @@ public class Menu {
     public void menuSelect() { //metodo che crea il menu
         boolean repeat=true;
         while (repeat) {
-            System.out.println("Inserire il numero corrispondente alla funzione per attivarla\n1)registrarsi\n2)effettuare il login\n3)Continuare come quest \n4)Uscire dal programma");
+            System.out.println("Inserire il numero corrispondente alla funzione per attivarla \n0)Uscire dal programma \n1)registrarsi\n2)effettuare il login\n3)Continuare come guest ");
             int selector = this.checkNumIn();
             switch (selector) {
+                case 0-> repeat=false; //close menu
                 case 1-> { //registrarsi
                     try {
                         this.userRegister();
@@ -42,7 +43,6 @@ public class Menu {
                     this.userLogin();
                 }
                 case 3-> this.guest();
-                case 4-> repeat=false; //close menu
                 default-> System.out.println("Qualcosa è andato storto...");
             }
         }
@@ -439,13 +439,14 @@ public class Menu {
 
     //metodo guest
     public void guest() {
+        this.loggedUser=null;
         boolean repeat = true;
         while (repeat) {
-            System.out.println("1)Cercare una proiezione \n2)Eseguire il LOGIN\n3)Eseguire una registrazione\n4)Torna a menu precedente");
+            System.out.println("\n0)Torna a menu precedente 1)Cercare una proiezione \n2)Eseguire il LOGIN\n3)Eseguire una registrazione");
             int num = numbCheck();
             switch (num) {
-                case 1 -> {//aggiungere metodo di ricerca proiezione
-                }
+                case 0 -> repeat=false;
+                case 1 -> cercaProiezioniGuest();
                 case 2 -> {
                     System.out.println("Inizio procedura di login");
                     this.userLogin();
@@ -457,7 +458,6 @@ public class Menu {
                         throw new RuntimeException(e);
                     }
                 }
-                case 4 -> repeat=false;
                 default -> System.out.println("Qualcosa è andato storto...");
             }
         }
@@ -499,13 +499,39 @@ public class Menu {
     private void bigliettaio(){
         boolean repeat = true;
         while(repeat){
-            System.out.println("1)Cerca una proiezione \n2)Visualizza tutte le prenotazioni");
+            System.out.println("0)Esci \n1)Cerca una proiezione \n2)Visualizza tutte le prenotazioni");
             int num = numbCheck();
             switch (num){
-                case 1 -> this.cercaProiezioni();
-                case 2 -> {}//aggiungere un metodo per visualizzare ogni prenotazione effettuata, magari differenziando tutte le prenotazioni in base alla proiezione
+                case 0 -> repeat=false;
+                case 1 -> cercaPrenotazione();//metodo cerca prenotazione
+                case 2 -> this.prenh.visualizzaTuttePrenotazioni(); //aggiungere un metodo per visualizzare ogni prenotazione effettuata, magari differenziando tutte le prenotazioni in base alla proiezione
             }
         }
+    }
+
+    //metodo cerca prenotazione
+    private void cercaPrenotazione(){
+        boolean repeat = true;
+        while(repeat){
+        System.out.println("Cerca per> \n0)Esci \n1)Nome e Cognome \n2)Codice prenotazione \n3)Titolo \n4)Data");
+        int num=checkNumIn();
+        switch (num){
+            case 0 -> repeat=false;
+            case 1 -> prenNC();
+            case 2 -> {}
+            case 3 -> {}
+            case 4 -> {}
+        }
+
+        }
+    }
+
+    private void prenNC (){
+        System.out.println("inserire il nome: ");
+        String nome=stringCheck();
+        System.out.println("inserire il cognome: ");
+        String cognome=stringCheck();
+        this.prenh.visualizzaPrenotazioni(uh.filtroNC(nome, cognome));
     }
 
     private void cercaProiezioni(){
@@ -515,12 +541,22 @@ public class Menu {
             this.stampaProiezioni(proiezioniList);
             //un qualsiasi numero che non sia 0 o 1 continua a cercare proiezioni
             System.out.println("0)Esci \n1)Effettua una prenotazione \n2)Continua a cercare");
-            int num = Integer.parseInt(this.stringCheck());
+            int num = checkNumIn();
             if(num==1) {
                 System.out.println("inserire l'indice della proiezioni da prenotare");
                 effettuaPrenotazione(proiezioniList.get(this.numbCheck()-1));
             }
             if(num==0) repeat = false;
+        }
+    }
+
+    private void cercaProiezioniGuest(){
+        boolean repeat = true;
+        while(repeat){
+            LinkedList<Proiezioni> proiezioniList = this.cercaProFilter();
+            this.stampaProiezioni(proiezioniList);
+            System.out.println("0)Esci \n1)Continua a cercare");
+            if (this.checkNumIn()==0) repeat=false;
         }
     }
 

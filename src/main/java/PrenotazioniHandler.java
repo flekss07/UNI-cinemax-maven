@@ -25,8 +25,6 @@ public class PrenotazioniHandler {
         this.prenList = this.fh.getPrenList();
     }
 
-    //metodo che crea una nuova prenotazione
-
     /**
      * Metodo che si occupa di creare una prenotazione
      *
@@ -53,6 +51,14 @@ public class PrenotazioniHandler {
         LinkedList<Prenotazione> foundList = new LinkedList<>(); // lista prenotazioni trovate
         for(Prenotazione p: this.prenList)
             if(p.getUsername().equals(username)) foundList.add(p);
+        return foundList; // ritorna una lista vuota se non trova prenotazioni associate
+    }
+
+    //metodo per visualizzare tutte le prenotazioni effettuate, unica per il BIGLIETTAIO
+    public LinkedList<Prenotazione> visualizzaTuttePrenotazioni(){
+        LinkedList<Prenotazione> foundList = new LinkedList<>(); // lista prenotazioni trovate
+        for(Prenotazione p: this.prenList)
+            foundList.add(p);
         return foundList; // ritorna una lista vuota se non trova prenotazioni associate
     }
 
