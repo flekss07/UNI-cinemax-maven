@@ -153,6 +153,13 @@ public class UserHandler {
     }
 
     // metodo di filtro per nome e cognome
+
+    /**
+     * <p>Metodo filtro tramite nome e cognome per la ricerca di una prenotazione</p>
+     * @param nome nome dell'utente
+     * @param cognome cognome dell'utente
+     * @return restituisce il nome utente
+     */
     public String filtroNC (String nome, String cognome){
         for (User u:userList){
             if(u.getNome().toLowerCase().trim().equals(nome.toLowerCase().trim()) && u.getCognome().toLowerCase().trim().equals(cognome.toLowerCase().trim())) // se titolo trovato

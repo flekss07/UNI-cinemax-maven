@@ -66,6 +66,11 @@ public class PrenotazioniHandler {
     }
 
     //metodo per visualizzare tutte le prenotazioni effettuate, unica per il BIGLIETTAIO
+
+    /**
+     * <p>Metodo per i bigliettai, stampa a schermo tutte le prenotazioni</p>
+     * @return lista delle prenotazioni
+     */
     public LinkedList<Prenotazione> visualizzaTuttePrenotazioni(){
         LinkedList<Prenotazione> foundList = new LinkedList<>(); // lista prenotazioni trovate
         for(Prenotazione p: this.prenList)
@@ -130,6 +135,12 @@ public class PrenotazioniHandler {
     }
 
     //metodo che cerca una prenotazione in base al titolo
+
+    /**
+     * <p>Metodo di filtro che cerca in base al titolo</p>
+     * @param titolo titolo del film
+     * @return lista delle prenotazioni
+     */
     public LinkedList<Prenotazione> searchPrenByTitle(String titolo){
         LinkedList<Prenotazione> foundList = new LinkedList<>(); // lista prenotazioni trovate
         for(Prenotazione p: this.prenList)
@@ -138,6 +149,13 @@ public class PrenotazioniHandler {
     }
 
     // metodo di filtro per intervallo di date del film
+
+    /**
+     * <p>Metodo filtro che cerca in base a un intervallo di date</p>
+     * @param start inizio intervallo di proiezione
+     * @param end fine intervallo di proiezione
+     * @return lista filtrata
+     */
     public LinkedList<Prenotazione> filtroData(String start, String end){
         LocalDateTime convStart = LocalDateTime.parse(start + " 00:00:00",this.formatter);
         LocalDateTime convEnd = LocalDateTime.parse(end+ " 00:00:00",this.formatter);

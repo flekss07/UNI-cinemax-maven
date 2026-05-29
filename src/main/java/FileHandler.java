@@ -53,8 +53,6 @@ public class FileHandler {
      */
     private final Path path;// percorso file csv proiezioni
 
-    private Random random; // da eliminare -----------------------
-
     /**
      * <p>Costruttore dei contenitori per gli oggetti proiezioni, user e prenotazioni, con relative date e orari nel file CSV corretto</p>
      * @param path percorso del file CSV
@@ -66,9 +64,6 @@ public class FileHandler {
         this.formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         this.localDateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         this.path = Paths.get("data",path); // imposta percorso file corretto
-
-
-        this.random= new Random(); //random
     }
 
     // metodo per caricare i dati delle proiezioni da csv

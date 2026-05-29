@@ -221,6 +221,11 @@ public class ProiezioniHandler {
         return false; // conferma di non aver trovato la prenotazione da modificare o che la data di quella trovata è precedente a quella attuale
     }
 
+    /**
+     * <p>Metodo per la cancellazione delle poriezioni</p>
+     * @param pr proiezione da cancellare
+     * @return risultato booleano per la riuscita e meno dell'operazione
+     */
     public boolean cancellaProj(Proiezioni pr){
         Iterator<Proiezioni> proIt = this.proiezioniList.iterator();// crea un iteratore della lista per poterla modificare mentre viene iterata (non si puo fare con foreach)
         while (proIt.hasNext()) {// continua a iterare la lista fino a che non arriva alla fine o non viene trovato un oggetto prenotazione
@@ -235,6 +240,13 @@ public class ProiezioniHandler {
     }
 
     //metodo che aggiorna i posti occupati per una proiezione
+
+    /**
+     * <p>Metodo per aggiornare i posti rimanenti per una proiezione</p>
+     * @param titolo titolo del film
+     * @param date data del film
+     * @param updateInt numero di posti da aggiungere o rimuovere al conteggio
+     */
     public void updatePostiProj(String titolo, LocalDateTime date,int updateInt){
         Iterator<Proiezioni> proIt = this.proiezioniList.iterator();// crea un iteratore della lista per poterla modificare mentre viene iterata (non si puo fare con foreach)
         boolean repeatFlag = true;

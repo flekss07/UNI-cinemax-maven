@@ -30,6 +30,10 @@ public class Menu {
      * <code>prenh</code>
      */
     private final PrenotazioniHandler prenh;
+    /**
+     * <p>Oggetto per la conversione delle date</p>
+     * <code>formatter</code>
+     */
     private final DateTimeFormatter formatter;
     /**
      * <p>Oggetto della classe user che salva le informazioni dell'utente quando accede con le sue credenziali</p>
@@ -818,9 +822,9 @@ public class Menu {
 
     /**
      * <p>Metodo per il proiezionista, che fa da interfaccia per le azioni disponibili</p>
-     * @param p
-     * @param titolo
-     * @param data
+     * @param p proiezione selezionata
+     * @param titolo titolo del film
+     * @param data data inizio proiezione
      */
     private void selezionaModificaPro(Proiezioni p, String titolo, LocalDateTime data){
         boolean repeat=true;
