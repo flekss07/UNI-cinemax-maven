@@ -30,7 +30,7 @@ public class Menu {
      * <code>prenh</code>
      */
     private final PrenotazioniHandler prenh;
-    private DateTimeFormatter formatter;
+    private final DateTimeFormatter formatter;
     /**
      * <p>Oggetto della classe user che salva le informazioni dell'utente quando accede con le sue credenziali</p>
      * <code>loggedUser</code>
