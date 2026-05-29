@@ -130,7 +130,7 @@ public class PrenotazioniHandler {
     public LinkedList<Prenotazione> searchPrenByTitle(String titolo){
         LinkedList<Prenotazione> foundList = new LinkedList<>(); // lista prenotazioni trovate
         for(Prenotazione p: this.prenList)
-            if(p.getTitolo().trim().toLowerCase().equals(titolo.trim().toLowerCase())) foundList.add(p);
+            if(p.getTitolo().contains(titolo.trim().toLowerCase())) foundList.add(p);
         return foundList; // ritorna una lista vuota se non trova prenotazioni associate
     }
 
