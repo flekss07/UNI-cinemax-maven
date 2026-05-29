@@ -842,7 +842,7 @@ public class Menu {
             if(this.ph.cancellaProj(p))
                 System.out.println("proiezione cancellata con successo");
             else
-                System.out.println("errore nella cancellazione della proiezione");
+                System.out.println("errore nella cancellazione della proiezione: controllare se ci sono prenotazioni assegnate");
     }
 
     /**
