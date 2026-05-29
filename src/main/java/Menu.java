@@ -58,13 +58,13 @@ public class Menu {
             switch (selector) {
                 case 0-> repeat=false; //close menu
                 case 1-> { //registrarsi
-
+                System.out.println("Adesso inizia  il processo di registrazione");
                     try {
                         this.userRegister();
                     } catch (Exception e) {
                         throw new RuntimeException(e);
                     }
-
+                this.puliziaMenu();
                 }
                 case 2 -> { //login
                     System.out.println("Inizio procedura di login");
