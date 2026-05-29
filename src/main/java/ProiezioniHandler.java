@@ -7,7 +7,7 @@ import java.util.LinkedList;
 import java.util.Scanner;
 
 /**
- * <H1>Classe che gestisce le operazioni relative alle proiezioni</H1>
+ * Classe che gestisce le operazioni relative alle proiezioni
  *
  * <p>Permette di aggiungere nuove proiezioni</p>
  * @author Piano Edoardo

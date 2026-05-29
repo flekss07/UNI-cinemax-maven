@@ -5,7 +5,7 @@ import java.util.Locale;
 import java.util.Scanner;
 
 /**
- * <H1>Classe che gestisce i dati degli user</H1>
+ * Classe che gestisce i dati degli user
  * @author Merzagora Mattia Renato
  * @author Ognissanti Elia
  * @author Piano Edoardo

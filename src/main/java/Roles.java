@@ -1,5 +1,5 @@
 /**
- * <H1>Classe contente i possibili ruoli degli utenti</H1>
+ * Classe contente i possibili ruoli degli utenti
  *
  * @author Scalone Lorenzo
  */

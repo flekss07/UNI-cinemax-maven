@@ -1,7 +1,7 @@
 import java.time.LocalDateTime;
 
 /**
- * <H1>Classe degli oggetti Prenotazione</H1>
+ * Classe degli oggetti Prenotazione
  *
  * @author Piano Edoardo
  */
