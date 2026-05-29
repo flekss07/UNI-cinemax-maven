@@ -1,29 +1,36 @@
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
+import java.util.Locale;
 import java.util.Scanner;
 
 /**
  * <h1>Classe che gestisce i dati degli user</h1>
- *
+ * @author Merzagora Mattia Renato
+ * @author Ognissanti Elia
+ * @author Piano Edoardo
+ * @author Scalone Lorenzo
  */
 public class UserHandler {
     /**
-     * LinkedList che gestisce i dati degli utenti
+     * <p>LinkedList che gestisce i dati degli utenti</p>
+     * <code>userList</code>
      */
     private LinkedList<User> userList;
     /**
-     * Oggetto di tipo FileHandler
+     * <p>Oggetto di tipo FileHandler</p>
+     * <code>fh</code>
      */
     private FileHandler fh;
     /**
-     *
+     * <p>Oggetto della classe localDateFormatter</p>
+     * <code>localDateFormatter</code>
      */
     private DateTimeFormatter localDateFormatter;
 
     //this.userList  = this.fh.getUserList();
     /**
-     *
+     * <p>Costruttore della classe, genera gli oggetti user</p>
      */
     public UserHandler() {
         this.localDateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -33,7 +40,7 @@ public class UserHandler {
 
     /*Funzione x registrare l'utente*/
     /**
-     * Costruttore per la registrazione di nuovi utenti
+     * <p>Costruttore per la registrazione di nuovi utenti</p>
      *
      * @param nome nome dell'utente
      * @param cognome cognome dell'utente
@@ -55,7 +62,7 @@ public class UserHandler {
 
     // sotto metodo per convertire la data da stringa a formato LocalDate
     /**
-     * Metodo che converte la data da stringa a formato LocalDate
+     * <p>Metodo che converte la data da stringa a formato LocalDate</p>
      * @param bdate data di nascita dell'utente
      * @return data convertita in LocalData
      */
@@ -68,8 +75,7 @@ public class UserHandler {
 
     //sotto metodo che fa il check della stringa
     /**
-     * Metodo generico per controllare se le stringhe inserite siano valide
-     *
+     * <p>Metodo generico per controllare se le stringhe inserite siano valide</p>
      * @return stringa inserita se valida
      */
     private String stringCheck() {
@@ -85,7 +91,7 @@ public class UserHandler {
 
     /* funzione per controllare se l'utente esiste già*/
     /**
-     * Metodo che controlla se il nome utente inserito è già stato utilizzato
+     * <p>Metodo che controlla se il nome utente inserito è già stato utilizzato</p>
      *
      * @param username nome utente inserito
      * @return u se il nome utente è valido
@@ -102,7 +108,7 @@ public class UserHandler {
     }
     //Esiste username e passa al controllo password
     /**
-     * Metodo che gestisce il login degli utenti
+     * <p>Metodo che gestisce il login degli utenti</p>
      *
      * @throws Exception errore durante il login
      */
@@ -118,7 +124,7 @@ public class UserHandler {
     }
     //Controlla la password in maniera ricorsiva
     /**
-     * Metodo che controlla ricorsivamente la password inserita dall'utente
+     * <p>Metodo che controlla ricorsivamente la password inserita dall'utente</p>
      *
      * @param u nome utente collegato alla password
      * @throws Exception errore durante il controllo della password
@@ -135,7 +141,7 @@ public class UserHandler {
             }
     }
     /**
-     * Metodo che si occupa della criptazione della password inserite dagli utenti
+     * <p>Metodo che si occupa della criptazione della password inserite dagli utenti</p>
      *
      * @param password password inserita dall'utente (password in chiaro)
      * @return password criptata
@@ -146,4 +152,14 @@ public class UserHandler {
         //encrypting della password
         return AESencrypt.encrypt(password);
     }
+
+    // metodo di filtro per nome e cognome
+    public String filtroNC (String nome, String cognome){
+        for (User u:userList){
+            if(u.getNome().toLowerCase().trim().equals(nome.toLowerCase().trim()) && u.getCognome().toLowerCase().trim().equals(cognome.toLowerCase().trim())) // se titolo trovato
+                return u.getUsername();
+        }
+        return null;
+    }
 }
+
