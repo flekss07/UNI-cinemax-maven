@@ -21,12 +21,15 @@ public class PrenotazioniHandler {
      */
     private FileHandler fh;
 
+    private DateTimeFormatter formatter;
+
     /**
      * <p>Costruttore degli oggetti prenotazione</p>
      */
     public PrenotazioniHandler(){
         this.fh = new FileHandler("prenotazioni.csv");
         this.prenList = this.fh.getPrenList();
+        this.formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     }
 
     //metodo che crea una nuova prenotazione
@@ -42,6 +45,7 @@ public class PrenotazioniHandler {
         Prenotazione p = new Prenotazione(username,titolo, date,id);
         this.prenList.add(p);
         this.fh.savePrenList(this.prenList);
+        this.formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     }
 
     //metodo di ricerca delle prenotazioni di uno user che ritorna una linkedlist con le prenotazioni trovate
@@ -130,5 +134,15 @@ public class PrenotazioniHandler {
         return foundList; // ritorna una lista vuota se non trova prenotazioni associate
     }
 
-
+    // metodo di filtro per intervallo di date del film
+    public LinkedList<Prenotazione> filtroData(String start, String end){
+        LocalDateTime convStart = LocalDateTime.parse(start + " 00:00:00",this.formatter);
+        LocalDateTime convEnd = LocalDateTime.parse(end+ " 00:00:00",this.formatter);
+        LinkedList<Prenotazione> filteredList = new LinkedList<>();
+        for (Prenotazione p:this.prenList){
+            if(p.getDate().isBefore(convEnd) && p.getDate().isAfter(convStart) || p.getDate().isEqual(convStart) || p.getDate().isEqual(convEnd))  // se interv date trovato
+                filteredList.add(p); // lo aggiunge alla linkedlist di oggetti trovati
+        }
+        return filteredList; // ritorna la lista o vuota se non trova nulla o con i valori filtrati
+    }
 }

@@ -630,12 +630,12 @@ public class Menu {
     private void bigliettaio(){
         boolean repeat = true;
         while(repeat){
-            System.out.println("0)Esci \n1)Cerca una proiezione \n2)Visualizza tutte le prenotazioni");
+            System.out.println("0)Esci \n1)Cerca una prenotazione \n2)Visualizza tutte le prenotazioni");
             int num = checkNumIn();
             switch (num){
                 case 0 -> repeat=false;
                 case 1 -> cercaPrenotazione();//metodo cerca prenotazione
-                case 2 -> this.prenh.visualizzaTuttePrenotazioni(); //aggiungere un metodo per visualizzare ogni prenotazione effettuata, magari differenziando tutte le prenotazioni in base alla proiezione
+                case 2 -> this.viewAllPren(); //aggiungere un metodo per visualizzare ogni prenotazione effettuata, magari differenziando tutte le prenotazioni in base alla proiezione
             }
         }
     }
@@ -651,7 +651,7 @@ public class Menu {
             case 1 -> this.prenNC();
             case 2 -> this.printPrenById();
             case 3 -> this.searchByTitle();
-            case 4 -> this.
+            case 4 -> this.searchByDate();
         }
 
         }
@@ -662,7 +662,9 @@ public class Menu {
         String nome=stringCheck();
         System.out.println("inserire il cognome: ");
         String cognome=stringCheck();
-        this.prenh.visualizzaPrenotazioni(uh.filtroNC(nome, cognome));
+        LinkedList<Prenotazione> foundP = this.prenh.visualizzaPrenotazioni(uh.filtroNC(nome, cognome));
+        for(Prenotazione p : foundP)
+            System.out.println(p.getId() + ", " + p.getTitolo() + ", " + p.getUsername() + ", " + p.getDate());
     }
 
     //metodo che cerca una prenotazione in base all'id
@@ -680,7 +682,24 @@ public class Menu {
             System.out.println(p.getId() + ", " + p.getTitolo() + ", " + p.getUsername() + ", " + p.getDate());
     }
 
-    // metodo che cerca una prenotazione in base al titolo
+    // metodo che cerca una prenotazione in base alla data
+    private void searchByDate(){
+        System.out.println("inserire prima data: ");
+        String start = this.inserireData();
+        System.out.println("inserire seconda data: ");
+        String end = this.inserireData();
+        LinkedList<Prenotazione> foundP = this.prenh.filtroData(start,end);
+        for(Prenotazione p : foundP)
+            System.out.println(p.getId() + ", " + p.getTitolo() + ", " + p.getUsername() + ", " + p.getDate());
+    }
+
+    // metodo che stampa tutte le prenotazioni
+    private void viewAllPren(){
+        LinkedList<Prenotazione> foundP = this.prenh.visualizzaTuttePrenotazioni();
+        for(Prenotazione p : foundP)
+            System.out.println(p.getId() + ", " + p.getTitolo() + ", " + p.getUsername() + ", " + p.getDate());
+    }
+
 
     /**
      * <p>Metodo che permette di cercare le proiezioni</p>
