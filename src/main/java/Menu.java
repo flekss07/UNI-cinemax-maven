@@ -1044,4 +1044,13 @@ public class Menu {
         }
         return num;
     }
+
+    //sotto metodo per la pulizia dei menu
+
+    /**
+     * <p>Metodo che pulisce i menu una volta passati a un menu successivo o precedente</p>
+     */
+    private void puliziaMenu(){
+        System.out.println("\n".repeat(50));
+    }
 }
