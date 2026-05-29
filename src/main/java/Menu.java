@@ -584,7 +584,7 @@ public class Menu {
 
     //metodo clienti
     /**
-     * <p>Metodo che simula il menu dei cliente</p>
+     * <p>Metodo che simula il menu dei clienti</p>
      */
     private void client(){
         boolean repeat = true;
