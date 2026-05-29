@@ -69,9 +69,14 @@ public class Menu {
                 case 2 -> { //login
                     System.out.println("Inizio procedura di login");
                     this.userLogin();
+                    this.puliziaMenu();
                 }
-                case 3-> this.guest();
+                case 3->{
+                    this.guest();
+                this.puliziaMenu();
+                }
                 default-> System.out.println("Qualcosa è andato storto...");
+
             }
         }
     }
