@@ -123,4 +123,6 @@ public class PrenotazioniHandler {
             if(p.getTitolo().trim().toLowerCase().equals(titolo.trim().toLowerCase())) foundList.add(p);
         return foundList; // ritorna una lista vuota se non trova prenotazioni associate
     }
+
+
 }

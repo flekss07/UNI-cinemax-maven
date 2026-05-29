@@ -466,7 +466,7 @@ public class Menu {
         boolean repeat = true;
         while(repeat){
             System.out.println("0)Esci \n1)Cercare una proiezione \n2)Visualizza le mie prenotazioni ");
-            int num = numbCheck();
+            int num = checkNumIn();
             switch (num){
                 case 0 -> repeat=false;
                 case 1 -> {
@@ -498,7 +498,7 @@ public class Menu {
         boolean repeat = true;
         while(repeat){
             System.out.println("0)Esci \n1)Cerca una proiezione \n2)Visualizza tutte le prenotazioni");
-            int num = numbCheck();
+            int num = checkNumIn();
             switch (num){
                 case 0 -> repeat=false;
                 case 1 -> cercaPrenotazione();//metodo cerca prenotazione
@@ -517,8 +517,8 @@ public class Menu {
             case 0 -> repeat=false;
             case 1 -> this.prenNC();
             case 2 -> this.printPrenById();
-            case 3 -> {}
-            case 4 -> {}
+            case 3 -> this.searchByTitle();
+            case 4 -> this.
         }
 
         }
@@ -537,6 +537,14 @@ public class Menu {
         System.out.println("inserire id della prenotazione da cercare");
         Prenotazione foundP = this.prenh.getPrenByid(this.stringCheck()); // prende la prenotazione
         System.out.println(foundP.getId() + ", " + foundP.getUsername() + ", " + foundP.getTitolo() + ", " + foundP.getDate());
+    }
+
+    //metodo che le prenotazioni per lo stesso titolo
+    private void searchByTitle(){
+        System.out.println("inserire il titolo: ");
+        LinkedList<Prenotazione> foundP = this.prenh.searchPrenByTitle(this.stringCheck());
+        for(Prenotazione p : foundP)
+            System.out.println(p.getId() + ", " + p.getTitolo() + ", " + p.getUsername() + ", " + p.getDate());
     }
 
     // metodo che cerca una prenotazione in base al titolo
@@ -787,7 +795,6 @@ public class Menu {
         }
     }
 
-
     //metodo che cancella le prenotazioni
     private void cancellaPrenotazione(LinkedList<Prenotazione> foundList){
         System.out.println("inserisci indice prenotazione da cancellare");
@@ -820,6 +827,4 @@ public class Menu {
         }
         return num;
     }
-
-
 }
