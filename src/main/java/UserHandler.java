@@ -132,8 +132,7 @@ public class UserHandler {
     private Boolean  passcheck(User u)throws Exception{
         System.out.println("Inserire la password");
         String tmp = AESencrypt.encrypt(this.stringCheck());
-            if (tmp.equals(u.getPassword())) {
-                System.out.println("Login effettuato con successo"); // da rimuovere
+            if (tmp.equals(u.getPassword())) {// da rimuovere
                 return true;
             } else {
                 System.out.println("Password errata, riprova");
