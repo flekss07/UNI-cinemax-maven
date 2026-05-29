@@ -98,7 +98,7 @@ public class FileHandler {
         int etaMin = Integer.parseInt(record.get("eta_minima"));
         float prezzo = Float.parseFloat(record.get("prezzo_biglietto"));
         int posti = Integer.parseInt(record.get("posti_occupati"));
-        Proiezioni p = new Proiezioni(genere, titolo, regista, date, durata, etaMin, anno, prezzo,0); // crea oggetto proiezioni
+        Proiezioni p = new Proiezioni(genere, titolo, regista, date, durata, etaMin, anno, prezzo,posti); // crea oggetto proiezioni
         this.proList.add(p); // aggiunge oggetto proiezioni alla linkedlist delle proiezioni
     }
 

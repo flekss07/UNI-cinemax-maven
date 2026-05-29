@@ -837,7 +837,7 @@ public class Menu {
     private void cancellaProiezione(LinkedList<Proiezioni> foundP){
         System.out.println("inserire l'indice della proiezione da modificare");
         int index = checkNumIn();
-        Proiezioni p = foundP.get(index);
+        Proiezioni p = foundP.get(index-1);
         if(!this.cercaExPren(p))
             if(this.ph.cancellaProj(p))
                 System.out.println("proiezione cancellata con successo");
