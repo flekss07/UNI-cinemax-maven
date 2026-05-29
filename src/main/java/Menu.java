@@ -948,7 +948,8 @@ public class Menu {
                 ", " + p.getAnno() +
                 ", " + p.getDurata() +
                 ", " + p.getEtaMin() +
-                ", " + p.getPrezzo();
+                ", " + p.getPrezzo() +
+                ", posti occupati: " + p.getPosti() + "/200";
     }
 
     /**
@@ -957,8 +958,13 @@ public class Menu {
      */
     private void effettuaPrenotazione(Proiezioni p){
         //UUID genera un ID univoco
-        this.prenh.createBooking(this.loggedUser.getUsername(), p.getTitolo(), p.getData(), UUID.randomUUID().toString());
-        System.out.println("prenotazione effettuata");
+        if(p.getPosti() < 200) { // permette di prenotare solo se ci sono posti liberi
+            this.prenh.createBooking(this.loggedUser.getUsername(), p.getTitolo(), p.getData(), UUID.randomUUID().toString());
+            this.ph.updatePostiProj(p.getTitolo(), p.getData(), 1);
+            System.out.println("prenotazione effettuata");
+        }
+        else
+            System.out.println("non ci sono posti disponibili per questa proiezione");
     }
 
     /**
@@ -1039,8 +1045,10 @@ public class Menu {
         int index = this.checkNumIn();
         Prenotazione pToDelete = foundList.get(index-1);
         Boolean result = this.prenh.eliminaPrenotazione(pToDelete.getId()); // elimina prenotazione da file csv e lista globale
-        if(result)
+        if(result) {
             System.out.println("prenotazione rimossa con successo");
+            this.ph.updatePostiProj(pToDelete.getTitolo(),pToDelete.getDate(),-1);
+        }
         else
             System.out.println("errore nel cancellamento della prenotazione: \nnon trovata o data della proiezione successiva a quella odierna,\nriprovare");
     }

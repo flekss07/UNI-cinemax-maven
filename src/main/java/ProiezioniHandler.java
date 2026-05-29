@@ -233,4 +233,18 @@ public class ProiezioniHandler {
         }
         return false;
     }
+
+    //metodo che aggiorna i posti occupati per una proiezione
+    public void updatePostiProj(String titolo, LocalDateTime date,int updateInt){
+        Iterator<Proiezioni> proIt = this.proiezioniList.iterator();// crea un iteratore della lista per poterla modificare mentre viene iterata (non si puo fare con foreach)
+        boolean repeatFlag = true;
+        while (proIt.hasNext() && repeatFlag) {// continua a iterare la lista fino a che non arriva alla fine o non viene trovato un oggetto prenotazione
+            Proiezioni p = proIt.next(); // prende oggetto successivo per check
+            if(p.getTitolo().equals(titolo) && p.getData().equals(date)) {
+                p.setPosti(p.getPosti()+updateInt); // aggiunge tanti posti occupati quanti updateInt
+                this.fh.saveProList(this.proiezioniList);
+                repeatFlag = false; // ferma ripetizione
+            }
+        }
+    }
 }
