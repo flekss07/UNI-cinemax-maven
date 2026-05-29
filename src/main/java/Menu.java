@@ -330,6 +330,22 @@ public class Menu {
         }
     }
 
+    //metodo che fa il check dell'anno per le modifice e consente di inserire un anno dopo quello corrente
+    private int checkAnno(){
+        String str = this.stringCheck();
+        try {
+            int numInt = Integer.parseInt(str);
+            if (numInt <= Year.now().getValue()-200) {
+                System.out.println("Anno non valido");
+                return this.checkAnno();
+            }
+            return numInt;
+        } catch (NumberFormatException e) {
+            System.out.println("Quello che hai inserito non è un numero. Riprova");
+            return this.checkAnno();
+        }
+    }
+
     /**
      * <p>Metodo che controlla la data di nascita inserita dall'utente</p>
      * @return restituisce la data inserita con il formato anno-mese-giorno
@@ -418,7 +434,7 @@ public class Menu {
             valMesi = String.valueOf(mesi);
         }
         System.out.println("Inserire l'anno della proiezione");
-        String anno = String.valueOf(this.numbcheckeranno());
+        String anno = String.valueOf(this.checkAnno());
         System.out.println("Inserire l'ora di  inizio del film:");
         String ore = String.valueOf(this.numbcheckore());
         System.out.println("Inserire i minuti: ");
@@ -692,9 +708,9 @@ public class Menu {
     // metodo che cerca una prenotazione in base alla data
     private void searchByDate(){
         System.out.println("inserire prima data: ");
-        String start = this.inserireData();
+        String start = this.inserireDataStr();
         System.out.println("inserire seconda data: ");
-        String end = this.inserireData();
+        String end = this.inserireDataStr();
         LinkedList<Prenotazione> foundP = this.prenh.filtroData(start,end);
         for(Prenotazione p : foundP)
             System.out.println(p.getId() + ", " + p.getTitolo() + ", " + p.getUsername() + ", " + p.getDate());
@@ -797,7 +813,7 @@ public class Menu {
                 }//modifica eta minima
                 case 5 -> { //modifica data
                     System.out.println("inserire la nuova data");
-                    p.setData(LocalDateTime.parse(this.inserireData(),this.formatter));
+                    p.setData(LocalDateTime.parse(this.inserireDataStr(),this.formatter));
                 }
                 case 6 -> { //modifica prezzo
                     System.out.println("inserire il nuovo prezzo");
@@ -878,7 +894,7 @@ public class Menu {
                 }
                 case 3 -> {
                     System.out.println("Inserire le due date, prima quella iniziale e poi quella finale: ");
-                    proiezioniList=this.ph.filtroData(proiezioniList,this.inseriredata(),this.inserireData());
+                    proiezioniList=this.ph.filtroData(proiezioniList,this.inseriredata(),this.inserireDataStr());
                 }
                 case 4 -> {
                     System.out.println("Inserire l'autore del film: ");
@@ -898,14 +914,22 @@ public class Menu {
      * <p>Metodo che si occupa di richiedere e controllare la data inserita</p>
      * @return restituisce la data inserita nel formato: anno-mese-giorno
      */
-    private String inserireData(){
+    private String inserireDataStr(){
         System.out.println("inserire anno: ");
-        int anno = this.numbcheckeranno();
+        int anno = this.checkAnno();
         System.out.println("inserire mese: ");
-        int mese = this.numbcheckermesi();
+        String mese = this.dateDigitCheck(this.numbcheckermesi());
         System.out.println("inserire giorno: ");
-        int giorno = this.numbcheckergiorni();
+        String giorno = this.dateDigitCheck(this.numbcheckergiorni());
         return anno+"-"+mese+"-"+giorno;
+    }
+
+    // sotto metodo che controlla che il mese e il giorno siano a due cifre
+    private String dateDigitCheck(int date){
+        if (date < 10)
+            return "0"+date;
+        else
+            return ""+date;
     }
 
 
@@ -1058,4 +1082,6 @@ public class Menu {
     private void puliziaMenu(){
         System.out.println("\n".repeat(50));
     }
+
+
 }
