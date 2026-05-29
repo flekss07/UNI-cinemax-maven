@@ -4,10 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Year;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.Scanner;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.StreamSupport;
 
 public class Menu {
@@ -467,14 +464,14 @@ public class Menu {
     private void client(){
         boolean repeat = true;
         while(repeat){
-            System.out.println("1)Cercare una proiezione \n2)Visualizza le mie prenotazioni \n3)Torna a menu precedente");
+            System.out.println("0)Esci \n1)Cercare una proiezione \n2)Visualizza le mie prenotazioni ");
             int num = numbCheck();
             switch (num){
+                case 0 -> repeat=false;
                 case 1 -> {
                     this.cercaProiezioni();
                 }
                 case 2 -> this.visualizzaPrenotazioni();
-                case 3 -> repeat=false;
                 default -> System.out.println("Qualcosa è andato storto...");
             }
         }
@@ -661,7 +658,7 @@ public class Menu {
         boolean repeat=true;
         LinkedList<Proiezioni> proiezioniList = this.ph.getProiezioniList();
         while (repeat){
-            System.out.println("scegliere il filtro delle proiezioni: \n0)Applica i filtri selezionati \n1)Titolo \n2)Genere \n3)Data \n4)Autore \n5)Costo del biglietto");
+            System.out.println("scegliere il filtro delle proiezioni: \n0)Applica i filtri ed Esci \n1)Titolo \n2)Genere \n3)Data \n4)Autore \n5)Costo del biglietto");
             int num=Integer.parseInt(this.stringCheck());
             switch(num){
                 case 0 -> repeat=false;
@@ -813,4 +810,6 @@ public class Menu {
         }
         return num;
     }
+
+
 }
