@@ -2,7 +2,7 @@ import java.util.Base64;
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 /**
- * <h1>Classe di cifratura delle password</h1>
+ * <H1>Classe di cifratura delle password</H1>
  * Classe che si occupa della cifratura e la decifratura delle password,
  * sfruttando l'algoritmo AES(Advanced Encryption Standard)
  *

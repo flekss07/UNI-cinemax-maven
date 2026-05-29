@@ -1,7 +1,7 @@
 import java.time.LocalDate;
 
 /**
- * <h1>Classe che si occupa della creazione degli oggetti utente</h1>
+ * <H1>Classe che si occupa della creazione degli oggetti utente</H1>
  * @author Piano Edoardo
  */
 public class User {
