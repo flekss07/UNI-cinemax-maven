@@ -780,7 +780,7 @@ public class Menu {
     private void modificaProiezione(LinkedList<Proiezioni> foundP){
         System.out.println("inserire l'indice della proiezione da modificare");
         int index = checkNumIn();
-        Proiezioni p =foundP.get(index);
+        Proiezioni p = foundP.get(index-1);
         if(!this.cercaExPren(p))
             this.selezionaModificaPro(p,p.getTitolo(),p.getData());
     }
