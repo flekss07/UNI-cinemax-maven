@@ -951,7 +951,7 @@ public class Menu {
             }
             int count = 1;
             for (Prenotazione tmp : foundList)
-                System.out.println(count++ + ") " + tmp.getUsername() + ", " + tmp.getTitolo() + ", " + tmp.getDate());
+                System.out.println(count++ + ") " + tmp.getUsername() + ", " + tmp.getTitolo() + ", " + tmp.getDate()+", "+ tmp.getId());
             System.out.println("scegliere cosa fare:\n1)modificare una prenotazione\n2)cancellare una prenotazione\n0)uscire");
             switch (this.checkNumIn()) {
                 case 1 -> this.modificaPrenotazione(foundList);
