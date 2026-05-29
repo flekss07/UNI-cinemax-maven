@@ -20,7 +20,10 @@ public class PrenotazioniHandler {
      * <code>fh</code>
      */
     private FileHandler fh;
-
+    /**
+     * <p>formatter per convertire la data</p>
+     * <code>formatter</code>
+     */
     private DateTimeFormatter formatter;
 
     /**

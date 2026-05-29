@@ -331,6 +331,11 @@ public class Menu {
     }
 
     //metodo che fa il check dell'anno per le modifice e consente di inserire un anno dopo quello corrente
+
+    /**
+     * <p>Metodo che permette di leggere in input l'anno per gli anni futuri</p>
+     * @return esegue delle chiamate ricorsive nel caso l'anno non sia valido oppure l'input non sia un numero, nel caso in cui l'anno è valido restituisce il numero
+     */
     private int checkAnno(){
         String str = this.stringCheck();
         try {
@@ -664,6 +669,10 @@ public class Menu {
     }
 
     //metodo cerca prenotazione
+
+    /**
+     * <p>Metodo che permette hai bigliettaio di cercare una prenotazione cercando per un campo scelto</p>
+     */
     private void cercaPrenotazione(){
         boolean repeat = true;
         while(repeat){
@@ -680,6 +689,9 @@ public class Menu {
         }
     }
 
+    /**
+     * <p>Metodo filtro per nome e cognome per le prenotaazioni</p>
+     */
     private void prenNC (){
         System.out.println("inserire il nome: ");
         String nome=stringCheck();
@@ -691,6 +703,10 @@ public class Menu {
     }
 
     //metodo che cerca una prenotazione in base all'id
+
+    /**
+     * <p>Metodo filtro per la ricerca dell id per le prenotazioni</p>
+     */
     private void printPrenById(){
         System.out.println("inserire id della prenotazione da cercare");
         Prenotazione foundP = this.prenh.getPrenByid(this.stringCheck()); // prende la prenotazione
@@ -698,6 +714,10 @@ public class Menu {
     }
 
     //metodo che le prenotazioni per lo stesso titolo
+
+    /**
+     * <p>Metodo filtro per la ricerca tramite titolo per le prenotazioni</p>
+     */
     private void searchByTitle(){
         System.out.println("inserire il titolo: ");
         LinkedList<Prenotazione> foundP = this.prenh.searchPrenByTitle(this.stringCheck());
@@ -706,6 +726,10 @@ public class Menu {
     }
 
     // metodo che cerca una prenotazione in base alla data
+
+    /**
+     * <p>Metodo filtro per la ricerca delle prenotazioni tramite data</p>
+     */
     private void searchByDate(){
         System.out.println("inserire prima data: ");
         String start = this.inserireDataStr();
@@ -717,6 +741,10 @@ public class Menu {
     }
 
     // metodo che stampa tutte le prenotazioni
+
+    /**
+     * <p>Metodo che permette di visualizzare tutte le prenotazioni</p>
+     */
     private void viewAllPren(){
         LinkedList<Prenotazione> foundP = this.prenh.visualizzaTuttePrenotazioni();
         for(Prenotazione p : foundP)
@@ -743,6 +771,9 @@ public class Menu {
         }
     }
 
+    /**
+     * <p>Metodo che permette di cercare le proiezione come guest</p>
+     */
     private void cercaProiezioniGuest(){
         boolean repeat = true;
         while(repeat){
@@ -834,6 +865,10 @@ public class Menu {
 
     }
 
+    /**
+     * <p>Metodo che permette hai proiezionisti di cancellare una proiezione</p>
+     * @param foundP lista delle proiezioni
+     */
     private void cancellaProiezione(LinkedList<Proiezioni> foundP){
         System.out.println("inserire l'indice della proiezione da modificare");
         int index = checkNumIn();
@@ -925,6 +960,12 @@ public class Menu {
     }
 
     // sotto metodo che controlla che il mese e il giorno siano a due cifre
+
+    /**
+     * <p>Metodo che controlla la scrittura dei mesi e giorni (scritti con due cifre)</p>
+     * @param date data in ingresso
+     * @return se input minore di 10 viene aggiunto uno zero davanti all'input dell'utente
+     */
     private String dateDigitCheck(int date){
         if (date < 10)
             return "0"+date;
