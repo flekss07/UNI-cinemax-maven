@@ -325,6 +325,7 @@ public class Menu {
         String anno = String.valueOf(this.numbcheckeranno());
         System.out.println("Inserire l'ora di  inizio del film:");
         String ore = String.valueOf(this.numbcheckore());
+        System.out.println("Inserire i minuti: ");
         String minuti = String.valueOf(this.numbcheckmin());
         return anno + "-" + valMesi + "-" + valGiorni+" "+ore+":"+minuti+":00";
 
@@ -439,8 +440,8 @@ public class Menu {
         this.loggedUser=null;
         boolean repeat = true;
         while (repeat) {
-            System.out.println("\n0)Torna a menu precedente 1)Cercare una proiezione \n2)Eseguire il LOGIN\n3)Eseguire una registrazione");
-            int num = numbCheck();
+            System.out.println("\n0)Torna a menu precedente \n1)Cercare una proiezione \n2)Eseguire il LOGIN\n3)Eseguire una registrazione");
+            int num = this.checkNumIn();
             switch (num) {
                 case 0 -> repeat=false;
                 case 1 -> cercaProiezioniGuest();
@@ -514,8 +515,8 @@ public class Menu {
         int num=checkNumIn();
         switch (num){
             case 0 -> repeat=false;
-            case 1 -> prenNC();
-            case 2 -> {}
+            case 1 -> this.prenNC();
+            case 2 -> this.printPrenById();
             case 3 -> {}
             case 4 -> {}
         }
@@ -530,6 +531,15 @@ public class Menu {
         String cognome=stringCheck();
         this.prenh.visualizzaPrenotazioni(uh.filtroNC(nome, cognome));
     }
+
+    //metodo che cerca una prenotazione in base all'id
+    private void printPrenById(){
+        System.out.println("inserire id della prenotazione da cercare");
+        Prenotazione foundP = this.prenh.getPrenByid(this.stringCheck()); // prende la prenotazione
+        System.out.println(foundP.getId() + ", " + foundP.getUsername() + ", " + foundP.getTitolo() + ", " + foundP.getDate());
+    }
+
+    // metodo che cerca una prenotazione in base al titolo
 
     private void cercaProiezioni(){
         boolean repeat= true;

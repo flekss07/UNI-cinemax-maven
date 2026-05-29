@@ -83,7 +83,6 @@ public class PrenotazioniHandler {
         return false; // conferma di non aver trovato la prenotazione da rimuovere
     }
 
-    //metodo che modifica una prenotazione
 
     /**
      * Metodo che si occupa della modifica della prenotazione
@@ -109,4 +108,19 @@ public class PrenotazioniHandler {
 
     //metodo getter della linkedlist
     public LinkedList<Prenotazione> getPrenList(){return this.prenList;}
+
+    //metodo che restituisce una prenotazione per codice
+    public Prenotazione getPrenByid(String id){
+        for(Prenotazione p : this.prenList)
+            if (p.getId().equals(id.trim())) return p;
+        return null;
+    }
+
+    //metodo che cerca una prenotazione in base al titolo
+    public LinkedList<Prenotazione> searchPrenByTitle(String titolo){
+        LinkedList<Prenotazione> foundList = new LinkedList<>(); // lista prenotazioni trovate
+        for(Prenotazione p: this.prenList)
+            if(p.getTitolo().trim().toLowerCase().equals(titolo.trim().toLowerCase())) foundList.add(p);
+        return foundList; // ritorna una lista vuota se non trova prenotazioni associate
+    }
 }
