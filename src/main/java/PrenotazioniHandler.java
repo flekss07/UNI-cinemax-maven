@@ -25,8 +25,6 @@ public class PrenotazioniHandler {
         this.prenList = this.fh.getPrenList();
     }
 
-    //metodo che crea una nuova prenotazione
-
     /**
      * Metodo che si occupa di creare una prenotazione
      *
@@ -56,6 +54,14 @@ public class PrenotazioniHandler {
         return foundList; // ritorna una lista vuota se non trova prenotazioni associate
     }
 
+    //metodo per visualizzare tutte le prenotazioni effettuate, unica per il BIGLIETTAIO
+    public LinkedList<Prenotazione> visualizzaTuttePrenotazioni(){
+        LinkedList<Prenotazione> foundList = new LinkedList<>(); // lista prenotazioni trovate
+        for(Prenotazione p: this.prenList)
+            foundList.add(p);
+        return foundList; // ritorna una lista vuota se non trova prenotazioni associate
+    }
+
     //metodo di cancellamento di una prenotazione
 
     /**
@@ -77,7 +83,6 @@ public class PrenotazioniHandler {
         return false; // conferma di non aver trovato la prenotazione da rimuovere
     }
 
-    //metodo che modifica una prenotazione
 
     /**
      * Metodo che si occupa della modifica della prenotazione
@@ -86,12 +91,13 @@ public class PrenotazioniHandler {
      * @param date data della prenotazione
      * @return conferma la riuscita della modifica o meno della prenotazione
      */
-    public boolean modificaPrenotazione(String id, LocalDateTime date){
-        if(!date.isAfter(LocalDateTime.now())) return false; // guard colse che fa uscire dal metodo se la data inserita è precedente a quella attuale
+    public boolean modificaPrenotazione(String id, LocalDateTime date) {
+        if (!date.isAfter(LocalDateTime.now()))
+            return false; // guard colse che fa uscire dal metodo se la data inserita è precedente a quella attuale
         Iterator<Prenotazione> prenIt = this.prenList.iterator();// crea un iteratore della lista per poterla modificare mentre viene iterata (non si puo fare con foreach)
-        while (prenIt.hasNext()){// continua a iterare la lista fino a che non arriva alla fine o non viene trovato un oggetto prenotazione
+        while (prenIt.hasNext()) {// continua a iterare la lista fino a che non arriva alla fine o non viene trovato un oggetto prenotazione
             Prenotazione p = prenIt.next(); // prende oggetto successivo per check
-            if(p.getId().equals(id) && p.getDate().isAfter(LocalDateTime.now())) { // solo se la data di PROIEZIONE è gia passata
+            if (p.getId().equals(id) && p.getDate().isAfter(LocalDateTime.now())) {
                 p.setDate(date); // modifica la data della prenotazione
                 this.fh.savePrenList(this.prenList); // salva cambiamento
                 return true; // conferma modifica
@@ -99,4 +105,24 @@ public class PrenotazioniHandler {
         }
         return false; // conferma di non aver trovato la prenotazione da modificare o che la data di quella trovata è precedente a quella attuale
     }
+
+    //metodo getter della linkedlist
+    public LinkedList<Prenotazione> getPrenList(){return this.prenList;}
+
+    //metodo che restituisce una prenotazione per codice
+    public Prenotazione getPrenByid(String id){
+        for(Prenotazione p : this.prenList)
+            if (p.getId().equals(id.trim())) return p;
+        return null;
+    }
+
+    //metodo che cerca una prenotazione in base al titolo
+    public LinkedList<Prenotazione> searchPrenByTitle(String titolo){
+        LinkedList<Prenotazione> foundList = new LinkedList<>(); // lista prenotazioni trovate
+        for(Prenotazione p: this.prenList)
+            if(p.getTitolo().trim().toLowerCase().equals(titolo.trim().toLowerCase())) foundList.add(p);
+        return foundList; // ritorna una lista vuota se non trova prenotazioni associate
+    }
+
+
 }

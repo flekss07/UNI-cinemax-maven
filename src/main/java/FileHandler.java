@@ -100,11 +100,9 @@ FileHandler {
         int etaMin = Integer.parseInt(record.get("eta_minima"));
         float prezzo = Float.parseFloat(record.get("prezzo_biglietto"));
         int posti = Integer.parseInt(record.get("posti_occupati"));
-        Proiezioni p = new Proiezioni(genere, titolo, regista, date, durata, etaMin, anno, prezzo,posti); // crea oggetto proiezioni
+        Proiezioni p = new Proiezioni(genere, titolo, regista, date, durata, etaMin, anno, prezzo,0); // crea oggetto proiezioni
         this.proList.add(p); // aggiunge oggetto proiezioni alla linkedlist delle proiezioni
     }
-
-    
 
     // sotto metodo per convertire le stringhe in formato Date
 
@@ -222,7 +220,7 @@ FileHandler {
         String username = record.get("username");
         LocalDate dataDiNascita =  LocalDate.parse(record.get("data_di_nascita")); // converte la data di nascita in formato date
         String indirizzo = record.get("indirizzo");
-        Roles ruolo = Roles.CLIENTE;
+        Roles ruolo = Roles.valueOf(record.get("ruolo"));
         User u = new User(nome,cognome,password,username,dataDiNascita,indirizzo,ruolo); // crea nuovo oggetto user con i dati
         this.userList.add(u); // aggiunge user alla linkedlist dedicata
     }

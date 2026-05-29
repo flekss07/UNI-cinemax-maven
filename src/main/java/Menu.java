@@ -1,27 +1,33 @@
+import javax.management.relation.Role;
 import java.awt.desktop.AboutEvent;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.Year;
-import java.util.LinkedList;
-import java.util.Scanner;
-import java.util.UUID;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
+import java.util.stream.StreamSupport;
 
 public class Menu {
     private final UserHandler uh;
     private final ProiezioniHandler ph ;
     private final PrenotazioniHandler prenh;
+    private DateTimeFormatter formatter;
     private User loggedUser;
 
     public Menu() { //costruzione oggetto classe userhandler
         this.uh = new UserHandler();
         this.ph= new ProiezioniHandler();
         this.prenh= new PrenotazioniHandler();
+        this.formatter = DateTimeFormatter.ofPattern("yy-MM-dd");
     }
 
     public void menuSelect() { //metodo che crea il menu
         boolean repeat=true;
         while (repeat) {
-            System.out.println("Inserire il numero corrispondente alla funzione per attivarla\n1)registrarsi\n2)effettuare il login\n3)Continuare come quest \n4)Uscire dal programma");
-            int selector = this.numbCheck();
+            System.out.println("Inserire il numero corrispondente alla funzione per attivarla \n0)Uscire dal programma \n1)registrarsi\n2)effettuare il login\n3)Continuare come guest ");
+            int selector = this.checkNumIn();
             switch (selector) {
+                case 0-> repeat=false; //close menu
                 case 1-> { //registrarsi
                     try {
                         this.userRegister();
@@ -34,17 +40,14 @@ public class Menu {
                     this.userLogin();
                 }
                 case 3-> this.guest();
-                case 4-> repeat=false; //close menu
                 default-> System.out.println("Qualcosa è andato storto...");
             }
         }
-
-
     }
 
     public void addProiezioni() {
         //inserire il genere del film
-        Genres genere = this.SelezioneGenere();
+        Genres genere = this.selezioneGenere();
         //inserire il titolo
         System.out.println("Inserire il Titolo");
         String titolo = this.stringCheck();
@@ -66,9 +69,11 @@ public class Menu {
         System.out.println("Inserire il prezzo del film");
         float prezzo = this.priceCheck();
         this.ph.proiezionicreator(genere, titolo, regista, dataProiezioni,durata, etaMin, uscita, prezzo,0);
+        System.out.println("proiezione aggiunta");
     }
-//funzione x selezione genere
-    private Genres SelezioneGenere() {
+
+    //funzione x selezione genere
+    private Genres selezioneGenere() {
         System.out.println("Inserire il genere inserendo il numerino assegnato");
         System.out.println("ID\tGENERE");
         System.out.println("─────────────────");
@@ -92,7 +97,7 @@ public class Menu {
             case 10 -> genere = Genres.Thriller;
             default -> {
                 System.out.println("Qualcosa è andato storto, riprova");
-                yield this.SelezioneGenere();
+                yield this.selezioneGenere();
             }
         };
     }
@@ -178,15 +183,13 @@ public class Menu {
         System.out.println("selezionare ruolo:\n1)cliente\n2)proiezionista\n3)bibliettaio ");
         int choice = Integer.parseInt(this.stringCheck());
         switch (choice) {
-            case 1:
-                return Roles.CLIENTE;
-            case 2:
-                return Roles.PROIEZIONISTA;
-            case 3:
-                return Roles.BIGLIETTAIO;
-            default:
+            case 1 -> {return Roles.CLIENTE;}
+            case 2 -> {return Roles.PROIEZIONISTA;}
+            case 3 -> {return Roles.BIGLIETTAIO;}
+            default -> {
                 System.out.println("input non valido, riprovare");
                 return null;
+            }
         }
     }
 
@@ -233,7 +236,7 @@ public class Menu {
         try {
             int numInt = Integer.parseInt(str);
             if (numInt <= Year.now().getValue()-200) {
-                System.out.println("Anno di nascita non valido");
+                System.out.println("Anno non valido");
                 return numbcheckeranno();
             }
             if (numInt > Year.now().getValue()) {
@@ -288,8 +291,8 @@ public class Menu {
         try {
            User user=this.uh.loginUser(); //chiedo all'utente di loggare e salva l'utente se lo trova
            if(user!=null) {
-               loggedUser = user;
-               System.out.println("Login effettuato come "+ loggedUser.getUsername());
+               this.loggedUser = user;
+               System.out.println("Login effettuato come "+ this.loggedUser.getUsername());
                this.userMenu();
            }
            else
@@ -300,7 +303,6 @@ public class Menu {
             };
         }
     }
-
 
     private String dataproiezioni() {
         System.out.println("Inserire il giorno della proiezione");
@@ -323,8 +325,9 @@ public class Menu {
         String anno = String.valueOf(this.numbcheckeranno());
         System.out.println("Inserire l'ora di  inizio del film:");
         String ore = String.valueOf(this.numbcheckore());
+        System.out.println("Inserire i minuti: ");
         String minuti = String.valueOf(this.numbcheckmin());
-        return anno + "-" + valMesi + "-" + valGiorni+" "+ore+":"+minuti;
+        return anno + "-" + valMesi + "-" + valGiorni+" "+ore+":"+minuti+":00";
 
     }
     private int numbcheckmin(){
@@ -389,11 +392,10 @@ public class Menu {
         }
        }
     }
-    private int etaCheck(){
-        String str = this.stringCheck();
+    private int etaCheck(){ //da ricontrollare
         try{
-            int etaMinInt = Integer.parseInt(str);
-            if (etaMinInt >= 0) {
+            int etaMinInt = this.checkNumIn();
+            if (etaMinInt > 0) {
                 if (etaMinInt >= 18) {
                     System.out.println("L'eta inserita supera la maggiore eta, il limite sarà impostato a 18");
                     etaMinInt = 18;
@@ -435,13 +437,14 @@ public class Menu {
 
     //metodo guest
     public void guest() {
+        this.loggedUser=null;
         boolean repeat = true;
         while (repeat) {
-            System.out.println("1)Cercare una proiezione \n2)Eseguire il LOGIN\n3)Eseguire una registrazione\n4)Torna a menu precedente");
-            int num = numbCheck();
+            System.out.println("\n0)Torna a menu precedente \n1)Cercare una proiezione \n2)Eseguire il LOGIN\n3)Eseguire una registrazione");
+            int num = this.checkNumIn();
             switch (num) {
-                case 1 -> {//aggiungere metodo di ricerca proiezione
-                }
+                case 0 -> repeat=false;
+                case 1 -> cercaProiezioniGuest();
                 case 2 -> {
                     System.out.println("Inizio procedura di login");
                     this.userLogin();
@@ -453,7 +456,6 @@ public class Menu {
                         throw new RuntimeException(e);
                     }
                 }
-                case 4 -> repeat=false;
                 default -> System.out.println("Qualcosa è andato storto...");
             }
         }
@@ -463,14 +465,14 @@ public class Menu {
     private void client(){
         boolean repeat = true;
         while(repeat){
-            System.out.println("1)Cercare una proiezione \n2)Visualizza le mie prenotazioni \n3)Torna a menu precedente");
-            int num = numbCheck();
+            System.out.println("0)Esci \n1)Cercare una proiezione \n2)Visualizza le mie prenotazioni ");
+            int num = checkNumIn();
             switch (num){
+                case 0 -> repeat=false;
                 case 1 -> {
                     this.cercaProiezioni();
                 }
                 case 2 -> this.visualizzaPrenotazioni();
-                case 3 -> repeat=false;
                 default -> System.out.println("Qualcosa è andato storto...");
             }
         }
@@ -478,40 +480,242 @@ public class Menu {
 
     //metodo proiezionisti
     private void proiezionista(){
-        System.out.println("");
+        boolean repeat = true;
+        while (repeat){
+            System.out.println("0)Esci \n1)Cercare una proiezione \n2)Aggiunta proiezione");
+            int num = checkNumIn();
+            switch (num){
+                case 0 -> repeat=false;
+                case 1 -> this.cercaProPro();  //da modificare passandogli il RUOLO
+                case 2 -> this.addProiezioni();
+                default -> System.out.println("input non valido");
+            }
+        }
     }
 
     //metodo bigliettai
     private void bigliettaio(){
-        System.out.println("");
+        boolean repeat = true;
+        while(repeat){
+            System.out.println("0)Esci \n1)Cerca una proiezione \n2)Visualizza tutte le prenotazioni");
+            int num = checkNumIn();
+            switch (num){
+                case 0 -> repeat=false;
+                case 1 -> cercaPrenotazione();//metodo cerca prenotazione
+                case 2 -> this.prenh.visualizzaTuttePrenotazioni(); //aggiungere un metodo per visualizzare ogni prenotazione effettuata, magari differenziando tutte le prenotazioni in base alla proiezione
+            }
+        }
     }
+
+    //metodo cerca prenotazione
+    private void cercaPrenotazione(){
+        boolean repeat = true;
+        while(repeat){
+        System.out.println("Cerca per> \n0)Esci \n1)Nome e Cognome \n2)Codice prenotazione \n3)Titolo \n4)Data");
+        int num=checkNumIn();
+        switch (num){
+            case 0 -> repeat=false;
+            case 1 -> this.prenNC();
+            case 2 -> this.printPrenById();
+            case 3 -> this.searchByTitle();
+            case 4 -> this.
+        }
+
+        }
+    }
+
+    private void prenNC (){
+        System.out.println("inserire il nome: ");
+        String nome=stringCheck();
+        System.out.println("inserire il cognome: ");
+        String cognome=stringCheck();
+        this.prenh.visualizzaPrenotazioni(uh.filtroNC(nome, cognome));
+    }
+
+    //metodo che cerca una prenotazione in base all'id
+    private void printPrenById(){
+        System.out.println("inserire id della prenotazione da cercare");
+        Prenotazione foundP = this.prenh.getPrenByid(this.stringCheck()); // prende la prenotazione
+        System.out.println(foundP.getId() + ", " + foundP.getUsername() + ", " + foundP.getTitolo() + ", " + foundP.getDate());
+    }
+
+    //metodo che le prenotazioni per lo stesso titolo
+    private void searchByTitle(){
+        System.out.println("inserire il titolo: ");
+        LinkedList<Prenotazione> foundP = this.prenh.searchPrenByTitle(this.stringCheck());
+        for(Prenotazione p : foundP)
+            System.out.println(p.getId() + ", " + p.getTitolo() + ", " + p.getUsername() + ", " + p.getDate());
+    }
+
+    // metodo che cerca una prenotazione in base al titolo
 
     private void cercaProiezioni(){
         boolean repeat= true;
         while(repeat) {
-            System.out.println("inserire il titolo della proiezione da cercare, inserire 0 per annullare");
-            String titolo = this.stringCheck();
-            if(titolo.equals("0")){
-                repeat = false;
-                continue;
-            }
-            LinkedList<Proiezioni> proiezioniList = this.ph.searchProiezione(titolo);
-            int index = 1;
-            for (Proiezioni p : proiezioniList) {
-                System.out.println("" + index + ")" + this.printProj(p));
-                index++;
-            }
+            LinkedList<Proiezioni> proiezioniList = this.cercaProFilter();
+            this.stampaProiezioni(proiezioniList);
+            //un qualsiasi numero che non sia 0 o 1 continua a cercare proiezioni
             System.out.println("0)Esci \n1)Effettua una prenotazione \n2)Continua a cercare");
-            int num = Integer.parseInt(this.stringCheck());
+            int num = checkNumIn();
             if(num==1) {
                 System.out.println("inserire l'indice della proiezioni da prenotare");
                 effettuaPrenotazione(proiezioniList.get(this.numbCheck()-1));
             }
             if(num==0) repeat = false;
+        }
+    }
 
+    private void cercaProiezioniGuest(){
+        boolean repeat = true;
+        while(repeat){
+            LinkedList<Proiezioni> proiezioniList = this.cercaProFilter();
+            this.stampaProiezioni(proiezioniList);
+            System.out.println("0)Esci \n1)Continua a cercare");
+            if (this.checkNumIn()==0) repeat=false;
+        }
+    }
+
+    private void cercaProPro(){
+        boolean repeat=true;
+        while(repeat){
+            LinkedList<Proiezioni> proiezioniList = this.cercaProFilter();
+            this.stampaProiezioni(proiezioniList);
+            System.out.println("0)Esci \n1)modifica una proiezione \n2)cancella una proiezione");
+            int num=checkNumIn();
+            switch (num){
+                case 0 -> repeat=false;
+                case 1 -> this.modificaProiezione(proiezioniList);
+                case 2 -> this.cancellaProiezione(proiezioniList);
+                default -> System.out.println("input non valido");
+            }
 
         }
     }
+
+    private void modificaProiezione(LinkedList<Proiezioni> foundP){
+        System.out.println("inserire l'indice della proiezione da modificare");
+        int index = checkNumIn();
+        Proiezioni p =foundP.get(index);
+        if(!this.cercaExPren(p))
+            this.selezionaModificaPro(p,p.getTitolo(),p.getData());
+    }
+
+    private void selezionaModificaPro(Proiezioni p, String titolo, LocalDateTime data){
+        boolean repeat=true;
+        while (repeat){
+            System.out.println("0)Esci \n1)Modifica Titolo \n2)Modifica Regista \n3)Modifica Genere \n4)Modifica Eta minima \n5)Modifica Data \n6)Modifca Prezzo \n7)Modifica Anno \n8)Modifica Durata");
+            int num = this.checkNumIn();
+            switch (num){
+                case 0 -> repeat=false;
+                case 1 -> {//modifica titolo
+                    System.out.println("inserire il titolo modificato");
+                    p.setTitolo(this.stringCheck());
+                }
+                case 2 -> {//modifica autore
+                    System.out.println("inserire il regista modificato");
+                    p.setRegista(this.stringCheck());
+                }
+                case 3 -> this.selezioneGenere(); //modifica genere
+                case 4 -> {
+                    System.out.println("inserire la nuova eta minima");
+                    p.setEtaMin(this.etaCheck());
+                }//modifica eta minima
+                case 5 -> { //modifica data
+                    System.out.println("inserire la nuova data");
+                    p.setData(LocalDateTime.parse(this.inserireData(),this.formatter));
+                }
+                case 6 -> { //modifica prezzo
+                    System.out.println("inserire il nuovo prezzo");
+                    p.setPrezzo(this.checkNumFloat());
+                }
+                case 7 -> { //modifica anno
+                    System.out.println("inserire il nuovo anno");
+                    p.setAnno(this.checkNumIn());
+                }
+                case 8 -> {
+                    System.out.println("inserire la nuova durata, in minuti");
+                    p.setDurata(this.checkNumIn());
+                }//modifica durata
+                default -> System.out.println("input non valido");
+            }
+
+        }
+
+    }
+
+    private void cancellaProiezione(LinkedList<Proiezioni> foundP){
+        System.out.println("inserire l'indice della proiezione da modificare");
+        int index = checkNumIn();
+        Proiezioni p = foundP.get(index);
+        if(!this.cercaExPren(p))
+            if(this.ph.cancellaProj(p))
+                System.out.println("proiezione cancellata con successo");
+            else
+                System.out.println("errore nella cancellazione della proiezione");
+    }
+
+    private boolean cercaExPren(Proiezioni p){
+        LinkedList<Prenotazione> prenList = this.prenh.getPrenList();
+        for(Prenotazione pren:prenList){
+            if(pren.getDate().equals(p.getData()) && pren.getTitolo().equals(p.getTitolo())){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void stampaProiezioni(LinkedList <Proiezioni> proiezioniList){
+        int index = 1;
+        for (Proiezioni p : proiezioniList) {
+            System.out.println("" + index + ")" + this.printProj(p));
+            index++;
+        }
+    }
+
+    private LinkedList<Proiezioni> cercaProFilter(){
+        boolean repeat=true;
+        LinkedList<Proiezioni> proiezioniList = this.ph.getProiezioniList();
+        while (repeat){
+            System.out.println("scegliere il filtro delle proiezioni: \n0)Applica i filtri ed Esci \n1)Titolo \n2)Genere \n3)Data \n4)Autore \n5)Costo del biglietto");
+            int num=Integer.parseInt(this.stringCheck());
+            switch(num){
+                case 0 -> repeat=false;
+                case 1 -> {
+                    System.out.println("inserire titolo: ");
+                    proiezioniList=this.ph.filtroTitolo(proiezioniList,this.stringCheck());
+                }
+                case 2 -> {
+                    System.out.println("Inserire il genere del film: ");
+                    proiezioniList=this.ph.filtroGenere(proiezioniList,this.selezioneGenere());
+                }
+                case 3 -> {
+                    System.out.println("Inserire le due date, prima quella iniziale e poi quella finale: ");
+                    proiezioniList=this.ph.filtroData(proiezioniList,this.inseriredata(),this.inserireData());
+                }
+                case 4 -> {
+                    System.out.println("Inserire l'autore del film: ");
+                    proiezioniList=this.ph.filtroAutore(proiezioniList,this.stringCheck());
+                }
+                case 5 -> {
+                    System.out.println("Inserire prezzo: ");
+                    proiezioniList=this.ph.filtroPrezzo(proiezioniList, this.checkNumFloat());
+                }
+                default -> System.out.println("Input non valido");
+            }
+        }
+        return proiezioniList;
+    }
+
+    private String inserireData(){
+        System.out.println("inserire anno: ");
+        int anno = this.numbcheckeranno();
+        System.out.println("inserire mese: ");
+        int mese = this.numbcheckermesi();
+        System.out.println("inserire giorno: ");
+        int giorno = this.numbcheckergiorni();
+        return anno+"-"+mese+"-"+giorno;
+    }
+
 
     //metodo di testing per convertire i dati di un oggetto proiezione in una stringa
 
@@ -562,7 +766,33 @@ public class Menu {
     }
 
     private void modificaPrenotazione(LinkedList<Prenotazione> foundList){
+        System.out.println("inserisci indice della prenotazione da modificare");
+        int index = this.checkNumIn();
+        Prenotazione pToModify = foundList.get(index-1);
+        if (pToModify.getDate().isAfter(LocalDateTime.now())){
+            LinkedList<Proiezioni> foundProj = this.ph.afterData(this.ph.searchProiezione(pToModify.getTitolo()),LocalDateTime.now());
+            stampaProjDate(foundProj);
+            this.prenh.modificaPrenotazione(pToModify.getId(),this.cambioData(foundProj));
+            System.out.println("Data modificata con successo");
+        }
+        else{
+            System.out.println("la data inserita precede quella odierna, non risulta possibile modificarla");
+        }
+    }
 
+    //chiede all'utente la data con cui cambiare la prenotazione
+    private LocalDateTime cambioData(LinkedList<Proiezioni> foundProj){
+        System.out.println("inserire l'indice della data con cui si vuole sostituire la prenotazione");
+        int index = this.checkNumIn();
+        return foundProj.get(index-1).getData();
+    }
+
+    //stampa la lista di tutte le date possibili
+    private void stampaProjDate(LinkedList<Proiezioni> foundProj){
+        int index=1;
+        for (Proiezioni tmp:foundProj){
+            System.out.println(""+index++ +") "+ tmp.getData());
+        }
     }
 
     //metodo che cancella le prenotazioni
@@ -574,11 +804,11 @@ public class Menu {
         if(result)
             System.out.println("prenotazione rimossa con successo");
         else
-            System.out.println("errore nel cancellamento della prenotazione: \nnon trovata o data della proiezione inferiore a quella odierna,\nriprovare");
+            System.out.println("errore nel cancellamento della prenotazione: \nnon trovata o data della proiezione successiva a quella odierna,\nriprovare");
     }
 
 
-    //sotto metodo che prende in input un intero e lo controla
+    //sotto metodo che prende in input un intero e lo controlla
     private int checkNumIn(){
         int num = Integer.parseInt(this.stringCheck());
         if(num < 0){
@@ -587,7 +817,14 @@ public class Menu {
         }
         return num;
     }
+
+    //sotto metodo che prende in input un float e lo controlla
+    private float checkNumFloat(){
+        float num = Float.parseFloat(this.stringCheck());
+        if(num < 0){
+            System.out.println("numeri < 0 non validi");
+            return this.checkNumFloat();
+        }
+        return num;
+    }
 }
-
-
-
