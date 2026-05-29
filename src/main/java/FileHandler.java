@@ -17,44 +17,46 @@ import org.apache.commons.csv.CSVPrinter;
 import org.apache.commons.csv.CSVRecord;
 
 /**
- * Classe responsabile della gestione dei file CVS, contenenti i dati sulle proiezioni e sugli utenti
- * <h>
- * Gestore File Utenti e Proiezioni
- * </h>
+ * Classe che si occupa di gestire tutti i dati che verranno inseriti nei file CSV
+ *
+ * @author Piano Edoardo
  */
-public class
-FileHandler {
-
-
+public class FileHandler {
     /**
-     * formatter che esegue la conversione da LocalDateTime a String
+     * <p>formatter che esegue la conversione da LocalDateTime a String</p>
+     * <code>formatter</code>
      */
     private final DateTimeFormatter formatter; // formatter per convertire da LocalDateTime a string
     /**
-     * formatter che esegue la conversione da LocalDate a String
+     * <p>formatter che esegue la conversione da LocalDate a String</p>
+     * <code>localDateFormatter</code>
      */
     private final DateTimeFormatter localDateFormatter;
     /**
-     * linkedList contenente le proiezioni caricate dal file CSV
+     * <p>linkedList contenente le proiezioni caricate dal file CSV</p>
+     * <code>prolist</code>
      */
     private LinkedList<Proiezioni> proList; // linkedlist
     /**
-     * Lista contenente gli utenti caricati dal file CSV
+     * <p>Lista contenente gli utenti caricati dal file CSV</p>
+     * <code>userList</code>
      */
     private LinkedList<User> userList;
-
-    private LinkedList<Prenotazione> prenList;
-
     /**
-     * Percorso del file CSV
+     * <p>Lista contenente gli oggetti di tipo prenotazione caricati dal file CSV</p>
+     * <code>prenList</code>
+     */
+    private LinkedList<Prenotazione> prenList;
+    /**
+     * <p>Percorso del file CSV</p>
+     * <code>path</code>
      */
     private final Path path;// percorso file csv proiezioni
 
     private Random random; // da eliminare -----------------------
 
     /**
-     * Costruttore della classe FileHandler
-     *
+     * <p>Costruttore dei contenitori per gli oggetti proiezioni, user e prenotazioni, con relative date e orari nel file CSV corretto</p>
      * @param path percorso del file CSV
      */
     public FileHandler(String path) {
@@ -70,10 +72,8 @@ FileHandler {
     }
 
     // metodo per caricare i dati delle proiezioni da csv
-
     /**
-     * Carica i dati delle proiezioni da un file CSV
-     *
+     * <p>Metodo che si occupa di caricare i dati delle proiezioni sul file CSV</p>
      * @throws IOException errore durante la lettura dei dati dal file CSV
      */
     private void loadProData() throws IOException {
@@ -84,10 +84,8 @@ FileHandler {
     }
 
     // sotto metodo che crea oggetti della classe proiezione e gli assegna i dati
-
     /**
-     * Metodo per creare oggetti della classe proiezione seguendo i dati nel record
-     *
+     * <p>Metodo che si occupa di creare oggetti della classe proiezione e assegna i dati relativi</p>
      * @param record record CSV della proiezione
      */
     private void createProObj(CSVRecord record) {
@@ -105,10 +103,8 @@ FileHandler {
     }
 
     // sotto metodo per convertire le stringhe in formato Date
-
     /**
-     * Metodo per convertire le stringhe in formato LocalDateTime
-     *
+     * <p>Metodo che si occupa di convertire le stringhe in formato Date</p>
      * @param strDate data in formato stringa
      * @return data convertita
      */
@@ -117,25 +113,9 @@ FileHandler {
         return LocalDateTime.parse(strDate, this.formatter);
     }
 
-    // sotto metodo per convertire la data da stringa a formato LocalDate
-    /*/**
-     * Metodo per convertire le stringhe in formato localDate
-     *
-     * @param bdate stringa da convertire
-     * @return stringa convertita in localDate
-     */
-    /*private LocalDate convertBdate(String bdate){
-        LocalDate bDate = LocalDate.parse(bdate,localDateFormatter);
-        return bDate;
-    }*/
-
-
-
     //metodo che salva i dati delle proiezioni su file
-
     /**
-     * Metodo per salvare i dati delle proiezioni su file CSV
-     *
+     * <p>Metodo per salvare i dati delle proiezioni su file CSV</p>
      * @throws IOException errore durante la scrittura dei dati
      */
     public void writeToProCsv() throws IOException {
@@ -150,12 +130,10 @@ FileHandler {
     }
 
     //sotto metodo che cra un header per riscrivere il csv
-
     /**
-     * Crea gli header per riscrivere il CSV
-     *
+     * <p>Crea gli header per riscrivere il CSV</p>
      * @param printer oggetto CSVPrinter
-     * @throws IOException errore durante la scrittura
+     * @throws IOException errore durante la scrittura sul file CSV
      */
     private void createHeader(CSVPrinter printer) throws IOException {
         printer.printRecord(
@@ -172,13 +150,11 @@ FileHandler {
     }
 
     // sotto metodo che crea un record della proiezione selezionata per stampare su csv
-
     /**
-     * Crea un record CSV di una proiezioni
-     *
+     * <p>Crea un record CSV di una proiezioni</p>
      * @param p proiezione da salvare
      * @param printer oggetto CSVPrinter
-     * @throws IOException errore in caso di scrittura
+     * @throws IOException errore in caso di scrittura sul file CSV
      */
     private void createProRecord(Proiezioni p, CSVPrinter printer) throws IOException {
         printer.printRecord(
@@ -196,9 +172,8 @@ FileHandler {
 
     // metodo che prende i dati dal csv degli utenti e li inserisce nella linkedlist dedicata
     /**
-     * Metodo che carica i dati degli utenti dal CSV e inserisce nella linkedlist
-     *
-     * @throws IOException errore durante la lettura
+     * <p>Metodo che carica i dati degli utenti dal CSV e inserisce nella linkedlist</p>
+     * @throws IOException errore durante la lettura dalla lista
      */
     public void loadUserData() throws IOException {
         BufferedReader br = Files.newBufferedReader(this.path); // crea un reader per il file csv che usa inputstream per processare il testo
@@ -209,8 +184,7 @@ FileHandler {
 
     // metodo che crea un oggetto della classe user usando i dati passati dal csv
     /**
-     * Metodo che crea un oggetto della classe user usando i dati del CSV
-     *
+     * <p>Metodo che crea un oggetto della classe user usando i dati del CSV</p>
      * @param record record CSV utente
      */
     private void createUserObj(CSVRecord record){
@@ -227,9 +201,8 @@ FileHandler {
 
     //metodo per scrivere sul csv degli user
     /**
-     * Meotodo che scrive gli utenti sul file CSV
-     *
-     * @throws IOException errore in scrittura
+     * <p>Metodo che scrive gli utenti sul file CSV</p>
+     * @throws IOException errore in scrittura sul file CSV
      */
     public void writeToUserCsv()throws IOException {
         Writer writer = new FileWriter(this.path.toFile()); // crea writer per scrivere su file
@@ -244,10 +217,9 @@ FileHandler {
 
     //sotto metodo per creare gli header dello user.csv
     /**
-     * Metodo per creare gli header degli user del CSV utenti
-     *
+     * <p>Metodo per creare gli header degli user del CSV utenti</p>
      * @param printer oggetto CSVPrinter
-     * @throws IOException errore di scrittura
+     * @throws IOException errore di scrittura su file CSV
      */
     private void createUserHeader(CSVPrinter printer) throws IOException {
         printer.printRecord(
@@ -263,11 +235,10 @@ FileHandler {
 
     // sotto metodo che crea un record dello user selezionato da stampare su csv
     /**
-     * Metodo che crea un record CSV dello user
-     *
+     * <p>Metodo che crea un record CSV dello user</p>
      * @param u oggetto da salvare
      * @param printer oggetto CSVPrinter
-     * @throws IOException errore di scrittura
+     * @throws IOException errore di scrittura su file CSV
      */
     private void createUserRecord(User u, CSVPrinter printer) throws IOException {
         printer.printRecord(
@@ -282,6 +253,11 @@ FileHandler {
     }
 
     //metodo che carica i dati delle prenotazioni
+
+    /**
+     * <p>Metodo che si occupa di caricare i dati delle prenotazione sul file CSV dedicato</p>
+     * @throws IOException errore lanciata se durante la scrittura qualcosa andasse storto
+     */
     private void loadPrenData() throws IOException {
         BufferedReader br = Files.newBufferedReader(this.path); // crea un reader per il file csv che usa inputstream per processare il testo
         CSVParser parser = CSVFormat.DEFAULT.withFirstRecordAsHeader().withTrim().parse(br); // crea un parser dedicato per il csv che usa gli header come nomi delle colonne
@@ -289,6 +265,10 @@ FileHandler {
             this.createPrenObj(record); //crea oggetto proiezione e lo aggiunge alla linkedlist dedicata
     }
 
+    /**
+     * <p>Metodo che si occupa di creare gli oggetti di tipo prenotazione</p>
+     * @param record record preso dal file CSV
+     */
     private void createPrenObj(CSVRecord record){
         String username = record.get("username");
         String titolo = record.get("titolo");
@@ -299,6 +279,10 @@ FileHandler {
     }
 
     //metodo che salva le prenotazioni su file
+    /**
+     * <p>Metodo che si occupa di scrivere su file le prenotazioni effettuate</p>
+     * @throws IOException eccezione lanciata nel caso la scrittura su file non riuscisse
+     */
     private void writeToPrenCsv() throws IOException {
         Writer writer = new FileWriter(this.path.toFile()); // crea writer per scrivere su file
         CSVPrinter printer = new CSVPrinter(writer, CSVFormat.DEFAULT); // crea csv printer per creare record da scrivere su file
@@ -311,6 +295,12 @@ FileHandler {
     }
 
     //sotto metodo che crea gli header per il csv delle prenotazioni
+
+    /**
+     * <p>Metodo che crea le intestazioni per il file delle prenotazioni</p>
+     * @param printer oggetto che si occupa del stampare i record su file
+     * @throws IOException eccezione lanciata nel caso la scrittura su file non andasse a buon fine
+     */
     private void newPrenHeader(CSVPrinter printer) throws IOException {
         printer.printRecord(
                 "id",
@@ -321,6 +311,13 @@ FileHandler {
     }
 
     //sotto metodo che crea un record per le prenotazioni
+
+    /**
+     * <p>Metodo che si occupa di creare nuovi record per il fil prenotazioni</p>
+     * @param pre oggetto di tipo prenotazioni
+     * @param printer oggetto che si occupa del stampare i record su file
+     * @throws IOException eccezione lanciata nel caso la scrittura su file non andasse a buon fine
+     */
     private void newPrenRecord(Prenotazione pre, CSVPrinter printer) throws IOException {
         printer.printRecord(
                 pre.getId(),
@@ -330,11 +327,9 @@ FileHandler {
         );
     }
 
-
     //metodo che fa il get della linkedlist delle proiezioni
     /**
-     * Metodo che restituisce la lista delle proiezioni, se lista vuota viene caricata dal CSV
-     *
+     * <p>Metodo che restituisce la lista delle proiezioni, se lista vuota viene caricata dal CSV</p>
      * @return lista proiezioni
      */
     public LinkedList<Proiezioni> getProList(){
@@ -351,8 +346,7 @@ FileHandler {
 
     //metodo che fa il salvataggio della linkedlist passata su file csv proiezioni
     /**
-     * Metodo che salva la liste delle proiezioni sul CSV
-     *
+     * <p>Metodo che salva la liste delle proiezioni sul CSV</p>
      * @param proList lista delle proiezioni
      */
     public void saveProList(LinkedList<Proiezioni> proList){
@@ -366,8 +360,7 @@ FileHandler {
 
     //metodo getter della linkedlist di user
     /**
-     * Metodo che restituisce la lista degli utenti, se vuota carica direttamente dal CSV
-     *
+     * <p>Metodo che restituisce la lista degli utenti, se vuota carica direttamente dal CSV</p>
      * @return lista utenti
      */
     public LinkedList<User> getUserList(){
@@ -384,8 +377,7 @@ FileHandler {
 
     // metod oper salvare la linkedlist degli user
     /**
-     * Metodo per salvare la linkedlist degli user
-     *
+     * <p>Metodo per salvare la linkedlist degli user</p>
      * @param userList lista utenti
      */
     public void saveUserList(LinkedList<User> userList){
@@ -398,6 +390,11 @@ FileHandler {
     }
 
     // metodo che restituisce la lista delle prenotazioni caricate da file
+
+    /**
+     * <p>Metodo che restituisce la lista delle prenotazioni caricata sul file CSV</p>
+     * @return lista della prenotazioni
+     */
     public LinkedList<Prenotazione>getPrenList(){
         if(!this.prenList.isEmpty()) // se la linkedlist è già caricata la restituisce
             return this.prenList;
@@ -411,6 +408,11 @@ FileHandler {
     }
 
     //metodo che salva la lista di prenotazioni
+
+    /**
+     * <p>Metodo che si occupa di salvare le modifiche fatte alla lista delle prenotazioni</p>
+     * @param prenList lista delle prenotazioni
+     */
     public void savePrenList(LinkedList<Prenotazione> prenList){
         this.prenList = prenList; // aggiorna lista salvata in cache
         try {

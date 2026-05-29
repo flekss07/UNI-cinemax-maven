@@ -2,46 +2,54 @@ import java.time.LocalDate;
 
 /**
  * <h1>Classe che si occupa della creazione degli oggetti utente</h1>
+ * @author Piano Edoardo
  */
 public class User {
 
     /**
-     * Parametro nome
+     * <p>Parametro nome</p>
+     * <code>nome</code>
      */
     private String nome;
 
     /**
-     * Parametro cognome
+     * <p>Parametro cognome</p>
+     * <code>cognome</code>
      */
     private String cognome;
 
     /**
-     * Parametro password
+     * <p>Parametro password</p>
+     * <code><password/code>
      */
     private String password;
 
     /**
-     * Parametro nome utente
+     * <p>Parametro nome utente</p>
+     * <code>username</code>
      */
     private String username;
 
     /**
-     * Parametro data di nascita
+     * <p>Parametro data di nascita</p>
+     * <code>dataDiNascita</code>
      */
     private LocalDate dataDiNascita;
 
     /**
-     * Parametro indirizzo
+     * <p>Parametro indirizzo</p>
+     * <code>indirizzo</code>
      */
     private String indirizzo;
 
     /**
-     * Parametro ruolo
+     * <p>Parametro ruolo</p>
+     * <code>ruolo</code>
      */
     private Roles ruolo;
 
     /**
-     * Costruttore che si occupa della creazione degli utenti
+     * <p>Costruttore che si occupa della creazione degli utenti</p>
      *
      * @param nome nome inserito dall'utente
      * @param cognome cognome inserito dall'utente
@@ -64,95 +72,95 @@ public class User {
     // getter
 
     /**
-     * Metodo getter per ottenere il nome
+     * <p>Metodo getter per ottenere il nome</p>
      *
-     * @return
+     * @return restituisce il nome inserito
      */
     public String getNome(){ return this.nome; }
 
     /**
-     * Metodo getter per ottenere il cognome
+     * <p>Metodo getter per ottenere il cognome</p>
      *
-     * @return
+     * @return restituisce il cognome inserito
      */
     public String getCognome(){ return this.cognome; }
 
     /**
-     * Metodo getter per ottenere la password
+     * <p>Metodo getter per ottenere la password</p>
      *
-     * @return
+     * @return restituisce la password
      */
     public String getPassword(){ return this.password; }
 
     /**
-     * Metodo getter per ottenere il nome utente
+     * <p>Metodo getter per ottenere il nome utente</p>
      *
-     * @return
+     * @return restituisce il nome utente
      */
     public String getUsername(){ return this.username; }
 
     /**
-     * Metodo getter per ottenere la data di nascita
+     * <p>Metodo getter per ottenere la data di nascita</p>
      *
-     * @return
+     * @return restituisce la data di nascita
      */
     public LocalDate getDataDiNascita() { return this.dataDiNascita; }
 
     /**
-     * Metodo getter per ottenere l'indirizzo
+     * <p>Metodo getter per ottenere l'indirizzo</p>
      *
-     * @return
+     * @return restituisce l'indirizzo
      */
     public String getIndirizzo() { return this.indirizzo; }
 
     /**
-     * Metodo getter per ottenere il ruolo
+     * <p>Metodo getter per ottenere il ruolo</p>
      *
-     * @return
+     * @return restituisce il ruolo
      */
     public Roles getRole(){ return this.ruolo; }
 
     //setter
 
     /**
-     * Metodo setter per modificare il nome
+     * <p>Metodo setter per modificare il nome</p>
      *
-     * @param nome
+     * @param nome nome inserito dall'utente
      */
     public void setNome(String nome){ this.nome = nome; }
 
     /**
-     * Metodo setter per modificare il cognome
+     * <p>Metodo setter per modificare il cognome</p>
      *
-     * @param cognome
+     * @param cognome cognome inserito dall'utente
      */
     public void setCognome(String cognome){ this.cognome = cognome; }
 
     /**
-     * Metodo setter per modificare la password
+     * <p>Metodo setter per modificare la password</p>
      *
-     * @param password
+     * @param password password inserita dall'utente
      */
     public void setPassword(String password){ this.password = password; }
 
     /**
-     * Metodo setter per modificare il nome utente
+     * <p>Metodo setter per modificare il nome utente</p>
      *
-     * @param username
+     * @param username nome utente inserito dall'utente
      */
     public void setUsername(String username){ this.username = username; }
 
     /**
-     * Metodo setter per modificare la data di nascita
+     * <p>Metodo setter per modificare la data di nascita</p>
      *
-     * @param dataDiNascita
+     * @param dataDiNascita data di nascita inserita dall'utente
      */
     public void setDataDiNascita(LocalDate dataDiNascita){ this.dataDiNascita = dataDiNascita; }
 
     /**
-     * Metodo setter per modificare l'indirizzo
+     * <p>Metodo setter per modificare l'indirizzo</p>
      *
-     * @param indirizzo
+     * @param indirizzo indirizzo inserito dall'utente
      */
     public void setIndirizzo(String indirizzo){ this.indirizzo = indirizzo; }
 }

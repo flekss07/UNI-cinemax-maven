@@ -7,13 +7,39 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.StreamSupport;
 
+/**
+ * Classe Menù che fa da "interfaccia" per l'intera applicazione
+ * @author Merzagora Mattia Renato
+ * @author Ognissanti Elia
+ * @author Piano Edoardo
+ * @author Scalone Lorenzo
+ */
 public class Menu {
+    /**
+     * <p>Oggetto della classe UserHandler</p>
+     * <code>uh</code>
+     */
     private final UserHandler uh;
+    /**
+     * <p>Oggetto della classe ProiezioniHandler</p>
+     * <code>ph</code>
+     */
     private final ProiezioniHandler ph ;
+    /**
+     * <p>Oggetto della classe PrenotazioneHandler</p>
+     * <code>prenh</code>
+     */
     private final PrenotazioniHandler prenh;
     private DateTimeFormatter formatter;
+    /**
+     * <p>Oggetto della classe user che salva le informazioni dell'utente quando accede con le sue credenziali</p>
+     * <code>loggedUser</code>
+     */
     private User loggedUser;
 
+    /**
+     * <p>Costruttore oggetti della classe userHandler</p>
+     */
     public Menu() { //costruzione oggetto classe userhandler
         this.uh = new UserHandler();
         this.ph= new ProiezioniHandler();
@@ -21,6 +47,9 @@ public class Menu {
         this.formatter = DateTimeFormatter.ofPattern("yy-MM-dd");
     }
 
+    /**
+     * <p>Metodo che si occupa chiedere all'utente se si vuole registrare, accedere oppure continuare come guest</p>
+     */
     public void menuSelect() { //metodo che crea il menu
         boolean repeat=true;
         while (repeat) {
@@ -45,6 +74,9 @@ public class Menu {
         }
     }
 
+    /**
+     * <p>Metodo che si occupa di aggiungere le proiezioni a proiezioniHandler</p>
+     */
     public void addProiezioni() {
         //inserire il genere del film
         Genres genere = this.selezioneGenere();
@@ -71,8 +103,12 @@ public class Menu {
         this.ph.proiezionicreator(genere, titolo, regista, dataProiezioni,durata, etaMin, uscita, prezzo,0);
         System.out.println("proiezione aggiunta");
     }
+//funzione x selezione genere
 
-    //funzione x selezione genere
+    /**
+     * <p>Metodo che fa scegliere che genere inserire per una proiezione</p>
+     * @return in base alla scelta verrà inserito il genere selezionato
+     */
     private Genres selezioneGenere() {
         System.out.println("Inserire il genere inserendo il numerino assegnato");
         System.out.println("ID\tGENERE");
@@ -102,6 +138,11 @@ public class Menu {
         };
     }
 
+    /**
+     * <p>Metodo che si occupa di controllare se l'input numerico inserito dall'utente sia corretto</p>
+     * @param s input inserito dall'utente
+     * @return esegue chiamate ricorsive nel caso l'input inserito risulti essere un numero negativo, non essere all'interno del range indicato o non essere affatto un numero
+     */
     private int numbchecker(String s) {
         try {
             int value = Integer.parseInt(s);
@@ -120,6 +161,10 @@ public class Menu {
         }
     }
 
+    /**
+     * <p>Metodo che si occupa della funzione di registrarsi al sito</p>
+     * @throws Exception eccezione lanciata nel caso qualcosa durante la registrazione andasse storto
+     */
     public void userRegister() throws Exception {
         //Inserimento nome
         System.out.println("Inserire Nome");
@@ -140,6 +185,10 @@ public class Menu {
 
     }
 
+    /**
+     * <p>Metodo che si occupa di controllare se un nome utente sia già esistente o meno</p>
+     * @return esegue una chiamata ricorsiva nel caso il nome utente sia già stato usato da un altro utente oppure restituisce il nome utente inserito
+     */
     //metodo che fa un check anti duplicati sullo username
     private String checkUsernameDupe(){
         System.out.println("Inserire Username");
@@ -150,6 +199,10 @@ public class Menu {
         return this.checkUsernameDupe();
     }
 
+    /**
+     * <p>Metodo che si occupa controllare se la stringa inserita dall'utente sia corretto</p>
+     * @return esegue una chiamata ricorsiva nel caso la stringa inserita non rispetti i criteri, nel caso positivo restituisce la stringa inserita
+     */
     private String stringCheck() {
         Scanner sc = new Scanner(System.in);
         String str = sc.nextLine();
@@ -160,6 +213,11 @@ public class Menu {
         return str;
     }
 
+    /**
+     * <p>Metodo il quale scopo è il richiedere la password durante la procedura di registrazione /p>
+     * @return se le password inserite dall'utente non sono le stesse esegue una chiamata ricorsiva per richiedere l'inserimento, nel caso positivo il metodo esegue una chiamata tramite l'istruzione <code>AESencrypt.encrypt(password)</code> una chiamata per la cryptazione della password
+     * @throws Exception eccezione lanciata durante la cryptazione della password inserita
+     */
     private String passencryption() throws Exception {
         System.out.println("inserire una password");
         String password = this.stringCheck();
@@ -170,7 +228,6 @@ public class Menu {
             return passencryption();
         }
         //encrypting della password
-
         try {
             return AESencrypt.encrypt(password);
         } catch (Exception e) {
@@ -179,6 +236,10 @@ public class Menu {
         }
     }
 
+    /**
+     * <p>Metodo che si occupa della scelta del ruolo da parte degli utenti durante la registrazione</p>
+     * @return in base alla scelta effettuata dal cliente, assegna il ruolo associato in base alla scelta, ritorna null se l'input inserito non sia valido
+     */
     private Roles chooseRole() {
         System.out.println("selezionare ruolo:\n1)cliente\n2)proiezionista\n3)bibliettaio ");
         int choice = Integer.parseInt(this.stringCheck());
@@ -193,6 +254,10 @@ public class Menu {
         }
     }
 
+    /**
+     * <p>Metodo il cui scopo è controllare se il giorno inserito dall'utente sia valido o non valido</p>
+     * @return effettua tre chiamate ricorsive se il numero inserito è minore uguale a zero, maggiore di 31 o nel caso l'utente non inserisca affatto un numero
+     */
     private int numbcheckergiorni() {
         String str = this.stringCheck();
         try {
@@ -212,6 +277,10 @@ public class Menu {
         }
     }
 
+    /**
+     * <p>Metodo che si occupa di controllare se il mese inserito in numero si valido o meno</p>
+     * @return esegue tre chiamate ricorsive nel caso in cui l'input inserito sia minore uguale di zero, maggiore di dodici o nel caso l'utente non inserisca affatto un numero
+     */
     private int numbcheckermesi() {
         String str = this.stringCheck();
         try {
@@ -221,7 +290,7 @@ public class Menu {
                 return numbcheckermesi();
             }
             if (numInt > 12) {
-                System.out.println("Il numeroinserito non può essere maggiore di 12, rinserire il numero");
+                System.out.println("Il numero inserito non può essere maggiore di 12, rinserire il numero");
                 return numbcheckermesi();
             }
             return numInt;
@@ -231,6 +300,10 @@ public class Menu {
         }
     }
 
+    /**
+     * <p>Metodo che si occupa se l'anno di nascita inserito sia valido o meno</p>
+     * @return esegue tre chiamate ricorsive nel caso in cui l'input inserito sia minore uguale all'anno attuale meno 200, maggiore dell'anno odierno o nel caso l'utente non inserisca affatto un numero
+     */
     private int numbcheckeranno() {
         String str = this.stringCheck();
         try {
@@ -250,6 +323,10 @@ public class Menu {
         }
     }
 
+    /**
+     * <p>Metodo che controlla la data di nascita inserita dall'utente</p>
+     * @return restituisce la data inserita con il formato anno-mese-giorno
+     */
     private String inseriredata() {
         System.out.println("Inserire il giorno di nascita");
         int giorni = this.numbcheckergiorni();
@@ -272,6 +349,10 @@ public class Menu {
         return anno + "-" + valMesi + "-" + valGiorni;
     }
 
+    /**
+     * <p>Metodo che si di controllare se l'input inserito dall'utente sia valido</p>
+     * @return esegue due chiamate ricorsive nel caso il numero inserito sia minore uguale di zero o nel caso l'input inserito non sia affatto un numero
+     */
     private int numbCheck() {
         String str = this.stringCheck().trim();
         try {
@@ -287,6 +368,10 @@ public class Menu {
         }
     }
 
+    /**
+     * <p>Metodo che si ooccupa della funzione di login dei nuovi utenti</p>
+     * @throws RuntimeException eccezione lanciata nel caso durante la procedura di login sia andato qualcosa storto
+     */
     public void userLogin() throws RuntimeException {
         try {
            User user=this.uh.loginUser(); //chiedo all'utente di loggare e salva l'utente se lo trova
@@ -304,6 +389,10 @@ public class Menu {
         }
     }
 
+    /**
+     * <p>Metodo che si occupa dell'aggiunta delle proiezioni</p>
+     * @return restituisce la data e l'orario della proiezione nel formato anno-mese-giorno-ore-minuti
+     */
     private String dataproiezioni() {
         System.out.println("Inserire il giorno della proiezione");
         int giorni = this.numbcheckergiorni();
@@ -330,6 +419,11 @@ public class Menu {
         return anno + "-" + valMesi + "-" + valGiorni+" "+ore+":"+minuti+":00";
 
     }
+
+    /**
+     * <p>Metodo che si occupa di controllare i minuti inseriti durante la l'aggiunta delle proiezioni</p>
+     * @return esegue delle chiamate ricorsive se l'input inserito è minore uguale a zero o maggiore di 60, nel caso positivo restituisce il numero di minuti
+     */
     private int numbcheckmin(){
         String str = this.stringCheck();
         try{
@@ -346,6 +440,10 @@ public class Menu {
         }
     }
 
+    /**
+     * <p>Metodo che si occupa di controllare le ore inseriti durante la l'aggiunta delle proiezioni</p>
+     * @return esegue delle chiamate ricorsive se l'input inserito è minore uguale a zero o maggiore di 24 nel caso positivo restituisce il numero di ore
+     */
     private int numbcheckore(){
         String str = this.stringCheck();
         try{
@@ -361,6 +459,11 @@ public class Menu {
             throw new RuntimeException(e);
         }
     }
+
+    /**
+     * <p>Metodo che si occupa di controllare il prezzo del biglietto della proiezione</p>
+     * @return esegue delle chiamate ricorsive nel caso l'input inserito sia negativo o l'input non sia affatto un prezzo, nel caso positivo restituisce il prezzo del biglietto inserito
+     */
     private float priceCheck() {
         String str = this.stringCheck();
         try {
@@ -377,6 +480,11 @@ public class Menu {
 
 
     }
+
+    /**
+     * <p>Metodo che controlla la durata della proiezione durante l'aggiunta</p>
+     * @return esegue una chiamata ricorsiva nel caso in cui l'input inserito sia negativo, nel caso positivo restituisce la durata inserita
+     */
     private int duratacheck(){{
         String str = this.stringCheck();
         try {
@@ -392,6 +500,11 @@ public class Menu {
         }
        }
     }
+
+    /**
+     * <p>Metodo che controlla l'età inserita durante l'inserimento di una proiezione</p>
+     * @return esegue delle chiamate ricorsive nel caso in cui:l'input inserito non sia un numero, il numero inserito sia negativo, restituisce l'età inserita negli altri casi
+     */
     private int etaCheck(){ //da ricontrollare
         try{
             int etaMinInt = this.checkNumIn();
@@ -411,6 +524,11 @@ public class Menu {
             return etaCheck();
         }
     }
+
+    /**
+     * <p>Metodo che si occupa di controllare la data di rilascio durante l'aggiunta di una proiezione</p>
+     * @return esegue delle chiamate ricorsive nel caso in cui: la data rilasciata sia inferiore al 1888 o l'input inserito non sai affatto un numero, restituisce l'anno inserito
+     */
     private int releaseCheck(){
         String str = this.stringCheck();
         try {
@@ -426,6 +544,9 @@ public class Menu {
     }
 
     //metodo userMenu
+    /**
+     * <p>Metodo che si occupa di indirizzare in base al ruolo, l' utente che ne usufruisce</p>
+     */
     public void userMenu(){
         switch (this.loggedUser.getRole()){
             case CLIENTE -> this.client();
@@ -436,6 +557,9 @@ public class Menu {
     }
 
     //metodo guest
+    /**
+     * <p>Metodo che simula il menu dei guest</p>
+     */
     public void guest() {
         this.loggedUser=null;
         boolean repeat = true;
@@ -462,6 +586,9 @@ public class Menu {
     }
 
     //metodo clienti
+    /**
+     * <p>Metodo che simula il menu dei clienti</p>
+     */
     private void client(){
         boolean repeat = true;
         while(repeat){
@@ -479,6 +606,9 @@ public class Menu {
     }
 
     //metodo proiezionisti
+    /**
+     * <p>Metodo che simula il menu dei proiezionisti</p>
+     */
     private void proiezionista(){
         boolean repeat = true;
         while (repeat){
@@ -494,6 +624,9 @@ public class Menu {
     }
 
     //metodo bigliettai
+    /**
+     * <p>Metodo che si occupa di simulare il menu dei bigliettai</p>
+     */
     private void bigliettaio(){
         boolean repeat = true;
         while(repeat){
@@ -549,6 +682,9 @@ public class Menu {
 
     // metodo che cerca una prenotazione in base al titolo
 
+    /**
+     * <p>Metodo che permette di cercare le proiezioni</p>
+     */
     private void cercaProiezioni(){
         boolean repeat= true;
         while(repeat) {
@@ -575,6 +711,9 @@ public class Menu {
         }
     }
 
+    /**
+     * <p>Metodo che permette al proiezionista di cancellare e/o modificare le proiezioni</p>
+     */
     private void cercaProPro(){
         boolean repeat=true;
         while(repeat){
@@ -592,6 +731,10 @@ public class Menu {
         }
     }
 
+    /**
+     * <p>Metodo che permette la modifica di una proiezione</p>
+     * @param foundP lista della proiezioni
+     */
     private void modificaProiezione(LinkedList<Proiezioni> foundP){
         System.out.println("inserire l'indice della proiezione da modificare");
         int index = checkNumIn();
@@ -600,6 +743,12 @@ public class Menu {
             this.selezionaModificaPro(p,p.getTitolo(),p.getData());
     }
 
+    /**
+     * <p>Metodo per il proiezionista, che fa da interfaccia per le azioni disponibili</p>
+     * @param p
+     * @param titolo
+     * @param data
+     */
     private void selezionaModificaPro(Proiezioni p, String titolo, LocalDateTime data){
         boolean repeat=true;
         while (repeat){
@@ -654,6 +803,11 @@ public class Menu {
                 System.out.println("errore nella cancellazione della proiezione");
     }
 
+    /**
+     * <p>Metodo per cercare le prenotazioni esistenti</p>
+     * @param p oggetto di tipo prenotazione
+     * @return restituisce un valore booleano in base all'esito della ricerca
+     */
     private boolean cercaExPren(Proiezioni p){
         LinkedList<Prenotazione> prenList = this.prenh.getPrenList();
         for(Prenotazione pren:prenList){
@@ -664,6 +818,10 @@ public class Menu {
         return false;
     }
 
+    /**
+     * <p>Metodo che restituisce a schermo la lista delle proiezioni</p>
+     * @param proiezioniList lista delle proiezioni
+     */
     private void stampaProiezioni(LinkedList <Proiezioni> proiezioniList){
         int index = 1;
         for (Proiezioni p : proiezioniList) {
@@ -672,6 +830,10 @@ public class Menu {
         }
     }
 
+    /**
+     * <p>Metodo che esegue la funzione ri cerca filtrata per la ricerca delle proiezioni</p>
+     * @return restituisce la lista delle proiezioni compatibili con i filtri selezionati
+     */
     private LinkedList<Proiezioni> cercaProFilter(){
         boolean repeat=true;
         LinkedList<Proiezioni> proiezioniList = this.ph.getProiezioniList();
@@ -706,6 +868,10 @@ public class Menu {
         return proiezioniList;
     }
 
+    /**
+     * <p>Metodo che si occupa di richiedere e controllare la data inserita</p>
+     * @return restituisce la data inserita nel formato: anno-mese-giorno
+     */
     private String inserireData(){
         System.out.println("inserire anno: ");
         int anno = this.numbcheckeranno();
@@ -718,10 +884,8 @@ public class Menu {
 
 
     //metodo di testing per convertire i dati di un oggetto proiezione in una stringa
-
     /**
-     * Metodo che restituisce una rappresentazione testuale dell'oggetto Proiezioni
-     *
+     * <p>Metodo che restituisce una rappresentazione testuale dell'oggetto Proiezioni</p>
      * @param p oggetto Proiezione
      * @return oggetto Proiezione convertito a stringa
      */
@@ -737,12 +901,19 @@ public class Menu {
                 ", " + p.getPrezzo();
     }
 
+    /**
+     * <p>Metodo che si occupa di effettuare la prenotazione per una proiezione</p>
+     * @param p proiezione per cui si vuole fare una prenotazione
+     */
     private void effettuaPrenotazione(Proiezioni p){
         //UUID genera un ID univoco
         this.prenh.createBooking(this.loggedUser.getUsername(), p.getTitolo(), p.getData(), UUID.randomUUID().toString());
         System.out.println("prenotazione effettuata");
     }
 
+    /**
+     * <p>Metodo che fa visualizzare le prenotazione all'utente</p>
+     */
     private void visualizzaPrenotazioni(){
         Boolean repeat = true;
         while(repeat) {
@@ -765,6 +936,10 @@ public class Menu {
         }
     }
 
+    /**
+     * <p>Metodo che permette all'utente di poter cambiare la data di una prenotazione</p>
+     * @param foundList lista delle prenotazioni
+     */
     private void modificaPrenotazione(LinkedList<Prenotazione> foundList){
         System.out.println("inserisci indice della prenotazione da modificare");
         int index = this.checkNumIn();
@@ -781,6 +956,11 @@ public class Menu {
     }
 
     //chiede all'utente la data con cui cambiare la prenotazione
+    /**
+     * <p>Metodo che esegue il cambio di date delle prenotazioni</p>
+     * @param foundProj lista delle proiezioni
+     * @return restituisce la nuova data della prenotazione
+     */
     private LocalDateTime cambioData(LinkedList<Proiezioni> foundProj){
         System.out.println("inserire l'indice della data con cui si vuole sostituire la prenotazione");
         int index = this.checkNumIn();
@@ -788,6 +968,10 @@ public class Menu {
     }
 
     //stampa la lista di tutte le date possibili
+    /**
+     * <p>Metodo che fa vedere all'utente tutte le possibile date per una proiezione</p>
+     * @param foundProj lista delle proiezioni
+     */
     private void stampaProjDate(LinkedList<Proiezioni> foundProj){
         int index=1;
         for (Proiezioni tmp:foundProj){
@@ -796,6 +980,10 @@ public class Menu {
     }
 
     //metodo che cancella le prenotazioni
+    /**
+     * <p>Metodo che si occupa di cancellare una prenotazione</p>
+     * @param foundList lista delle prenotazioni
+     */
     private void cancellaPrenotazione(LinkedList<Prenotazione> foundList){
         System.out.println("inserisci indice prenotazione da cancellare");
         int index = this.checkNumIn();
@@ -807,7 +995,11 @@ public class Menu {
             System.out.println("errore nel cancellamento della prenotazione: \nnon trovata o data della proiezione successiva a quella odierna,\nriprovare");
     }
 
-
+    //sotto metodo che prende in input un intero e lo controla
+    /**
+     * <p>Metodo che controllare i numeri in input</p>
+     * @return restituisce il numero inserito se non ci sono problemi, altrimenti esegue una chiamata ricorsiva
+     */
     //sotto metodo che prende in input un intero e lo controlla
     private int checkNumIn(){
         int num = Integer.parseInt(this.stringCheck());
@@ -819,6 +1011,10 @@ public class Menu {
     }
 
     //sotto metodo che prende in input un float e lo controlla
+    /**
+     * <p>Metodo che controlla i prezzi del biglietto</p>
+     * @return esegue una chiamata ricorsiva nel caso in cui il numero siamo minore di zero, restituisce il numero inserito nel caso l'input sia valido
+     */
     private float checkNumFloat(){
         float num = Float.parseFloat(this.stringCheck());
         if(num < 0){
