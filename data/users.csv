@@ -1,9 +1,8 @@
 nome,cognome,password,username,data_di_nascita,indirizzo,ruolo
-elia,elia,H1Pc1zJLGnRJGW1hLWEWpQ==,udjj,2000-12-12,v,PROIEZIONISTA
-elia,elia,H1Pc1zJLGnRJGW1hLWEWpQ==,udjj2,2000-12-12,v,CLIENTE
-edoardo,piano,H1Pc1zJLGnRJGW1hLWEWpQ==,ep,2006-01-07,alfkjasdf,CLIENTE
-test,proiezionista,H1Pc1zJLGnRJGW1hLWEWpQ==,tproj,2000-01-01,milano,PROIEZIONISTA
-elia,elia,H1Pc1zJLGnRJGW1hLWEWpQ==,udjj3,2000-12-12,v,BIGLIETTAIO
-ciccio,panza,p3tpxMm9+C1sBI4EMb4reg==,cp,2000-01-01,saRONNO,PROIEZIONISTA
-franco,b,H1Pc1zJLGnRJGW1hLWEWpQ==,btest,2026-01-01,cia,BIGLIETTAIO
-mario,rossi,Klegtkw+lBdI08g66MJPqg==,SuperMario,2001-03-12,Via marco polo,CLIENTE
+Mario,Rossi,DkoGFLOeGeGlr1gSNjPH8A==,SuperMario,2000-12-01,Via pace,PROIEZIONISTA
+Felice,Rimoldi,AdP1fmJBxjnAHWk7hoUCMw==,UnluckyDemit,2004-10-12,Via marco polo,PROIEZIONISTA
+Carlo,Manolo,ri8EJrEMxztgJFsta0Dq2w==,Maltos,1994-11-12,Via milano,BIGLIETTAIO
+Marco,Lupo,vlwO7tZVFH2TkZ4Ip2Mc8g==,Pharao,1994-09-11,Via del  cairo,BIGLIETTAIO
+Elena,Bianchi,/8jqMSqkVpyjkq2M9UdTug==,Morgana,2000-10-09,Via  roma,BIGLIETTAIO
+Monica,Ricci,Y9yUkOj+dGYOm2CK309zig==,Mricci,1990-09-04,via padova,BIGLIETTAIO
+Carlo,Martini,Q6+p/AKUueVrAXHPd3+vsw==,Martinix,1980-03-01,Via garibaldi,BIGLIETTAIO
